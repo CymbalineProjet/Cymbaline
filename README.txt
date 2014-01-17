@@ -1,0 +1,32 @@
+#Alca Framework Arborescence
+
+--- AlcaFram
+	--- cache
+		--- dev
+		--- prod
+	--- config #à voir si on garde
+	--- core
+		--- config
+		--- autoload.php
+	--- public
+		--- css
+		--- images
+		--- js
+	--- source
+		--- Demo
+			--- DemoBox
+				--- configuration
+					--- route
+				--- control
+				--- item
+				--- loader
+				--- ressources
+					--- css
+					--- images
+					--- js
+				--- service
+				--- template
+					--- base
+	--- .htaccess
+	--- index.php
+	--- README.txt

@@ -1,0 +1,5 @@
+Options +FollowSymlinks 
+RewriteEngine on  
+
+RewriteRule ^(-[a-z]*).php /$1/ [L]
+
