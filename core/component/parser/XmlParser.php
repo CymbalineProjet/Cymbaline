@@ -1,6 +1,6 @@
 <?php 
 
-namespace core\component;
+namespace core\component\parser;
 /** 
  *  XML to Associative Array Class 
  * 

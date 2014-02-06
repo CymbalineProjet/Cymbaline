@@ -1,8 +1,8 @@
 <?php
 
-namespace core\component;
+namespace core\component\tools;
 
-use core\component\ArrayToObject;
+use core\component\tools\ArrayToObject;
 
 /**
  * Description of Form

@@ -1,8 +1,8 @@
 <?php
 
-namespace core\component;
+namespace core\component\dbmanager;
 
-use core\component\ArrayToObject;
+use core\component\tools\ArrayToObject;
 
 /**
  * Description of PDOconfig

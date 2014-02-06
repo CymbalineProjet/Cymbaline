@@ -1,6 +1,9 @@
 <?php
 
-namespace Config;
+namespace core\component;
+
+use core\component\parser\XmlParser;
+use core\component\tools\ArrayToObject;
 
 /** 
  * Class de paramétrage du site
@@ -9,28 +12,22 @@ namespace Config;
  * On préfixe les variables avec "_" car variable de param
  */
 class Parametrage {
-    
-    // -- connexion BDD
-    private $_hote;
-    private $_port;
-    private $_nom_db;
-    private $_utilisateur;
-    private $_mot_passe;
-    
-    // -- routes
-    private $_route_js;
-    private $_route_css;
-    private $_route_img;
-    
-    // -- autres
+
     private $_connexion;
-    
+    private $_param;
+    private $_parser;
+
+
     /**
      * Initialise la connexion et les routes
      */
     public function __construct() {
+        $xml = file_get_contents("http://alca.dev/AlcaFram/core/config/parameters.xml");
+        $this->_parser = new XmlParser($xml); 
+        $arraytoobject = new ArrayToObject($this->_parser->array,TRUE);
+        $this->_param = $arraytoobject->convert();
         $this->initConnexion();
-        $this->initRoute();
+        
     }
     
     /**
@@ -38,55 +35,56 @@ class Parametrage {
      * et créé la connexion dans l'attribut _connexion
      */
     public function initConnexion() {
-        $this->_hote        = 'localhost'; // le serveur
-        $this->_port        = '';
-        $this->_nom_db      = 'tirage'; // le nom de la base de données
-        $this->_utilisateur = 'root'; // nom d'utilisateur 
-        $this->_mot_passe   = ''; // mot de passe de l'utilisateur
+      
+        if($this->_parser->parse_error) {
+            new \Exception($this->_parser->get_xml_error()); 
+        }
+  
+        $db = ("dev" == $this->_param->parameters->env) ? 0 : 1;
         
-        // on instancie un objet Connexion 
-        $this->_connexion = new \PDO('mysql:host='.$this->_hote.';port='.$this->_port.';dbname='.$this->_nom_db, $this->_utilisateur, $this->_mot_passe);
-    }
+        $this->_connexion = new \PDO('mysql:host='.$this->_param->parameters->database[$db]->host.';port='.$this->_param->parameters->database[$db]->port.';dbname='.$this->_param->parameters->database[$db]->dbname, $this->_param->parameters->database[$db]->dbuser, $this->_param->parameters->database[$db]->dbpass);
     
-    /**
-     * initRoute() initialise les routes pour les liens
-     */
-    public function initRoute() {
-        $this->_route_js     = $_SERVER['HTTP_HOST']."/public/js/";
-        $this->_route_css    = $_SERVER['HTTP_HOST']."/public/css/";
-        $this->_route_img    = $_SERVER['HTTP_HOST']."/public/images/";
-    }
-    
-    /**
-     * Retourne le chemin absolu pour les fichiers JS/
-     * @return string
-     */
-    public function getRouteJs() {
-        return $this->_route_js;
-    }
-    
-    /**
-     * Retourne le chemin absolu pour les fichiers CSS/
-     * @return string
-     */
-    public function getRouteCss() {
-        return $this->_route_css;
-    }
-    
-    /**
-     * Retourne le chemin absolu pour les fichiers IMG/
-     * @return string
-     */
-    public function getRouteImg() {
-        return $this->_route_img;
+        
     }
     
     /**
      * Retourne une connexion PDO
+     * 
      * @return PDO
      */
     public function getConnexion() {
         return $this->_connexion;
+    }
+    
+    /**
+     * Retourne l'url de base du fichier de config
+     * 
+     * @return string
+     */
+    public function getBaseUrl() {
+        return $this->_param->parameters->baseurl;
+    }
+    
+    /**
+     * Retourne le titre
+     * 
+     * @return string
+     */
+    public function getBaseTitle() {
+        return $this->_param->parameters->basetitle;
+    }
+    
+    /**
+     * Retourne le controller par default
+     * 
+     * @return string
+     */
+    public function getBaseController() {
+        return $this->_param->parameters->controllerdefault;
+    }
+    
+    public function getParam() {
+        return $this->_param;
     }
     
             

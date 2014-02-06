@@ -1,8 +1,8 @@
 <?php
 
-namespace core\component;
+namespace core\component\parser;
 
-use core\component\ArrayToObject;
+use core\component\tools\ArrayToObject;
 
 /**
  * Description of CommentParser
