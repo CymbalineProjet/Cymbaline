@@ -1,66 +1,72 @@
 <?php
 
-use Config\Parametrage;
-use Control\Controler;
+require_once 'core/autoload.php';
+
+use core\component\Request;
+use core\component\Parametrage;
+use core\component\Controller;
+use core\component\Session;
+use core\component\security\SecurityUser;
+
+session_start();
+
+$session = new Session($_SESSION);
 
 
-
-
+//$session->_register("security", new SecurityUser());
+$request = new Request(array(
+    'get' => $_GET,
+    'post' => $_POST,
+    'session' => $session,
+    'cookie' => $_COOKIE,
+    'server' => $_SERVER,
+));
 
 $param = new Parametrage();
-$controller = new Controler($_GET, $_POST, $_SESSION, $param);
 
-//app sur une page, donc sur l'index
-$view = $controller->indexAction();
+$app = new Controller();
 
-//var_dump($view);
 
-// autoload function
-function __autoload($class_name) {
-	require_once($class_name.".php");
+//s'il y a des membres
+//$app->initSecurity();
+
+if(isset($_GET['controller'])) {
+    $controller = $app->load(ucfirst($_GET['namespace']).'/'.ucfirst($_GET['box']).'Box/'.ucfirst($_GET['controller']));
+} else {
+    $controller = $app->load($param->getBaseController());
 }
 
-?><!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Tirage au sort</title>
-        <!--link rel="icon" type="image/x-icon" href="/favicon.ico" /-->
-        <link rel="stylesheet" href="/public/css/main.css" />
-        <script type="text/javascript" src="public/js/jquery.js"></script>
-    </head>
-    <body>
-		<h1>Formulaire d'inscription</h1>
-        
-        <?php
-        if($view->error) {
-            echo "<div class='error'>".$view->messageError."</div>";
-        }
-        
-        if($view->insert) {
-            echo "<div class='valide'>".$view->message."</div>";
-        }
-        ?>
+$controller->init($session, $param, $request);
 
-        
-        <form action="" method="post" >
-            <input type="hidden" name="submit" value="1" />
-            <label for="nom">Votre nom : </label> <input type="text" name="nom" id="nom" required /><br />
-            <label for="prenom">Votre pr&eacute;nom : </label> <input type="text" name="prenom" id="prenom" required /><br />
-            <label for="mail">Votre email : </label> <input type="email" placeholder="me@example.com" name="mail" id="mail" required /><br />
-            <input type="submit" value="Participer au tirage au sort" />
-        </form>
-        
-        <?php
-            if($view->insert) {
-        ?>
-        <script>
-            $(document).ready(function() {
-                setTimeout('window.location.reload()', 5000);
-            });
-        </script>
-        <?php
-            }
-        ?>
-	</body>
-</html>
+if(isset($_GET['action'])) {
+    $action = $_GET['action']."Action";
+    $view = $controller->$action($request);
+} else {
+    $view = $controller->indexAction($request);
+}
+
+/*if($controller->_session()->_is_register("membre")) {
+    
+    $security = new SecurityUser($controller->_session()->get('membre'));
+    if($security->is_granted()) {
+        var_dump('is granted to be here');
+    } else {
+        die('denied');
+    }
+    
+} else {
+    //var_dump($_SERVER['REQUEST_URI']);
+    if(strtolower($_SERVER['REQUEST_URI']) == strtolower('/alcafram/cdm/prono/defaut'))
+        echo "login";
+    //else
+       // die('denied2');
+            
+}*/
+
+
+
+var_dump($_SESSION);
+
+//var_dump($controller->_session());
+include($view->getPath());
+

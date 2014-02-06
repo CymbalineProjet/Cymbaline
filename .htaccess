@@ -1,5 +1,11 @@
-Options +FollowSymlinks 
-RewriteEngine on  
+#Options +FollowSymlinks
 
-RewriteRule ^(-[a-z]*).php /$1/ [L]
+#FallbackResource app.php
+Options +FollowSymLinks
+Options +Indexes
+RewriteEngine On
 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ app.php?url=$1 [L]

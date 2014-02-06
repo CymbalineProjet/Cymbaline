@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<parameters>
+    <env>dev</env>
+    <baseurl>/AlcaFram</baseurl>
+    <basetitle>AlcaFramework | Progress dev</basetitle>
+    <controllerdefault>Alca/GenBox/Defaut</controllerdefault>
+    <database env="dev">
+        <host>localhost</host>
+        <port> </port>
+        <dbname>alca</dbname>
+        <dbuser>root</dbuser>
+        <dbpass> </dbpass>
+    </database>
+    
+    <database env="prod">
+        <host>localhost</host>
+        <port> </port>
+        <dbname>alca</dbname>
+        <dbuser>root</dbuser>
+        <dbpass> </dbpass>
+    </database>
+</parameters>
