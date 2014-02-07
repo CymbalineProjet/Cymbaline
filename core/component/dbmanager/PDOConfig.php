@@ -3,6 +3,7 @@
 namespace core\component\dbmanager;
 
 use core\component\tools\ArrayToObject;
+use core\component\parser\XmlParser;
 
 /**
  * Description of PDOconfig

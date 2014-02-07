@@ -10,9 +10,6 @@ class AppAlca {
 
         $controllers = array(
             "Alca" => array (
-                "DemoBox" => array(
-                    "Defaut" => new \source\Alca\DemoBox\control\DefautController(),
-                ),
                 "GenBox" => array(
                     "Defaut" => new \source\Alca\GenBox\control\DefautController(),
                 ),

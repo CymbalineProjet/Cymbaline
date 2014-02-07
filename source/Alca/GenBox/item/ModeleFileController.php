@@ -2,7 +2,7 @@
 
 namespace source\Alca\GenBox\item;
 
-use core\component\ArrayToObject;
+use core\component\tools\ArrayToObject;
 use core\component\File;
 
 /**

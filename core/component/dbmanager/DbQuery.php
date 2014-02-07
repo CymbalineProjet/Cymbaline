@@ -2,7 +2,7 @@
 
 namespace core\component\dbmanager;
 
-use core\component\PDOConfig;
+use core\component\dbmanager\PDOConfig;
 
 /**
  * Description of DbQuery

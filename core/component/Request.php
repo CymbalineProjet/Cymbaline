@@ -2,7 +2,7 @@
 
 namespace core\component;
 
-use core\component\ArrayToObject;
+use core\component\tools\ArrayToObject;
 
 /**
  * valeurs possible get,post,cookie
@@ -26,14 +26,17 @@ class Request {
      * @param array $request
      */
 	public function __construct(array $request) {
-        $req = array();
-        foreach($request as $r => $v) {
-            $req["$r"] = $v;
-            $array = new ArrayToObject($req);
-            
-            $this->$r = $array->convert();
-            
-        }
+        
+        $array = new ArrayToObject($request['post']);
+        $post = $array->convert();
+        $array = new ArrayToObject($request['get']);
+        $get = $array->convert();
+        
+        $this->cookie = $request['cookie'];
+        $this->post = $post;
+        $this->get = $get;
+        $this->session = $request['session'];
+        $this->server = $request['server'];
 
 	}
 	

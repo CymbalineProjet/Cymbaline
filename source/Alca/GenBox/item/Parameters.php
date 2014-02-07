@@ -2,8 +2,8 @@
 
 namespace source\Alca\GenBox\item;
 
-use core\component\ArrayToObject;
-use core\component\File;
+use core\component\tools\ArrayToObject;
+use core\component\tools\File;
 
 /**
  * Description of Parameters

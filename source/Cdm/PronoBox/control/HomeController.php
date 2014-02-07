@@ -2,7 +2,7 @@
 
 namespace source\Cdm\PronoBox\control;
 
-use core\component\View;
+use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
 use core\component\dbmanager\Dbmanager;
@@ -28,14 +28,14 @@ class HomeController extends Controller {
         //on donne au retour un attribut error à false
         $error = false;
         $test = "home controller cdm";
-        
-        if(isset($request->post->identifiant) && isset($request->post->pwd)) {
+        var_dump($request->get('post'));
+        if(isset($request->get('post')->identifiant) && isset($request->get('post')->pwd)) {
             $this->_session()->_unregister("membre");
 
 
             $utilisateur = new Utilisateur();
-            $utilisateur->setUsername($request->post->identifiant);
-            $utilisateur->setPassword($request->post->pwd);   
+            $utilisateur->setUsername($request->get('post')->identifiant);
+            $utilisateur->setPassword($request->get('post')->pwd);   
         }
         
         if($this->_session()->_is_register('membre')) {           

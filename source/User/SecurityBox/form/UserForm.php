@@ -2,7 +2,7 @@
 
 namespace source\User\SecurityBox\form;
 
-use core\component\Form;
+use core\component\tools\Form;
 
 
 /**

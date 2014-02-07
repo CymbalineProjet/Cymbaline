@@ -2,7 +2,7 @@
 
 namespace source\Cdm\UtilisateurBox\control;
 
-use core\component\View;
+use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
 

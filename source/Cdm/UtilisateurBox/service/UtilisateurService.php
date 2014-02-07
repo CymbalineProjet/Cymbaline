@@ -14,10 +14,6 @@ class UtilisateurService {
 
     
     public function exist(Utilisateur $utilisateur) {
-        if($utilisateur->getUsername() == "test" && $utilisateur->getPassword() == "test") {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 }

@@ -57,14 +57,14 @@ $routes = array("/login" => array(
                     "_controller" => "Cdm/PronoBox/Defaut",
                     "_action"     => "index",
                     "_method"     => "get",
-                    "_args"       => array('id' => 1),
+                    "_args"       => false,
                 ),
                 "/home" => array(
                     "_template"   => "Cdm/PronoBox/template/home/index",
                     "_controller" => "Cdm/PronoBox/Home",
                     "_action"     => "index",
                     "_method"     => "get",
-                    "_args"       => array('id' => 1),
+                    "_args"       => false,
                 ),
                 "/utilisateur/edit/@id" => array(
                     "_template"   => "Cdm/UtilisateurBox/template/edit",
@@ -109,9 +109,9 @@ foreach($routes as $route => $args) {
                 $rrr = $routes[$route];
                 //var_dump($args);
                 $true = true;
-            } else {
+            } /*else {
                 $true = true;
-            }
+            }*/
         }
     }
         

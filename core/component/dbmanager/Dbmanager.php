@@ -3,9 +3,9 @@
 namespace core\component\dbmanager;
 
 use ReflectionClass;
-use core\component\PDOConfig;
+use core\component\dbmanager\PDOConfig;
 use core\component\dbmanager\DbQuery;
-use core\component\CommentParser;
+use core\component\parser\CommentParser;
 
 /**
  * Description of Dbmanager
