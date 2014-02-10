@@ -16,7 +16,7 @@ class Dbmanager {
     
     private $entity;
     private $class;
-    
+    private $item;
 
     
     public function __construct() {
@@ -27,6 +27,9 @@ class Dbmanager {
         $class = get_class($entity);
         $pos = strpos($class, "\item");
         $this->class = substr($class, $pos+6);  
+        
+        $this->item = "\source\Cdm\UtilisateurBox\item\ ".$this->class;
+        $this->item = str_replace(" ", "", $this->item);
         
         $reflectionClass = new ReflectionClass(get_class($entity));
         $comment = new CommentParser();
@@ -77,6 +80,31 @@ class Dbmanager {
     public function get() {
         $query = new DbQuery($this->class, $this->entity);
         $query->all();
+    }
+    
+    public function getById($id) {
+        
+        if($id == 0 or $id == NULL) {
+            die('error getbyid id null or = 0');
+        }
+        
+        $this->entity['id'] = $id;
+        $query = new DbQuery($this->class, $this->entity);
+        $query->one();
+    }
+    
+    public function getBy($attributs) {
+        if($attributs == NULL) {
+            die('error getbyid id null or = ,0');
+        }
+        
+        $item = new $this->item();
+        //var_dump($item);die;
+        
+        $query = new DbQuery($this->class, $this->entity);
+        $o = $query->by($attributs);
+        $i = $item->hydrate($o);
+        return $i;
     }
     
     

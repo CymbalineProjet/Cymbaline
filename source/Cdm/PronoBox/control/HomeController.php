@@ -45,16 +45,25 @@ class HomeController extends Controller {
         $us = new UtilisateurService();
         
         if($us->exist($utilisateur)) {
+            
             $uloader = new UtilisateurLoader();
             $utilisateur = $uloader->load($utilisateur);
+            
             $this->_session()->_register("membre", $utilisateur);
+        } else {
+            $m = $this->getManager();
+            $m->load($utilisateur);
+            $m->push();
+            
+            //return la view de la confirmation de l'insert + envoi mail
+            //retravailler la view -> deplace le lien en 2eme position et on le rend false par defaut (
+            //on utilisera par defaut celui renseigner dans les routes
+            return new View('Cdm/PronoBox/confirmation', array(
+                'error' => $error,
+                'test'  => new \source\User\SecurityBox\item\Identity(),
+                'utilisateur' => $utilisateur,
+            ));
         }
-        
-        $m = $this->getManager();
-        $m->load($utilisateur);
-        //$m->push();
-        $users = $m->get();
-        var_dump($users);
 
         return new View('Cdm/PronoBox/home', array(
             'error' => $error,

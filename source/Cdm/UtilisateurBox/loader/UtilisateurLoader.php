@@ -3,27 +3,25 @@
 namespace source\Cdm\UtilisateurBox\loader;
 
 use source\Cdm\UtilisateurBox\item\Utilisateur;
+use core\component\Loader;
 
 /**
  * Description of UtilisateurLoader
  *
  * @author Thibault
  */
-class UtilisateurLoader {
+class UtilisateurLoader extends Loader {
     //put your code here
     
+    
+    
     public function load(Utilisateur $utilisateur) {
-        
-        
-        $utilisateur->setNom("Thibault");
-        $utilisateur->setDateLastActivity(new \DateTime());
-        $utilisateur->setDateRegister(new \DateTime());
-        $utilisateur->setPassword("pwd");
-        $utilisateur->setMail("test@test.com");
-        $utilisateur->setAnonymous(false);
        
+        $m = $this->getManager();
         
-        //var_dump($utilisateur);
+        $m->load($utilisateur);
+        $utilisateur = new Utilisateur();
+        $utilisateur = $m->getBy('username');
         
         return $utilisateur;
     }

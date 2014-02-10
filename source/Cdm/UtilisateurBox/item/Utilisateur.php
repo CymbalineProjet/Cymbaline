@@ -71,7 +71,46 @@ class Utilisateur extends \source\User\SecurityBox\item\User {
         return $this->prenom;
     }
     
+    public function getPoint() {
+        return $this->point;
+    }
     
-
+    public function setPoint($point) {
+        $this->point = $point;
+        return $this;
+    }
+    
+    public function getValide() {
+        return $this->valide;
+    }
+    
+    public function setValide($valide) {
+        $this->valide = $valide;
+        return $this;
+    }
+    
+    public function getComplet() {
+        return $this->complet;
+    }
+    
+    public function setComplet($complet) {
+        $this->complet = $complet;
+        return $this;
+    }
+    
+    public function hydrate(\stdClass $user) {
+        
+        $utilisateur = new Utilisateur();
+        
+        foreach($user as $attr => $value) {
+            
+            $attribut = "set".ucfirst($attr);
+            $utilisateur->$attribut($value);
+          
+        }
+        
+        return $utilisateur;
+    }
+    
     
 }

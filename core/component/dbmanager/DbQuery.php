@@ -81,4 +81,28 @@ class DbQuery extends Dbmanager {
         return $all;
     }
     
+    public function one() {
+        $class = strtolower($this->class);
+        $this->query = "SELECT * FROM $class WHERE id = ".$this->entity['id']['value'];
+        $connexion = new PDOConfig();
+        $query = $connexion->getPdo()->prepare($this->query);
+        $query->execute();
+        $all = $query->fetch(PDO::FETCH_OBJ);
+        
+        return $all;
+    }
+    
+    public function by($attributs) {
+        //var_dump($this->entity["$attributs"]['value']);
+        $class = strtolower($this->class);
+        $this->query = "SELECT * FROM $class WHERE $attributs = '".$this->entity["$attributs"]['value']."'";
+        $connexion = new PDOConfig();
+        $pdo = $connexion->getPdo();
+        $query = $pdo->prepare($this->query);
+        $query->execute();
+        $all = $query->fetch($pdo::FETCH_OBJ);
+        //var_dump($all);
+        return $all;
+    }
+    
 }

@@ -2,7 +2,10 @@
 
 namespace source\Cdm\UtilisateurBox\service;
 
+
+use core\component\Service;
 use source\Cdm\UtilisateurBox\item\Utilisateur;
+
 
 
 /**
@@ -10,10 +13,20 @@ use source\Cdm\UtilisateurBox\item\Utilisateur;
  *
  * @author Thibault
  */
-class UtilisateurService {
+class UtilisateurService extends Service {
 
     
+    
+    
     public function exist(Utilisateur $utilisateur) {
-        return true;
+        
+        $this->getManager()->load($utilisateur);
+        $user = $this->getManager()->getBy('username');
+        if(empty($user)) {
+            return false;
+        } else {
+            return true;
+        }
+        
     }
 }

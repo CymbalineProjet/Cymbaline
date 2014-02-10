@@ -86,11 +86,11 @@ class User {
     }
     
     public function getGranted() {
-        return $this->granted;
+        return $this->_granted;
     }
     
     public function setGranted($granted) {
-        $this->granted = $granted;
+        $this->_granted = $granted;
         return $this;
     }
     
@@ -99,28 +99,28 @@ class User {
     }
     
     public function setAnonymous($anonymous) {
-        $this->anonymous = $anonymous;
+        $this->_anonymous = $anonymous;
         return $this;
     }
     
     public function getAnonymous() {
-        return $this->anonymous;
+        return $this->_anonymous;
     }
     
-    public function getDateRegister() {
+    public function getDate_register() {
         return $this->date_register;
     }
     
-    public function setDateRegister($date) {
+    public function setDate_register($date) {
         $this->date_register = $date;
         return $this;
     }
     
-    public function getDateLastActivity() {
+    public function getDate_last_activity() {
         return $this->date_last_activity;
     }
     
-    public function setDateLastActivity($date) {
+    public function setDate_last_activity($date) {
         $this->date_last_activity = $date;
         return $this;
     }
