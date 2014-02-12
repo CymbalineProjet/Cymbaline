@@ -5,6 +5,13 @@ namespace core\component\exception;
 use core\component\Parametrage;
 use core\component\Session;
 
+/**
+ * 
+ * ask@nilpo.com 
+ * http://www.php.net/manual/fr/language.exceptions.php
+ * 
+ */
+
 interface IException
 {
     /* Protected methods inherited from Exception class */
