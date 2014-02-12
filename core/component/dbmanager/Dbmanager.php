@@ -98,9 +98,7 @@ class Dbmanager {
             
         } catch (VarException $e) {
             $e->display();
-        } catch (\core\component\exception\CoreException $e) {
-            $e->display();
-        }
+        } 
     }
     
     public function getBy($attributs = NULL) {
@@ -117,9 +115,7 @@ class Dbmanager {
             
         } catch (VarException $e) {
             $e->display();  
-        } catch (\core\component\exception\CoreException $e) {
-            $e->display();
-        }
+        } 
         
     }
     
