@@ -13,6 +13,9 @@ class AppAlca {
                 "GenBox" => array(
                     "Defaut" => new \source\Alca\GenBox\control\DefautController(),
                 ),
+                "ErrorBox" => array(
+                    "Error" => new \source\Alca\ErrorBox\control\ErrorController(),
+                ),
             ),
             "Cdm" => array(
                 "PronoBox" => array(

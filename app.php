@@ -6,7 +6,7 @@ use core\component\Request;
 use core\component\Parametrage;
 use core\component\Controller;
 use core\component\Session;
-use core\component\security\SecurityUser;
+
 
 session_start();
 
@@ -79,6 +79,13 @@ $routes = array("/login" => array(
                     "_action"     => "obtenir",
                     "_method"     => "get",
                     "_args"       => array('id'),
+                ),
+                "/error" => array(
+                    "_template"   => "Alca/ErrorBox/template/error",
+                    "_controller" => "Alca/ErrorBox/Error",
+                    "_action"     => "index",
+                    "_method"     => "get",
+                    "_args"       => false,
                 ));
 
 
@@ -99,8 +106,8 @@ foreach($routes as $route => $args) {
                 /*unset($r[1]);
                 unset($url[0]);*/
                 $_args = array();
-                var_dump($url);
-                var_dump($r);
+                //var_dump($url);
+                //var_dump($r);
                 $end_r = str_replace("@","",end($r));
                 $_args[$end_r] = end($url);
 
@@ -133,7 +140,8 @@ if(isset($routes[str_replace($param->getBaseUrl(),"","/".$_GET['url'])]) or $tru
     
     $controller->init($session, $param, $request);
     
-    var_dump($route['_args']);
+    //var_dump($route['_args']);
+    
     
     $action = $route['_action']."Action";
     
@@ -148,5 +156,5 @@ if(isset($routes[str_replace($param->getBaseUrl(),"","/".$_GET['url'])]) or $tru
    // header("Status: 200 OK", false, 200);
     include("source/".$route['_template'].".php");
 } else {
-    var_dump('error');
+    include("source/Alca/ErrorBox/template/denied.php");
 }

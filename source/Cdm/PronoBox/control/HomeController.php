@@ -5,7 +5,7 @@ namespace source\Cdm\PronoBox\control;
 use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
-use core\component\dbmanager\Dbmanager;
+
 
 use source\Cdm\UtilisateurBox\item\Utilisateur;
 use source\Cdm\UtilisateurBox\service\UtilisateurService;
@@ -28,7 +28,7 @@ class HomeController extends Controller {
         //on donne au retour un attribut error à false
         $error = false;
         $test = "home controller cdm";
-        var_dump($request->get('post'));
+        
         if(isset($request->get('post')->identifiant) && isset($request->get('post')->pwd)) {
             $this->_session()->_unregister("membre");
 
@@ -56,16 +56,15 @@ class HomeController extends Controller {
             $m->push();
             
             //return la view de la confirmation de l'insert + envoi mail
-            //retravailler la view -> deplace le lien en 2eme position et on le rend false par defaut (
-            //on utilisera par defaut celui renseigner dans les routes
-            return new View('Cdm/PronoBox/confirmation', array(
+            
+            return new View(array(
                 'error' => $error,
                 'test'  => new \source\User\SecurityBox\item\Identity(),
                 'utilisateur' => $utilisateur,
             ));
         }
 
-        return new View('Cdm/PronoBox/home', array(
+        return new View(array(
             'error' => $error,
             'test'  => new \source\User\SecurityBox\item\Identity(),
             'utilisateur' => $utilisateur,
@@ -76,7 +75,7 @@ class HomeController extends Controller {
         
         var_dump($this->_session());
         
-        return new View('Cdm/PronoBox/home', array(
+        return new View(array(
             'error' => 'test',
             'test'  => '$test',
         ));

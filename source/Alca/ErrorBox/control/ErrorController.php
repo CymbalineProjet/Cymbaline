@@ -1,34 +1,32 @@
 <?php
 
-namespace source\Cdm\PronoBox\control;
+namespace source\Alca\ErrorBox\control;
 
 use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
 
-use source\Cdm\UtilisateurBox\item\Utilisateur;
-
 /**
- * Le Controler permet la gestion des données en fonction de la page
- * Le Controler retournera un tableau des données utiles à  l'affichage
+ * Description of ErrorController
+ * 
  *
- * @author tjeannet
+ * @author Thibault Jaxx Floyd Jeannet
  */
-class DefautController extends Controller {
+class ErrorController extends Controller {
 
     public function __construct() {
-        
+         //do something
     }
+
     /**
      * indexAction() traitera les données pour la page index
-     * @return stdClass $this->retour Tableau des données nécessaires à l'affichage 
+     * @return View $view
      */
     public function indexAction(Request $request) {
         //on donne au retour un attribut error à false
         $error = false;
-        $test = "defaut controller cdm";
-
-        $this->_session()->_unregister("membre");
+        $test = "Utilisateur controller";
+        
         
         return new View(array(
             'error' => $error,

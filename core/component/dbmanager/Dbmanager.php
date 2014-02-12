@@ -3,7 +3,7 @@
 namespace core\component\dbmanager;
 
 use ReflectionClass;
-use core\component\dbmanager\PDOConfig;
+use core\component\exception\VarException;
 use core\component\dbmanager\DbQuery;
 use core\component\parser\CommentParser;
 
@@ -93,17 +93,21 @@ class Dbmanager {
         $query->one();
     }
     
-    public function getBy($attributs) {
-        if($attributs == NULL) {
-            die('error getbyid id null or = ,0');
+    public function getBy($attributs = NULL) {
+        try {
+            if($attributs == NULL) {
+                throw new VarException("La variable de la fonction getBy est nulle.");
+                die('error getbyid id null or = ,0');
+            }
+
+            $item = new $this->item();
+            $query = new DbQuery($this->class, $this->entity);
+            $o = $query->by($attributs);
+            $i = $item->hydrate($o);
+            
+        } catch (VarException $e) {
+            $e->display();  
         }
-        
-        $item = new $this->item();
-        //var_dump($item);die;
-        
-        $query = new DbQuery($this->class, $this->entity);
-        $o = $query->by($attributs);
-        $i = $item->hydrate($o);
         return $i;
     }
     

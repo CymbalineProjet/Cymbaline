@@ -19,7 +19,7 @@ class Session {
 	* @access public
 	* @param  array  $_SESSION
 	*/
-	public function __construct($session) {
+	public function __construct($session = array()) {
 		$this->session = $session;
         
 	}
@@ -87,7 +87,7 @@ class Session {
 	*/
 	public function _is_register($name) {
 		$retour = false;
-		if(isset($this->session["$name"]))
+		if(isset($this->session["$name"]) or isset($_SESSION[$name]))
 			$retour = true;
 		
 		return $retour;

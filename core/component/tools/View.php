@@ -19,15 +19,25 @@ class View {
     private $baseurl;
     public $title;
     
-    public function __construct($template, array $variables, array $form = NULL) {
+    //retravailler la view -> deplace le lien en 2eme position et on le rend false par defaut (
+            //on utilisera par defaut celui renseigner dans les routes
+    public function __construct(array $variables, array $form = NULL, $template = NULL) {
         $this->template = $template;
         $this->form = $form;
         
         $this->variables = $variables;
-        $this->path();
+        //$this->path();
         $param = new Parametrage();
         $this->baseurl = $param->getBaseUrl();
         $this->title = $param->getBaseTitle();
+    }
+    
+    public function is_template() {
+        if($this->template == NULL) {
+            return false;
+        } 
+        
+        return true;
     }
     
     public function getPath() {
