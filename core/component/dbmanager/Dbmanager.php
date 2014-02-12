@@ -83,32 +83,44 @@ class Dbmanager {
     }
     
     public function getById($id) {
-        
-        if($id == 0 or $id == NULL) {
-            die('error getbyid id null or = 0');
+        try {
+            if($id == 0 or $id == NULL) {
+                throw new VarException('error getbyid id null or = 0');
+            }
+            
+            $item = new $this->item();
+            $this->entity['id']['value'] = $id;
+            $query = new DbQuery($this->class, $this->entity);
+            $o = $query->one();
+            $i = $item->hydrate($o);
+            
+            return $i;
+            
+        } catch (VarException $e) {
+            $e->display();
+        } catch (\core\component\exception\CoreException $e) {
+            $e->display();
         }
-        
-        $this->entity['id'] = $id;
-        $query = new DbQuery($this->class, $this->entity);
-        $query->one();
     }
     
     public function getBy($attributs = NULL) {
         try {
             if($attributs == NULL) {
-                throw new VarException("La variable de la fonction getBy est nulle.");
-                die('error getbyid id null or = ,0');
+                throw new VarException("La variable de la fonction getBy est nulle.");              
             }
 
             $item = new $this->item();
             $query = new DbQuery($this->class, $this->entity);
             $o = $query->by($attributs);
             $i = $item->hydrate($o);
+            return $i;
             
         } catch (VarException $e) {
             $e->display();  
+        } catch (\core\component\exception\CoreException $e) {
+            $e->display();
         }
-        return $i;
+        
     }
     
     

@@ -128,33 +128,39 @@ foreach($routes as $route => $args) {
 
 
 if(isset($routes[str_replace($param->getBaseUrl(),"","/".$_GET['url'])]) or $true)  {
-    
+   
     if($true) {
         $route = $rrr;
-        
+
     } else {
         $route = $routes[str_replace($param->getBaseUrl(),"",$_SERVER['REQUEST_URI'])];
     }
-    
+
     $controller = $app->load($route['_controller']);
-    
+
     $controller->init($session, $param, $request);
-    
+
     //var_dump($route['_args']);
-    
-    
+
+
     $action = $route['_action']."Action";
+
     
+    
+   
     if(true) {
         $view = $controller->$action($request,$route['_args']);
     } else {
         $view = $controller->$action($request);
     }
-  
     $template = $route["_template"];
-    
+   
+
+
    // header("Status: 200 OK", false, 200);
     include("source/".$route['_template'].".php");
+    
 } else {
     include("source/Alca/ErrorBox/template/denied.php");
 }
+

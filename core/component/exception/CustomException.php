@@ -50,7 +50,7 @@ abstract class CustomException extends \Exception implements IException
                                 . "{$this->getTraceAsString()}";
     }
     
-    public function display() {
+    /*public function display() {
         $p = new Parametrage();
         $base = $p->getBaseUrl();
         
@@ -60,8 +60,26 @@ abstract class CustomException extends \Exception implements IException
         }
         $session->_register('flag.error', $this->xdebug_message);
    
-        header("Location: $base/error");
-        exit;
+        //header("Location: $base/error");
+        //exit;
         
+    }*/
+    
+    public function display() {
+        //var_dump($this->getTraceAsString());
+        $class = explode("\\", get_class($this));
+        $class = end($class);
+        $trace = str_replace("#","<br/>",$this->getTraceAsString());
+        
+        $file = file_get_contents('http://localhost/AlcaFram/source/Alca/ErrorBox/template/error.php');
+        $file = str_replace("#xdebug_message#", $this->xdebug_message, $file);
+        $file = str_replace("#class#", $class, $file);
+        $file = str_replace("#file#", $this->getFile(), $file);
+        $file = str_replace("#line#", $this->getLine(), $file);
+        $file = str_replace("#message#", $this->getMessage(), $file);
+        $file = str_replace("#trace#", $trace, $file);
+        echo $file;
+        //echo "<table>".$this->xdebug_message."</table>";
+        exit;
     }
 }

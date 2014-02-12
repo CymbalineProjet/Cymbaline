@@ -5,6 +5,7 @@ namespace source\Cdm\UtilisateurBox\control;
 use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
+use source\Cdm\UtilisateurBox\item\Utilisateur;
 
 /**
  * Description of Utilisateur
@@ -36,10 +37,14 @@ class UtilisateurController extends Controller {
     
     public function obtenirAction(Request $request, array $get) {
         
+        $utilisateur = new Utilisateur();
+        $m = $this->getManager();
+        $m->load($utilisateur);
+        $utilisateur = $m->getById($get['id']);
+
         
-        return new View('Cdm/UtilisateurBox/utilisateur', array(
-            'error' => false,
-            'test'  => $get['id'],
+        return new View(array(
+            'utilisateur' => $utilisateur,
         ));
     }
 }

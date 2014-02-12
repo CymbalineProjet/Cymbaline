@@ -21,7 +21,7 @@ class UtilisateurLoader extends Loader {
         
         $m->load($utilisateur);
         $utilisateur = new Utilisateur();
-        $utilisateur = $m->getBy();
+        $utilisateur = $m->getBy('username');
         
         return $utilisateur;
     }
