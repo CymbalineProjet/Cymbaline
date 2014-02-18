@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<routes>
+	<route>
+		<path>/utilisateur/@id</path>
+		<template>Cdm/PronoBox/template/index</template>
+		<controller>Cdm/PronoBox/Defaut</controller>
+		<action>index</action>
+		<method>get</method>
+		<args>
+			<id>1</id>
+		</args>
+	</route>
+</routes>
