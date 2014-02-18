@@ -15,7 +15,7 @@ class Route {
     
 	private $_routes;
 	private $_parser;
-    private $path;
+        private $path;
 	private $template;
 	private $controller;
 	private $action;
@@ -49,12 +49,12 @@ class Route {
 	* On récupère les portions "attributs" 
 	* Ex : "/utilisateur/@id" => on récupère @id qu'on passe dans les args avec sa valeur
 	* @return array(
-    *               "_template"   => "Cdm/PronoBox/template/index",
-    *               "_controller" => "Cdm/PronoBox/Defaut",
-    *               "_action"     => "index",
-    *               "_method"     => "get",
-    *               "_args"       => false,
-    *           )
+        *               "_template"   => "Cdm/PronoBox/template/index",
+    	*               "_controller" => "Cdm/PronoBox/Defaut",
+    	*               "_action"     => "index",
+    	*               "_method"     => "get",
+    	*               "_args"       => false,
+    	*           )
 	*/
 	public function load() {
 		try {
