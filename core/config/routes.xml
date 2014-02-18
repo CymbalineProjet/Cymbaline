@@ -1,13 +1,51 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <routes>
 	<route>
+		<path>/error</path>
+		<template>Alca/ErrorBox/template/error</template>
+		<controller>Alca/ErrorBox/Error</controller>
+		<action>index</action>
+		<method>get</method>
+		<args>false</args>
+	</route>
+	
+	<route>
+		<path>/home</path>
+		<template>Cdm/PronoBox/template/home/index</template>
+		<controller>Cdm/PronoBox/Home</controller>
+		<action>index</action>
+		<method>get</method>
+		<args>false</args>
+	</route>
+	
+	<route>
+		<path>/login</path>
+		<template>Cdm/PronoBox/template/index</template>
+		<controller>Cdm/PronoBox/Defaut</controller>
+		<action>index</action>
+		<method>get</method>
+		<args>false</args>
+	</route>
+	
+	<route>
 		<path>/utilisateur/@id</path>
 		<template>Cdm/PronoBox/template/index</template>
 		<controller>Cdm/PronoBox/Defaut</controller>
 		<action>index</action>
 		<method>get</method>
 		<args>
-			<id>1</id>
+			<id></id>
+		</args>
+	</route>
+	
+	<route>
+		<path>/utilisateur/edit/@id</path>
+		<template>Cdm/UtilisateurBox/template/edit</template>
+		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
+		<action>index</action>
+		<method>get</method>
+		<args>
+			<id></id>
 		</args>
 	</route>
 </routes>
