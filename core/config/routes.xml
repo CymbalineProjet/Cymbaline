@@ -29,9 +29,9 @@
 	
 	<route>
 		<path>/utilisateur/@id</path>
-		<template>Cdm/PronoBox/template/index</template>
-		<controller>Cdm/PronoBox/Defaut</controller>
-		<action>index</action>
+		<template>Cdm/UtilisateurBox/template/utilisateur</template>
+		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
+		<action>obtenir</action>
 		<method>get</method>
 		<args>
 			<id></id>

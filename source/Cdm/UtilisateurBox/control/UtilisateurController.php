@@ -29,7 +29,7 @@ class UtilisateurController extends Controller {
         $test = "Utilisateur controller";
         
         
-        return new View('Cdm/UtilisateurBox/index', array(
+        return new View(array(
             'error' => $error,
             'test'  => $test,
         ));

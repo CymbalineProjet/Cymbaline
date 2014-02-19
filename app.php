@@ -6,6 +6,7 @@ use core\component\Request;
 use core\component\Parametrage;
 use core\component\Controller;
 use core\component\Session;
+use core\component\Route;
 
 
 session_start();
@@ -52,42 +53,30 @@ $app = new Controller();
             
 }*/
 
-$routes = array("/login" => array(
-                    "_template"   => "Cdm/PronoBox/template/index",
-                    "_controller" => "Cdm/PronoBox/Defaut",
-                    "_action"     => "index",
-                    "_method"     => "get",
-                    "_args"       => false,
-                ),
-                "/home" => array(
-                    "_template"   => "Cdm/PronoBox/template/home/index",
-                    "_controller" => "Cdm/PronoBox/Home",
-                    "_action"     => "index",
-                    "_method"     => "get",
-                    "_args"       => false,
-                ),
-                "/utilisateur/edit/@id" => array(
-                    "_template"   => "Cdm/UtilisateurBox/template/edit",
-                    "_controller" => "Cdm/UtilisateurBox/Utilisateur",
-                    "_action"     => "edit",
-                    "_method"     => "get",
-                    "_args"       => array('id'),
-                ),
-                "/utilisateur/@id" => array(
-                    "_template"   => "Cdm/UtilisateurBox/template/utilisateur",
-                    "_controller" => "Cdm/UtilisateurBox/Utilisateur",
-                    "_action"     => "obtenir",
-                    "_method"     => "get",
-                    "_args"       => array('id'),
-                ),
-                "/error" => array(
-                    "_template"   => "Alca/ErrorBox/template/error",
-                    "_controller" => "Alca/ErrorBox/Error",
-                    "_action"     => "index",
-                    "_method"     => "get",
-                    "_args"       => false,
-                ));
 
+
+$route = new Route($_GET['url']);
+$r = $route->load();
+
+$controller = $app->load($r['controller']);
+$controller->init($session, $param, $request);
+$action = $r['action']."Action";
+
+if(true) {
+    $view = $controller->$action($request,$r['args']);
+} else {
+    $view = $controller->$action($request);
+}
+
+$template = $r["template"];
+
+include("source/".$template.".php");
+
+exit;
+
+/*********
+ * TEST
+ */
 
 $url = explode("/",$_GET['url']);
 $true = false;
