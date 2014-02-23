@@ -49,7 +49,38 @@ class UtilisateurController extends Controller {
         ));
     }
     
-    public function editAction(Request $request, array $get) {
+    public function editAction(Request $request) {
+        
+        $utilisateur = $this->_session()->get('membre');      
+        
+        $form = new EditForm();
+        $form->setMethod("post");
+        $form->setAction("/AlcaFram/edit");     
+        
+        $m = $this->getManager();
+        $m->load($utilisateur);
+        $utilisateur = $m->getById($utilisateur->getId());
+
+        if(isset($request->get('post')->form_edit)) {
+            var_dump($request->get('post')->form_edit);
+            $utilisateur->setNom($request->get('post')->form_edit->nom);
+            $utilisateur->setPrenom($request->get('post')->form_edit->prenom);
+            $utilisateur->setUsername($request->get('post')->form_edit->username);
+            $utilisateur->setDate_last_activity(new \DateTime());
+            $m->load($utilisateur);
+            $utilisateur = $m->update($utilisateur->getId());
+            //$this->_session()->_unregister("membre");
+            //$this->_session()->_register("membre", $utilisateur);
+        }
+        
+        return new View(array(
+            'utilisateur' => $utilisateur,
+        ),array(
+            "form" => $form,
+        ));
+    }
+    
+    public function edituserAction(Request $request, array $get) {
         
         $form = new EditForm();
         $form->setMethod("post");

@@ -26,6 +26,15 @@
 		<method>get</method>
 		<args>false</args>
 	</route>
+        
+        <route>
+		<path>/edit</path>
+		<template>Cdm/UtilisateurBox/template/edit</template>
+		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
+		<action>edit</action>
+		<method>get</method>
+		<args>false</args>
+	</route>
 	
 	<route>
 		<path>/utilisateur/int@id</path>
@@ -42,7 +51,7 @@
 		<path>/utilisateur/edit/int@id</path>
 		<template>Cdm/UtilisateurBox/template/edit</template>
 		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
-		<action>edit</action>
+		<action>edituser</action>
 		<method>get</method>
 		<args>
 			<id></id>
