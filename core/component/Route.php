@@ -85,7 +85,11 @@ class Route {
 							$_args = array();
 							//var_dump($url);
 							//var_dump($r);
-							$end_r = str_replace("@","",end($r));
+                            $posaro = strpos(end($r),"@");
+                            //var_dump($posaro);
+                            $end_r = substr(end($r), $posaro);
+                            //var_dump($end_r);
+							$end_r = str_replace("@","",$end_r);
 							$_args[$end_r] = end($url);
 
 							$this->_routes['routes']['route'][$route]['args'] = $_args;
@@ -100,6 +104,76 @@ class Route {
 				
 			}
 			
+            if(!isset($idroute)) {
+                throw new RouteException("Cette page n'existe pas");
+            }
+            
+            $path = str_replace($this->param->getBaseUrl(),"","/".$this->path);
+            $route_path = $this->_routes['routes']['route'][$idroute]['path'];
+            $mypath = explode("/",$path);
+            $myroute_path = explode("/",$route_path);
+            if(sizeof($mypath) != sizeof($myroute_path)) {
+                throw new RouteException("La route demandée n'existe pas.");
+            }
+            unset($mypath[0]);
+            unset($myroute_path[0]);
+            
+            
+            
+            foreach($myroute_path as $_id => $p) {
+                
+                if($p == $mypath[$_id]) {
+                    
+                } else {
+                    $pos = strpos($p, "@");
+                    /*var_dump($pos);
+                    var_dump($p);*/
+                    if(is_int($pos)) {
+                        $param_arg = explode("@",$p);
+                        //var_dump($param_arg[0]);
+                        
+                        if($param_arg[0] != "") {
+                            switch($param_arg[0]) {
+                                case "int":
+                                    if(is_numeric($mypath[$_id])) {
+                                        
+                                    } else {
+                                        
+                                        throw new RouteException("Cette page n'existe pas");
+                                    }
+                                break;
+                            
+                                case "string":
+                                    if(is_numeric($mypath[$_id])) {
+                                        throw new RouteException("Cette page n'existe pas");
+                                    } else {
+                                        
+                                    }
+                                break;
+                            }
+                        } else {
+                            if(is_numeric($mypath[$_id])) {
+                                throw new RouteException("Cette page n'existe pas");
+                            } else {
+
+                            }
+                        }
+                        /*var_dump($p);
+                        var_dump($mypath[$_id]);
+                        var_dump(is_numeric($mypath[$_id]));*/
+                    } else {
+                        throw new RouteException("La route demandée n'existe pas.");
+                    }
+                }
+                
+                
+            }
+            
+            /*var_dump($mypath);
+            var_dump($myroute_path);*/
+            
+            //isset($routes[str_replace($this->param->getBaseUrl(),"","/".$this->path)]);
+            
 			if(isset($this->_routes['routes']['route'][$idroute]) or $true)  {
 				if($true) {
 					$route = $rrr;
@@ -111,8 +185,8 @@ class Route {
                 var_dump($true);die;
 				throw new RouteException("La route demandée n'existe pas dans le fichier de configuration.");
 			}
-			/*var_dump($true);
-            var_dump($route*/
+			/*var_dump($true);*/
+            //var_dump($route);
             
 			return $route;
 		

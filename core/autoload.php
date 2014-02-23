@@ -3,6 +3,7 @@
 // autoload function
 function __autoload($class_name) {
     try {
+        //var_dump($class_name);
         if(!file_exists($class_name.".php")) {
             throw new core\component\exception\CoreException('Impossible de charger '.$class_name.'.php');
         } else {

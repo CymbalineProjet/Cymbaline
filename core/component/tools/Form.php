@@ -124,7 +124,7 @@ class Form {
     }
     
     public function getLabel($ref) {
-        return $this->labels["$ref"];
+        echo $this->labels["$ref"];
     }
     
     public function open() {
@@ -132,7 +132,7 @@ class Form {
     }
     
     public function close() {
-        return "</form>";
+        echo "</form>";
     }
     
     public function setClass($class) {

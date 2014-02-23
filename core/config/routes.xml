@@ -28,7 +28,7 @@
 	</route>
 	
 	<route>
-		<path>/utilisateur/@id</path>
+		<path>/utilisateur/int@id</path>
 		<template>Cdm/UtilisateurBox/template/utilisateur</template>
 		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
 		<action>obtenir</action>
@@ -39,10 +39,10 @@
 	</route>
 	
 	<route>
-		<path>/utilisateur/edit/@id</path>
+		<path>/utilisateur/edit/int@id</path>
 		<template>Cdm/UtilisateurBox/template/edit</template>
 		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
-		<action>index</action>
+		<action>edit</action>
 		<method>get</method>
 		<args>
 			<id></id>

@@ -116,4 +116,59 @@ class DbQuery extends Dbmanager {
         return $all;
     }
     
+    function _update() {
+        $class = strtolower($this->class);
+        $attr = "(";
+        foreach ($this->entity as $field => $v) {
+            $attr .= "$field,";
+        }
+        $attr = substr($attr, 0, -1);
+        $attr .= ")";
+        
+        $this->query = "UPDATE $class  SET ";
+        
+        foreach ($this->entity as $field => $v) {
+            //var_dump($v['type']);
+            
+            switch($v['type']) {
+                case 'string' :
+                    $this->query .= "$field = '".$v['value']."',";
+                break;
+            
+                case 'int' : 
+                    if($v['value'])
+                        $this->query .= "$field = ".$v['value'].",";
+                    else
+                        $this->query .= "$field = 0,";
+                break;
+            
+                case 'bool' : 
+                    
+                    if($v['value'])
+                        $this->query .= "$field = 1,";
+                    else
+                        $this->query .= "$field = 0,";
+                    
+                break;
+            
+                case 'datetime' :
+                    //var_dump($v);
+                    if(is_object($v['value'])) {
+                        $this->query .= "$field = '".$v['value']->format('Y/m/d H:i:s')."',";
+                    } else {
+                        $this->query .= "$field = '".$v['value']."',";
+                    }
+                break;
+            }
+            
+        } 
+        
+        $this->query = substr($this->query, 0, -1);
+        $this->query .= " WHERE id = ".$this->entity['id']['value'];
+        $connexion = new PDOConfig();
+        
+        var_dump($this->query);      
+        var_dump($connexion->getPdo()->query($this->query));
+    }
+    
 }

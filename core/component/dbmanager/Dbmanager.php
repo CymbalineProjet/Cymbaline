@@ -77,6 +77,14 @@ class Dbmanager {
         $query->save();
     }
     
+    public function update($id) {
+        $this->entity['id']['value'] = $id;
+        $this->entity['id']['type'] = "int";
+        var_dump($this->entity);
+        $query = new DbQuery($this->class, $this->entity);
+        $query->_update();
+    }
+    
     public function get() {
         $query = new DbQuery($this->class, $this->entity);
         $query->all();
