@@ -61,16 +61,18 @@ class UtilisateurController extends Controller {
         $m->load($utilisateur);
         $utilisateur = $m->getById($utilisateur->getId());
 
+
         if(isset($request->get('post')->form_edit)) {
-            var_dump($request->get('post')->form_edit);
+            
             $utilisateur->setNom($request->get('post')->form_edit->nom);
             $utilisateur->setPrenom($request->get('post')->form_edit->prenom);
             $utilisateur->setUsername($request->get('post')->form_edit->username);
             $utilisateur->setDate_last_activity(new \DateTime());
             $m->load($utilisateur);
             $utilisateur = $m->update($utilisateur->getId());
-            //$this->_session()->_unregister("membre");
-            //$this->_session()->_register("membre", $utilisateur);
+            $this->_session()->_unregister("membre");
+            $this->_session()->_register("membre", $utilisateur);
+           
         }
         
         return new View(array(

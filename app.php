@@ -12,7 +12,7 @@ use core\component\Route;
 session_start();
 
 $session = new Session($_SESSION);
-var_dump($session);
+
 $request = new Request(array(
     'get' => $_GET,
     'post' => $_POST,

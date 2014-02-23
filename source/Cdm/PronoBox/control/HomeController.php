@@ -37,7 +37,7 @@ class HomeController extends Controller {
             $utilisateur->setUsername($request->get('post')->identifiant);
             $utilisateur->setPassword($request->get('post')->pwd);   
         }
-        var_dump($this->_session());
+        
         if($this->_session()->_is_register('membre')) {           
             $utilisateur = $this->_session()->get('membre');
         }

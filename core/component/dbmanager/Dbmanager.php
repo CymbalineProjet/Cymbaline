@@ -80,9 +80,10 @@ class Dbmanager {
     public function update($id) {
         $this->entity['id']['value'] = $id;
         $this->entity['id']['type'] = "int";
-        var_dump($this->entity);
+        //var_dump($this->entity);
         $query = new DbQuery($this->class, $this->entity);
         $query->_update();
+        return $this->getById($id);
     }
     
     public function get() {
