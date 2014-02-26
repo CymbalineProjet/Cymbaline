@@ -71,7 +71,7 @@ abstract class CustomException extends \Exception implements IException
         $class = end($class);
         $trace = str_replace("#","<br/>",$this->getTraceAsString());
         
-        $file = file_get_contents('http://localhost/AlcaFram/source/Alca/ErrorBox/template/error.php');
+        $file = file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/source/Alca/ErrorBox/template/error.php');
         $file = str_replace("#xdebug_message#", $this->xdebug_message, $file);
         $file = str_replace("#class#", $class, $file);
         $file = str_replace("#file#", $this->getFile(), $file);
