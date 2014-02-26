@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
         <parameters>
             <env>dev</env>
-            <baseurl>/AlcaFram</baseurl>
-            <basetitle>AlcaFramework | Progress dev jaxx</basetitle>
-            <controllerdefault>Alca/GenBox/Defaut</controllerdefault>
+            <baseurl> </baseurl>
+            <basetitle>DKs Fram | Progress dev jaxx</basetitle>
+            <controllerdefault>Cdm/PronoBox/Defaut</controllerdefault>
             <database env='dev'>
                 <host>localhost </host>
                 <port> </port>

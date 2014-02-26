@@ -1,5 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <routes>
+    
+        <route>
+		<path>/</path>
+		<template>Cdm/PronoBox/template/index</template>
+		<controller>Cdm/PronoBox/Defaut</controller>
+		<action>index</action>
+		<method>get</method>
+		<args>false</args>
+	</route>
+    
 	<route>
 		<path>/error</path>
 		<template>Alca/ErrorBox/template/error</template>

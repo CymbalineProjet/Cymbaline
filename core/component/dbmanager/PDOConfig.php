@@ -25,7 +25,7 @@ class PDOConfig  {
     
     public function __construct(){ 
         
-        $xml = file_get_contents("http://alca.dev/AlcaFram/core/config/parameters.xml");
+        $xml = file_get_contents("http://".$_SERVER['HTTP_HOST']."/core/config/parameters.xml");
         $this->_parser = new XmlParser($xml);        
         $arraytoobject = new ArrayToObject($this->_parser->array,TRUE);
         $this->_param = $arraytoobject->convert();

@@ -4,6 +4,7 @@ namespace core\component;
 
 use core\component\parser\XmlParser;
 use core\component\tools\ArrayToObject;
+use core\component\exception\PDOException;
 
 /** 
  * Class de paramétrage du site
@@ -22,11 +23,12 @@ class Parametrage {
      * Initialise la connexion et les routes
      */
     public function __construct() {
-        $xml = file_get_contents("http://alca.dev/AlcaFram/core/config/parameters.xml");
+        //var_dump($_SERVER);die;
+        $xml = file_get_contents("http://".$_SERVER['HTTP_HOST']."/core/config/parameters.xml");
         $this->_parser = new XmlParser($xml); 
         $arraytoobject = new ArrayToObject($this->_parser->array,TRUE);
         $this->_param = $arraytoobject->convert();
-        $this->initConnexion();
+        //$this->initConnexion();
         
     }
     
@@ -35,15 +37,22 @@ class Parametrage {
      * et créé la connexion dans l'attribut _connexion
      */
     public function initConnexion() {
-      
-        if($this->_parser->parse_error) {
-            new \Exception($this->_parser->get_xml_error()); 
+        try {
+            if($this->_parser->parse_error) {
+                new \Exception($this->_parser->get_xml_error()); 
+            }
+
+            $db = ("dev" == $this->_param->parameters->env) ? 0 : 1;
+
+            if($this->_connexion = new \PDO('mysql:host='.$this->_param->parameters->database[$db]->host.';port='.$this->_param->parameters->database[$db]->port.';dbname='.$this->_param->parameters->database[$db]->dbname, $this->_param->parameters->database[$db]->dbuser, $this->_param->parameters->database[$db]->dbpass)) {
+                
+            } else {
+                throw new PDOException('Parametrage::initConnexion : impossible de se connecter.');
+            }
+
+        } catch (PDOException $e) {
+            $e->display();
         }
-  
-        $db = ("dev" == $this->_param->parameters->env) ? 0 : 1;
-        
-        $this->_connexion = new \PDO('mysql:host='.$this->_param->parameters->database[$db]->host.';port='.$this->_param->parameters->database[$db]->port.';dbname='.$this->_param->parameters->database[$db]->dbname, $this->_param->parameters->database[$db]->dbuser, $this->_param->parameters->database[$db]->dbpass);
-    
         
     }
     

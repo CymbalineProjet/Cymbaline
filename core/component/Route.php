@@ -34,7 +34,7 @@ class Route {
 				throw new RouteException("La route passée dans le controller est nulle.");
 			}
 			
-			$xml = file_get_contents("http://alca.dev/AlcaFram/core/config/routes.xml");
+			$xml = file_get_contents("http://".$_SERVER['HTTP_HOST']."/core/config/routes.xml");
 			$this->_parser = new XmlParser($xml);
 			$this->_routes = $this->_parser->array;
 			$this->path = $url;
@@ -61,9 +61,17 @@ class Route {
             
 			if($this->path == NULL) {
 				throw new RouteException("Path null. Impossible de charger la route.");
-			}
+			} else if($this->path == "/") {
+                foreach($this->_routes['routes']['route'] as $route => $args) {                    
+                    if($args['path'] == $this->path) {
+                        return $this->_routes['routes']['route'][$route];
+                    }
+                }
+                
+            }
 			
 			$url = explode("/",$this->path);
+            
 			$true = false;
 			foreach($this->_routes['routes']['route'] as $route => $args) {
                     
@@ -103,7 +111,7 @@ class Route {
 				}	
 				
 			}
-			
+
             if(!isset($idroute)) {
                 throw new RouteException("Cette page n'existe pas");
             }
@@ -121,10 +129,11 @@ class Route {
             
             
             foreach($myroute_path as $_id => $p) {
-                
+                //var_dump($p);die;
                 if($p == $mypath[$_id]) {
                     
                 } else {
+                    //var_dump('3.3');die;
                     $pos = strpos($p, "@");
                     /*var_dump($pos);
                     var_dump($p);*/
@@ -182,7 +191,7 @@ class Route {
 					$route = $this->_routes['routes']['route'][$idroute];
 				}
 			} else {
-                var_dump($true);die;
+                
 				throw new RouteException("La route demandée n'existe pas dans le fichier de configuration.");
 			}
 			/*var_dump($true);*/

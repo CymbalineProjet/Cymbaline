@@ -53,9 +53,15 @@ $app = new Controller();
             
 }*/
 
+if(isset($_GET['url']) and $_GET['url'] != 'AlcaFram/source/Alca/ErrorBox/template/error.php') {
+    $url = $_GET['url'];
+} else {
+    $url = "/";
+}
 
 
-$route = new Route($_GET['url']);
+$route = new Route($url);
+
 $r = $route->load();
 
 $controller = $app->load($r['controller']);

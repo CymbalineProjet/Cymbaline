@@ -6,14 +6,13 @@ use core\component\Request;
 use core\component\Parametrage;
 use core\component\Controller;
 use core\component\Session;
-use core\component\security\SecurityUser;
+use core\component\Route;
+
 
 session_start();
 
 $session = new Session($_SESSION);
 
-
-//$session->_register("security", new SecurityUser());
 $request = new Request(array(
     'get' => $_GET,
     'post' => $_POST,
@@ -22,28 +21,19 @@ $request = new Request(array(
     'server' => $_SERVER,
 ));
 
-$param = new Parametrage();
+/**
+ * TODO
+ * faire une class pour chaque attributs de request
+ * 
+ * permettra de faire $controller->get('request')->get('post')->attr;
+ */
 
+
+$param = new Parametrage();
 $app = new Controller();
 
 
-//s'il y a des membres
-//$app->initSecurity();
 
-if(isset($_GET['controller'])) {
-    $controller = $app->load(ucfirst($_GET['namespace']).'/'.ucfirst($_GET['box']).'Box/'.ucfirst($_GET['controller']));
-} else {
-    $controller = $app->load($param->getBaseController());
-}
-
-$controller->init($session, $param, $request);
-
-if(isset($_GET['action'])) {
-    $action = $_GET['action']."Action";
-    $view = $controller->$action($request);
-} else {
-    $view = $controller->indexAction($request);
-}
 
 /*if($controller->_session()->_is_register("membre")) {
     
@@ -55,7 +45,7 @@ if(isset($_GET['action'])) {
     }
     
 } else {
-    //var_dump($_SERVER['REQUEST_URI']);
+
     if(strtolower($_SERVER['REQUEST_URI']) == strtolower('/alcafram/cdm/prono/defaut'))
         echo "login";
     //else
@@ -65,8 +55,101 @@ if(isset($_GET['action'])) {
 
 
 
-var_dump($_SESSION);
+$route = new Route('/');
+$r = $route->load();
 
-//var_dump($controller->_session());
-include($view->getPath());
+$controller = $app->load($r['controller']);
+$controller->init($session, $param, $request);
+$action = $r['action']."Action";
+
+if(true) {
+    $view = $controller->$action($request,$r['args']);
+} else {
+    $view = $controller->$action($request);
+}
+
+$template = $r["template"];
+
+include("source/".$template.".php");
+
+exit;
+
+/*********
+ * TEST
+ */
+
+$url = explode("/",$_GET['url']);
+$true = false;
+foreach($routes as $route => $args) {
+    
+    
+    $r = explode("/", $route);
+    unset($r[0]);
+
+    if(sizeof($url) == sizeof($r) /*and sizeof($url) != 1*/) {
+        
+        $test = strpos( $route, "/".$url[0]);
+
+        if(is_int($test)) {
+            if(sizeof($url) != 1) {
+                /*unset($r[1]);
+                unset($url[0]);*/
+                $_args = array();
+                //var_dump($url);
+                //var_dump($r);
+                $end_r = str_replace("@","",end($r));
+                $_args[$end_r] = end($url);
+
+                $routes[$route]['_args'] = $_args;
+                
+                $rrr = $routes[$route];
+                //var_dump($args);
+                $true = true;
+            } /*else {
+                $true = true;
+            }*/
+        }
+    }
+        
+        
+    
+}
+
+
+if(isset($routes[str_replace($param->getBaseUrl(),"","/".$_GET['url'])]) or $true)  {
+   
+    if($true) {
+        $route = $rrr;
+
+    } else {
+        $route = $routes[str_replace($param->getBaseUrl(),"",$_SERVER['REQUEST_URI'])];
+    }
+
+    $controller = $app->load($route['_controller']);
+
+    $controller->init($session, $param, $request);
+
+    //var_dump($route['_args']);
+
+
+    $action = $route['_action']."Action";
+
+    
+    
+   
+    if(true) {
+        $view = $controller->$action($request,$route['_args']);
+    } else {
+        $view = $controller->$action($request);
+    }
+    $template = $route["_template"];
+   
+
+
+   // header("Status: 200 OK", false, 200);
+    include("source/".$route['_template'].".php");
+    
+} else {
+    include("source/Alca/ErrorBox/template/denied.php");
+}
 
