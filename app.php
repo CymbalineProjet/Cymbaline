@@ -70,6 +70,8 @@ $controller = $app->load($r['controller']);
 $controller->init($session, $param, $request);
 $action = $r['action']."Action";
 
+
+
 if(true) {
     $view = $controller->$action($request,$r['args']);
 } else {
@@ -152,7 +154,7 @@ if(isset($routes[str_replace($param->getBaseUrl(),"","/".$_GET['url'])]) or $tru
     }
     $template = $route["_template"];
    
-
+    //var_dump($route);
 
    // header("Status: 200 OK", false, 200);
     include("source/".$route['_template'].".php");

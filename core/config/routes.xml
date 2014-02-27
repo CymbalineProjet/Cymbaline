@@ -45,6 +45,15 @@
 		<method>get</method>
 		<args>false</args>
 	</route>
+        
+        <route>
+		<path>/equipe</path>
+		<template>Cdm/PronoBox/template/equipe/index</template>
+		<controller>Cdm/PronoBox/Equipe</controller>
+		<action>index</action>
+		<method>get</method>
+		<args>false</args>
+	</route>
 	
 	<route>
 		<path>/utilisateur/int@id</path>

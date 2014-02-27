@@ -73,13 +73,23 @@ class DbQuery extends Dbmanager {
     }
     
     public function all() {
-        $class = strtolower($this->class);
-        $this->query = "SELECT * FROM $class";
-        $connexion = new PDOConfig();
-        $query = $connexion->getPdo()->prepare($this->query);
-        $query->execute();
-        $all = $query->fetchAll();
-        return $all;
+        try {
+            $class = strtolower($this->class);
+            $this->query = "SELECT * FROM $class";
+            $connexion = new PDOConfig();
+            $query = $connexion->getPdo()->prepare($this->query);
+            $query->execute();
+            $all = $query->fetchAll();
+            
+            if($all == null) {
+                throw new PDOException("Aucune $this->class en base de données.");
+            }
+            
+            return $all;
+            
+        } catch (PDOException $e) {
+            $e->display();
+        }
     }
     
     public function one() {

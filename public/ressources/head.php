@@ -2,10 +2,13 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>#title#</title>
+        <title><?php echo $_GET['title']; ?></title>
         
         
         
     </head>
     <body>
         
+
+
+       

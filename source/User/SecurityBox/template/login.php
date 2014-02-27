@@ -1,4 +1,4 @@
-<form action="#action#" method="post">
+<form action="/home" method="post">
     <label for="identifiant">Identifiant : </label>
     <input type="text" name="identifiant" id="identifiant" required />
     

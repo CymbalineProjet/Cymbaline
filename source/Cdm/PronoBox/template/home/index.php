@@ -1,5 +1,5 @@
 <?php
-$view->extend("head", ""); //toujours etendre le header
+$view->extend("head", "prono14 | home"); //toujours etendre le header
 //on peut par la suite etendre un menu, un widget, un module, etc ...
 
 echo "Utilisateur : ".$view->variables['utilisateur']->getUsername(). " (".$view->variables['utilisateur']->getNom().")";

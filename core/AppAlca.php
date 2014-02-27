@@ -21,6 +21,7 @@ class AppAlca {
                 "PronoBox" => array(
                     "Defaut" => new \source\Cdm\PronoBox\control\DefautController(),
                     "Home"   => new \source\Cdm\PronoBox\control\HomeController(),
+                    "Equipe"   => new \source\Cdm\PronoBox\control\EquipeController(),
                 ),
                 "UtilisateurBox" => array(
                     "Utilisateur" => new \source\Cdm\UtilisateurBox\control\UtilisateurController(),

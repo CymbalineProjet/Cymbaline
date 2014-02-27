@@ -88,7 +88,9 @@ class Dbmanager {
     
     public function get() {
         $query = new DbQuery($this->class, $this->entity);
-        $query->all();
+        $all = $query->all();
+        
+        return $all;
     }
     
     public function getById($id) {

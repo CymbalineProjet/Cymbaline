@@ -53,7 +53,8 @@ class View {
     public function get($base, array $replace = NULL) {
         $path = explode("/", $base);
         $_path = "http://".$_SERVER['SERVER_NAME'].$this->baseurl."/source/".$path[0]."/".$path[1]."/template/".$path[2].".php";
-        $content = file_get_contents($_path);
+        
+        /*$content = file_get_contents($_path);
         
         if($replace != NULL) {
             foreach($replace as $k => $value) {
@@ -61,14 +62,24 @@ class View {
             }
         } 
         
-        echo $content;
+        echo $content;*/
+        
+        return include($_path);
     }
     
     public function extend($base, $title = NULL) {
-
-        $_path = "http://".$_SERVER['SERVER_NAME'].$this->baseurl."/core/ressources/".$base.".php";
-        $content = file_get_contents($_path);
+        //var_dump($title);
+        if($title == NULL) {
+            $title = $this->title;
+        }
         
+        $title = str_replace(" ", "%20", $title);
+        
+        $_path = "http://".$_SERVER['SERVER_NAME'].$this->baseurl."/public/ressources/".$base.".php?title=".$title;
+        //$content = file_get_contents($_path);
+        
+        return include($_path);
+        /*
         if($title == NULL) {
             $title = $this->title;
             $html = str_replace("#title#", $title, $content);
@@ -78,7 +89,7 @@ class View {
             $html = str_replace("#baseurl#", "http://".$_SERVER['SERVER_NAME'].$this->baseurl."/", $html);
         }
         
-        echo $html;
+        echo $html;*/
     }
     
     public function getBaseUrl() {
