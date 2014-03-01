@@ -5,6 +5,7 @@ namespace core\component;
 use core\component\Parametrage;
 use core\AppAlca;
 use core\component\dbmanager\Dbmanager;
+use core\component\Route;
 
 
 /**
@@ -53,7 +54,12 @@ class Controller extends AppAlca {
         return $this->session;
     }
 
-
+    public function path($name) {
+        $route = new Route('/');
+        $path = $route->createPath($name);
+        
+        return $path;
+    }
     
     /**
      * Retourne un controller grace au nom de l'item
@@ -68,4 +74,6 @@ class Controller extends AppAlca {
         
         return $c;
     }
+    
+
 }

@@ -56,10 +56,10 @@ class Parameters {
     public function save() {
         $xml = "<?xml version='1.0' encoding='UTF-8'?>
         <parameters>
-            <env>$this->env</env>
-            <baseurl>$this->baseurl</baseurl>
-            <basetitle>$this->basetitle</basetitle>
-            <controllerdefault>$this->controllerdefault</controllerdefault>
+            <env>$this->env </env>
+            <baseurl>$this->baseurl </baseurl>
+            <basetitle>$this->basetitle </basetitle>
+            <controllerdefault>$this->controllerdefault </controllerdefault>
             <database env='dev'>
                 <host>".$this->dbdev->host." </host>
                 <port>".$this->dbdev->port." </port>

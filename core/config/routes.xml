@@ -3,6 +3,9 @@
 <routes>  
     <import>
         <file>
+            <source>/source/Alca/GenBox/config/generator.xml</source>
+        </file>
+        <file>
             <source>/source/Cdm/PronoBox/config/prono.xml</source>
         </file>
         <file>

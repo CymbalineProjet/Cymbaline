@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    
+    <route name="generator" path="/generator" 
+           template="Alca/GenBox/template/index" controller="Alca/GenBox/Defaut" action="index" />
+
+    <route name="generator_edit" path="/generator/edit" 
+           template="Alca/GenBox/template/edit-parameters" controller="Alca/GenBox/Defaut" action="edit" />      
+
+</routes>

@@ -3,6 +3,7 @@
 namespace core\component\tools;
 
 use core\component\Parametrage;
+use core\component\Route;
 
 /**
  * Description of View
@@ -95,6 +96,19 @@ class View {
     public function getBaseUrl() {
         return $this->baseurl;
     }
+    
+    public function redirect($url) {
+        header("Location: $url");
+        exit;
+    }
+    
+    public function link($name) {
+        $route = new Route('/');
+        $path = $route->createPath($name);
+        
+        return $path;
+    }
+    
 }
 /*
  * pour que ca puisse fonctionne

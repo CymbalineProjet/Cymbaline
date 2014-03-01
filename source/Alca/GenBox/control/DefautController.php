@@ -40,12 +40,12 @@ class DefautController extends Controller {
         
         $form_parameters = new ParametersForm();
         $form_parameters->setMethod('post');
-        $form_parameters->setAction('edit');
+        $form_parameters->setAction($this->path('generator_edit'));
         $form_parameters->setClass('form-horizontal');
         
         
         
-        return new View('Alca/GenBox/index', array(
+        return new View(array(
             'error' => $error,
             'test'  => $test,
             'param' => $param->getParam()->parameters,
@@ -60,11 +60,11 @@ class DefautController extends Controller {
         //on donne au retour un attribut error à false
         $error = false;
         $test = "defaut controller generator edit-parameters";
-        //var_dump($request->post);
-        $parameters = new Parameters($request->post);
+        //var_dump($request->get('post'));die;
+        $parameters = new Parameters($request->get('post'));
         $parameters->save();
         //var_dump($parameters); die;
-        return new View('Alca/GenBox/edit-parameters', array(
+        return new View(array(
             'error' => $error,
             'test'  => $test,
         ));

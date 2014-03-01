@@ -49,7 +49,16 @@ class Route {
 		}
 	}
     
-
+    public function createPath($name) {
+        $path = "/";
+        foreach($this->_routes['routes']['route'] as $route => $args) {
+            if($args['attrib']['name'] == $name) {
+                $path = $args['attrib']['path'];
+            }
+        }
+        
+        return $path;
+    }
     
     public function import() {
         

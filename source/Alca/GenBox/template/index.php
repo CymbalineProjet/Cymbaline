@@ -1,13 +1,14 @@
 <?php
 
-$view->extend("header", $view->variables->test); //toujours etendre le header
+$view->extend("head", "Generator"); //toujours etendre le header
 //on peut par la suite etendre un menu, un widget, un module, etc ...
 
 //$view->get('User/SecurityBox/login');
 
 
-$choices = $view->form['form_parameters']->getChoices('env');
+//$choices = $view->form['form_parameters']->getChoices('env');
 //var_dump($view->form['form_parameters']);
+//$view->form['form_parameters']->open();
 ?>
 
 <div class="main">
@@ -57,29 +58,29 @@ $choices = $view->form['form_parameters']->getChoices('env');
                                     <div class="controls">                         
                                         <?php //echo $choices[0]; ?>
                                         <?php //echo $choices[1]; ?>
-                                        <input type="radio" name="env" id="dev" class="" value="dev" <?php if($view->variables->param->env == "dev") {echo "checked";} ?> /> dev &nbsp;&nbsp;&nbsp;
-                                        <input type="radio" name="env" id="prod" class="" value="prod" <?php if($view->variables->param->env == "prod") {echo "checked";} ?> /> prod
+                                        <input type="radio" name="env" id="dev" class="" value="dev" <?php if($view->variables['param']->env == "dev") {echo "checked";} ?> /> dev &nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="env" id="prod" class="" value="prod" <?php if($view->variables['param']->env == "prod") {echo "checked";} ?> /> prod
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="baseurl" class="control-label">Base url :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="baseurl" id="baseurl" class="span4" value="<?php echo $view->variables->param->baseurl; ?>">
+                                        <input type="text" name="baseurl" id="baseurl" class="span4" value="<?php echo $view->variables['param']->baseurl; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="basetitle" class="control-label">Titre par défaut :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="basetitle" id="basetitle" class="span4" value="<?php echo $view->variables->param->basetitle; ?>">
+                                        <input type="text" name="basetitle" id="basetitle" class="span4" value="<?php echo $view->variables['param']->basetitle; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="controllerdefault" class="control-label">Controller par défaut :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="controllerdefault" id="controllerdefault" class="span4" value="<?php echo $view->variables->param->controllerdefault; ?>">
+                                        <input type="text" name="controllerdefault" id="controllerdefault" class="span4" value="<?php echo $view->variables['param']->controllerdefault; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
@@ -89,35 +90,35 @@ $choices = $view->form['form_parameters']->getChoices('env');
                                 <div class="control-group">
                                     <label for="host" class="control-label">Hote :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="host" id="host" class="span4" value="<?php echo $view->variables->param->database[0]->host; ?>">
+                                        <input type="text" name="host" id="host" class="span4" value="<?php echo $view->variables['param']->database[0]->host; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="port" class="control-label">Port :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="port" id="port" class="span4" value="<?php echo $view->variables->param->database[0]->port; ?>">
+                                        <input type="text" name="port" id="port" class="span4" value="<?php echo $view->variables['param']->database[0]->port; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbname" class="control-label">Nom de la base :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbname" id="dbname" class="span4" value="<?php echo $view->variables->param->database[0]->dbname; ?>">
+                                        <input type="text" name="dbname" id="dbname" class="span4" value="<?php echo $view->variables['param']->database[0]->dbname; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbuser" class="control-label">Utilisateur :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbuser" id="dbuser" class="span4" value="<?php echo $view->variables->param->database[0]->dbuser; ?>">
+                                        <input type="text" name="dbuser" id="dbuser" class="span4" value="<?php echo $view->variables['param']->database[0]->dbuser; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbpass" class="control-label">Mot de passe :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbpass" id="dbpass" class="span4" value="<?php echo $view->variables->param->database[0]->dbpass; ?>">
+                                        <input type="text" name="dbpass" id="dbpass" class="span4" value="<?php echo $view->variables['param']->database[0]->dbpass; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
@@ -127,35 +128,35 @@ $choices = $view->form['form_parameters']->getChoices('env');
                                 <div class="control-group">
                                     <label for="host_prod" class="control-label">Hote :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="host_prod" id="host_prod" class="span4" value="<?php echo $view->variables->param->database[1]->host; ?>">
+                                        <input type="text" name="host_prod" id="host_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->host; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="port_prod" class="control-label">Port :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="port_prod" id="port_prod" class="span4" value="<?php echo $view->variables->param->database[1]->port; ?>">
+                                        <input type="text" name="port_prod" id="port_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->port; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbname_prod" class="control-label">Nom de la base :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbname_prod" id="dbname_prod" class="span4" value="<?php echo $view->variables->param->database[1]->dbname; ?>">
+                                        <input type="text" name="dbname_prod" id="dbname_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->dbname; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbuser_prod" class="control-label">Utilisateur :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbuser_prod" id="dbuser_prod" class="span4" value="<?php echo $view->variables->param->database[1]->dbuser; ?>">
+                                        <input type="text" name="dbuser_prod" id="dbuser_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->dbuser; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbpass_prod" class="control-label">Mot de passe :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbpass_prod" id="dbpass_prod" class="span4" value="<?php echo $view->variables->param->database[1]->dbpass; ?>">
+                                        <input type="text" name="dbpass_prod" id="dbpass_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->dbpass; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
 											
@@ -292,7 +293,7 @@ $choices = $view->form['form_parameters']->getChoices('env');
                                         
                                         <select name="zone" id="zone" required >
                                             <?php
-                                            foreach($view->variables->zone as $zone) {
+                                            foreach($view->variables['zone'] as $zone) {
                                               echo "<option value='$zone'>$zone</option>";  
                                             }
                                             ?>
@@ -370,7 +371,4 @@ $choices = $view->form['form_parameters']->getChoices('env');
        
     });
 </script>
-<?php
-echo $view->variables->test;
 
-$view->extend("footer", $view->variables->test);
