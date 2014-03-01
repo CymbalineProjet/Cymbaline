@@ -4,4 +4,4 @@ $view->extend("head", "prono14 | equipe"); //toujours etendre le header
 
 echo $view->variables['test'];
 
-var_dump($view->variables['equipes'][0]);
+var_dump($view->variables['equipes']);

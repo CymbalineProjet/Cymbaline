@@ -60,8 +60,12 @@ class Controller extends AppAlca {
      * @param string $item
      */
     public function load($item) {
-        $controller = parent::registerController();
+        //$controller = parent::registerController();
         $path = explode("/", $item);
-        return $controller[$path[0]][$path[1]][$path[2]];
+       
+        $control = "source\\".$path[0]."\\".$path[1]."\\control\\".$path[2]."Controller";
+        $c = new $control();
+        
+        return $c;
     }
 }

@@ -31,8 +31,7 @@ class EquipeController extends Controller {
         $equipe = new Equipe();
         $m = $this->getManager();
         $m->load($equipe);
-        $get_equipes = $m->get();
-        $equipes = Equipe::hydrateAll($get_equipes);
+        $equipes = Equipe::hydrateAll($m->get());
         
         
 
@@ -40,6 +39,21 @@ class EquipeController extends Controller {
             'error' => $error,
             'test'  => $test,
             'equipes' => $equipes,
+        ));
+    }
+    
+    public function afficheAction(Request $request, array $args) {
+        
+        $test = "equipe controller cdm";
+        
+        $equipe = new Equipe();
+        $m = $this->getManager();
+        $m->load($equipe);
+        $equipe = $m->getById($args['id']);
+        
+        return new View(array(
+            'test'  => $test,
+            'equipe' => $equipe,
         ));
     }
 

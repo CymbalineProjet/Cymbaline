@@ -72,7 +72,7 @@ $action = $r['action']."Action";
 
 
 
-if(true) {
+if(isset($r['args'])) {
     $view = $controller->$action($request,$r['args']);
 } else {
     $view = $controller->$action($request);

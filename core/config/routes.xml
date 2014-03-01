@@ -1,79 +1,23 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<routes>
-    
-        <route>
-		<path>/</path>
-		<template>Cdm/PronoBox/template/index</template>
-		<controller>Cdm/PronoBox/Defaut</controller>
-		<action>index</action>
-		<method>get</method>
-		<args>false</args>
-	</route>
-    
-	<route>
-		<path>/error</path>
-		<template>Alca/ErrorBox/template/error</template>
-		<controller>Alca/ErrorBox/Error</controller>
-		<action>index</action>
-		<method>get</method>
-		<args>false</args>
-	</route>
-	
-	<route>
-		<path>/home</path>
-		<template>Cdm/PronoBox/template/home/index</template>
-		<controller>Cdm/PronoBox/Home</controller>
-		<action>index</action>
-		<method>get</method>
-		<args>false</args>
-	</route>
-	
-	<route>
-		<path>/login</path>
-		<template>Cdm/PronoBox/template/index</template>
-		<controller>Cdm/PronoBox/Defaut</controller>
-		<action>index</action>
-		<method>get</method>
-		<args>false</args>
-	</route>
+
+<routes>  
+    <import>
+        <file>
+            <source>/source/Cdm/PronoBox/config/prono.xml</source>
+        </file>
+        <file>
+            <source>/source/Cdm/UtilisateurBox/config/utilisateur.xml</source>
+        </file>
+        <file>
+            <source>/source/Cdm/PronoBox/config/equipe.xml</source>
+        </file>
+    </import>
+      
         
-        <route>
-		<path>/edit</path>
-		<template>Cdm/UtilisateurBox/template/edit</template>
-		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
-		<action>edit</action>
-		<method>get</method>
-		<args>false</args>
-	</route>
+    <route name="index" path="/" 
+           template="Cdm/PronoBox/template/index" controller="Cdm/PronoBox/Defaut" action="index" />
+
+    <route name="error" path="/error" 
+           template="Alca/ErrorBox/template/error" controller="Alca/ErrorBox/Error" action="index" />
         
-        <route>
-		<path>/equipe</path>
-		<template>Cdm/PronoBox/template/equipe/index</template>
-		<controller>Cdm/PronoBox/Equipe</controller>
-		<action>index</action>
-		<method>get</method>
-		<args>false</args>
-	</route>
-	
-	<route>
-		<path>/utilisateur/int@id</path>
-		<template>Cdm/UtilisateurBox/template/utilisateur</template>
-		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
-		<action>obtenir</action>
-		<method>get</method>
-		<args>
-			<id></id>
-		</args>
-	</route>
-	
-	<route>
-		<path>/utilisateur/edit/int@id</path>
-		<template>Cdm/UtilisateurBox/template/edit</template>
-		<controller>Cdm/UtilisateurBox/Utilisateur</controller>
-		<action>edituser</action>
-		<method>get</method>
-		<args>
-			<id></id>
-		</args>
-	</route>
 </routes>

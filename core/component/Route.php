@@ -13,6 +13,7 @@ use core\component\Parametrage;
  */
 class Route {
     
+    private $_xml;
 	private $_routes;
 	private $_parser;
     private $path;
@@ -39,10 +40,37 @@ class Route {
 			$this->_routes = $this->_parser->array;
 			$this->path = $url;
 			$this->param = new Parametrage();
+            $this->import();
+            
+            //var_dump($this->_routes['routes']['route']);die;
+            
 		} catch (RouteException $e) {
 			$e->display();
 		}
 	}
+    
+
+    
+    public function import() {
+        
+        try {
+            foreach($this->_routes['routes']['import']['file'] as $file) {
+                $xml = file_get_contents("http://".$_SERVER['HTTP_HOST']."".$file['source']);
+                
+                $this->_parser = new XmlParser($xml);
+                $this->_xml = $this->_parser->array;
+                
+                foreach ($this->_xml['routes']['route'] as $route) {
+                    
+                    $this->_routes['routes']['route'][] = $route; 
+                }
+            }
+            //var_dump($this->_routes['routes']['route']);
+           
+        } catch (RouteException $e) {
+            $e->display();
+        }
+    }
 	
 	/**
 	* Retourne une occurence de route en fonction de l'url
@@ -61,13 +89,12 @@ class Route {
             
 			if($this->path == NULL) {
 				throw new RouteException("Path null. Impossible de charger la route.");
-			} else if($this->path == "/") {
-                foreach($this->_routes['routes']['route'] as $route => $args) {                    
-                    if($args['path'] == $this->path) {
-                        return $this->_routes['routes']['route'][$route];
+			} else if($this->path == "/") {                
+                foreach($this->_routes['routes']['route'] as $route => $args) {  
+                    if($args['attrib']['path'] == $this->path) {
+                        return $this->_routes['routes']['route'][$route]['attrib'];
                     }
-                }
-                
+                }                
             }
 			
 			$url = explode("/",$this->path);
@@ -75,12 +102,12 @@ class Route {
 			$true = false;
 			foreach($this->_routes['routes']['route'] as $route => $args) {
                     
-				$r = explode("/", $args['path']);
+				$r = explode("/", $args['attrib']['path']);
 				unset($r[0]);
                 
 				if(sizeof($url) == sizeof($r) /*and sizeof($url) != 1*/) {	
                     
-					$test = strpos( $args['path'], "/".$url[0]);
+					$test = strpos( $args['attrib']['path'], "/".$url[0]);
                     //var_dump($args['path']);
                     //var_dump("/".$url[0]);
 					if(is_int($test)) {
@@ -100,7 +127,7 @@ class Route {
 							$end_r = str_replace("@","",$end_r);
 							$_args[$end_r] = end($url);
 
-							$this->_routes['routes']['route'][$route]['args'] = $_args;
+							$this->_routes['routes']['route'][$route]['attrib']['args'] = $_args;
 							
 							$rrr = $this->_routes['routes']['route'][$route];
 							//var_dump($rrr);
@@ -117,7 +144,7 @@ class Route {
             }
             
             $path = str_replace($this->param->getBaseUrl(),"","/".$this->path);
-            $route_path = $this->_routes['routes']['route'][$idroute]['path'];
+            $route_path = $this->_routes['routes']['route'][$idroute]['attrib']['path'];
             $mypath = explode("/",$path);
             $myroute_path = explode("/",$route_path);
             if(sizeof($mypath) != sizeof($myroute_path)) {
@@ -185,17 +212,17 @@ class Route {
             
 			if(isset($this->_routes['routes']['route'][$idroute]) or $true)  {
 				if($true) {
-					$route = $rrr;
+					$route = $rrr['attrib'];
 
 				} else {
-					$route = $this->_routes['routes']['route'][$idroute];
+					$route = $this->_routes['routes']['route'][$idroute]['attrib'];
 				}
 			} else {
                 
 				throw new RouteException("La route demandée n'existe pas dans le fichier de configuration.");
 			}
 			/*var_dump($true);*/
-            //var_dump($route);
+            //var_dump($route);die('test route');
             
 			return $route;
 		

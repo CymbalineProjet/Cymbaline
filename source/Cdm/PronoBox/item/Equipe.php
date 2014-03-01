@@ -301,9 +301,10 @@ class Equipe
                 }
                 
             }
+            //var_dump($equipe);
             $equipes[$attr] = $e->hydrate($equipe);
             unset($equipe);
-            $equipe = new Equipe();
+            $equipe = new \stdClass();
         }
         
         return $equipes;

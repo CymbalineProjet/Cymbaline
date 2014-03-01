@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    
+    <route name="login" path="/login" 
+           template="Cdm/PronoBox/template/index" controller="Cdm/PronoBox/Defaut" action="index" />
+
+    <route name="home" path="/home" 
+           template="Cdm/PronoBox/template/home/index" controller="Cdm/PronoBox/Home" action="index" />
+
+</routes>

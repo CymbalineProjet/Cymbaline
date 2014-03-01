@@ -27,10 +27,8 @@ class Dbmanager {
         $class = get_class($entity);
         $pos = strpos($class, "\item");
         $this->class = substr($class, $pos+6);  
-        
-        $this->item = "\source\Cdm\UtilisateurBox\item\ ".$this->class;
-        $this->item = str_replace(" ", "", $this->item);
-        
+
+        $this->item = $class;
         $reflectionClass = new ReflectionClass(get_class($entity));
         $comment = new CommentParser();
         
