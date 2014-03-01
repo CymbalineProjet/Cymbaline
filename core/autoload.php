@@ -7,7 +7,10 @@ function __autoload($class_name) {
         /**
          * si strpos avec "vendor" alors require vendor/$classname
          */
-   
+        
+        
+        //POUR OVH
+		$class_name= str_replace("\\","/",$class_name);
         
         if(!file_exists($class_name.".php")) {
             throw new core\component\exception\CoreException('Impossible de charger '.$class_name.'.php');
