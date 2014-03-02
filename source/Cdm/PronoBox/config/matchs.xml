@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    
+    <route name="matchs" path="/match" 
+           template="Cdm/PronoBox/template/match/index" controller="Cdm/PronoBox/Matchs" action="index" />
+
+    <route name="match" path="/match/int@id" 
+           template="Cdm/PronoBox/template/match/affiche" controller="Cdm/PronoBox/Matchs" action="affiche" />      
+
+</routes>

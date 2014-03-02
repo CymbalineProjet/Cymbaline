@@ -109,4 +109,11 @@ class UtilisateurController extends Controller {
             "form" => $form,
         ));
     }
+    
+    public function classementAction(Request $request) {
+        
+        return new View(array(
+            'test' => "classement des membres",
+        ));
+    }
 }

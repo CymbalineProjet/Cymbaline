@@ -14,6 +14,12 @@
         <file>
             <source>/source/Cdm/PronoBox/config/equipe.xml</source>
         </file>
+        <file>
+            <source>/source/Cdm/PronoBox/config/poule.xml</source>
+        </file>
+        <file>
+            <source>/source/Cdm/PronoBox/config/matchs.xml</source>
+        </file>
     </import>
       
         

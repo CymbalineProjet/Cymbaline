@@ -9,6 +9,9 @@
     
     <route name="admin_utilisateur_edit" path="/utilisateur/edit/int@id" 
            template="Cdm/UtilisateurBox/template/edit" controller="Cdm/UtilisateurBox/Utilisateur" action="edituser" />
+    
+    <route name="classement" path="/classement" 
+           template="Cdm/UtilisateurBox/template/classement" controller="Cdm/UtilisateurBox/Utilisateur" action="classement" />
 
 </routes>
 
