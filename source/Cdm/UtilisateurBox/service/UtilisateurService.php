@@ -15,9 +15,6 @@ use source\Cdm\UtilisateurBox\item\Utilisateur;
  */
 class UtilisateurService extends Service {
 
-    
-    
-    
     public function exist(Utilisateur $utilisateur) {
         
         $this->getManager()->load($utilisateur);

@@ -42,7 +42,7 @@ class HomeController extends Controller {
             $utilisateur = $this->_session()->get('membre');
         }
         
-        $us = new UtilisateurService();
+        $us = $this->get("Cdm/Utilisateur/Utilisateur");
         
         if($us->exist($utilisateur)) {
             

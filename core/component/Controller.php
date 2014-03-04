@@ -6,6 +6,8 @@ use core\component\Parametrage;
 use core\AppAlca;
 use core\component\dbmanager\Dbmanager;
 use core\component\Route;
+use core\component\Service;
+use core\component\exception\CoreException;
 
 
 /**
@@ -39,6 +41,23 @@ class Controller extends AppAlca {
     
     public function getManager() {
         return $this->dbmanager;
+    }
+    
+    public function get($service = null) {
+        try {
+            
+            if(is_null($service)) {
+                throw new CoreException("Impossible de charger le service. Aucune service renseigné.");
+            } else {
+                $s = new Service();
+                $service = $s->get($service);
+               
+                return $service;
+            }
+                        
+        } catch (CoreException $e) {
+            $e->display();
+        }
     }
     
     public function initSecurity($ref) {
