@@ -20,6 +20,9 @@
         <file>
             <source>/source/Cdm/PronoBox/config/matchs.xml</source>
         </file>
+        <file>
+            <source>/source/Cdm/PronoBox/config/stade.xml</source>
+        </file>
     </import>
       
         
