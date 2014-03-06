@@ -112,5 +112,31 @@ class Utilisateur extends \source\User\SecurityBox\item\User {
         return $utilisateur;
     }
     
+    static function hydrateAll(array $users) {
+        
+        $user = new \stdClass();
+        $e = new Utilisateur();
+        
+        foreach($users as $attr => $value) {
+            
+            foreach($value as $id => $valeur) {
+                
+                if(!is_int($id)) {
+                    
+                    $user->{$id} = $valeur;
+                    //var_dump($equipe);
+                }
+                
+            }
+            //var_dump($equipe);
+            $users[$attr] = $e->hydrate($user);
+            unset($user);
+            $user = new \stdClass();
+        }
+        
+        return $users;
+        
+    }
+    
     
 }

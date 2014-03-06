@@ -2,11 +2,8 @@
 
 namespace source\Cdm\UtilisateurBox\service;
 
-
 use core\component\Service;
 use source\Cdm\UtilisateurBox\item\Utilisateur;
-
-
 
 /**
  * Description of UtilisateurService
@@ -26,4 +23,5 @@ class UtilisateurService extends Service {
         }
         
     }
+    
 }
