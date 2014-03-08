@@ -19,8 +19,12 @@ class Session {
 	* @access public
 	* @param  array  $_SESSION
 	*/
-	public function __construct($session = array()) {
-		$this->session = $session;
+	public function __construct($session = null) {
+        if(is_null($session)) {
+            $this->session = $_SESSION;
+        } else {
+            $this->session = $session;
+        }
         
 	}
     

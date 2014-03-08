@@ -36,6 +36,12 @@ class User {
     private $mail;
     
     /**
+     * #type=string#
+     * #name=role#
+     */
+    private $role;
+    
+    /**
      * #type=datetime#
      * #name=nodate_register#
      */
@@ -94,8 +100,13 @@ class User {
         return $this;
     }
     
-    public function getRoles() {
-        return array("user");
+    public function getRole() {
+        return $this->role;
+    }
+    
+    public function setRole($roles) {
+        $this->role = $roles;
+        return $this;
     }
     
     public function setAnonymous($anonymous) {

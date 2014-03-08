@@ -8,6 +8,10 @@ use core\component\Controller;
 use core\component\Session;
 use core\component\Route;
 
+use source\User\SecurityBox\item\Authentification;
+use source\User\SecurityBox\service\AuthentificationService;
+use core\component\exception\CoreException;
+
 
 session_start();
 
@@ -33,25 +37,29 @@ $param = new Parametrage();
 $app = new Controller();
 
 
+if($session->_is_register("membre")) {
+    try {
+        //$granted = true;
+        $authentification = new Authentification($session->get('membre'));
+        $authentification->authentification_process();
 
+        $sAuth = new AuthentificationService();
 
-/*if($controller->_session()->_is_register("membre")) {
-    
-    $security = new SecurityUser($controller->_session()->get('membre'));
-    if($security->is_granted()) {
-        var_dump('is granted to be here');
-    } else {
-        die('denied');
+        if(!$sAuth->is_authentified()) {
+            throw new CoreException('Error authentification denied');
+        }
+
+        if(!$sAuth->is_granted()) {
+            $granted = false;
+            throw new CoreException('Error authentification not granted');
+        }
+        
+        
+    } catch (CoreException $e) {
+        $e->display();
     }
     
-} else {
-
-    if(strtolower($_SERVER['REQUEST_URI']) == strtolower('/alcafram/cdm/prono/defaut'))
-        echo "login";
-    //else
-       // die('denied2');
-            
-}*/
+} 
 
 
 
