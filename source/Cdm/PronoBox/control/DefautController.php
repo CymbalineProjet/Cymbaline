@@ -28,8 +28,9 @@ class DefautController extends Controller {
         $error = false;
         $test = "defaut controller cdm";
 
-        $this->_session()->_unregister("membre");
-        $this->_session()->_unregister("security.auth");
+        $this->_session()->_unregister("user");
+        $this->_session()->_unregister("security.user");
+        $this->_session()->_destroy();
         
         return new View(array(
             'error' => $error,

@@ -20,11 +20,8 @@ class Session {
 	* @param  array  $_SESSION
 	*/
 	public function __construct($session = null) {
-        if(is_null($session)) {
-            $this->session = $_SESSION;
-        } else {
-            $this->session = $session;
-        }
+        
+        $this->session = $_SESSION;
         
 	}
     
@@ -33,10 +30,12 @@ class Session {
      * @return session
      */
     public function get($name = NULL) {
+        $this->session = $_SESSION;
+        
         if($name == NULL)
-            return $this->session;
+            return $_SESSION;
         else
-            return $this->session[$name];
+            return $_SESSION[$name];
     }
 	
 	/**

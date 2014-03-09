@@ -3,12 +3,7 @@
 // autoload function
 function __autoload($class_name) {
     try {
-        //var_dump($class_name);
-        /**
-         * si strpos avec "vendor" alors require vendor/$classname
-         */
-        
-        
+
         //POUR OVH
 		$class_name= str_replace("\\","/",$class_name);
         
@@ -22,3 +17,13 @@ function __autoload($class_name) {
     }
     //var_dump($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . $class_name);
 }
+
+function catch_error($errno, $errstr, $errfile, $errline) {
+    try {
+        throw new \core\component\exception\CatchableException($errstr);
+    } catch (\core\component\exception\CatchableException $ex) {
+        $ex->display();
+    }
+}
+
+set_error_handler('catch_error');

@@ -2,7 +2,6 @@
 
 namespace source\User\SecurityBox\service;
 
-use core\component\Session;
 
 /**
  * Description of AuthentificationService
@@ -12,10 +11,10 @@ use core\component\Session;
 class AuthentificationService extends \core\component\Service {
     
     public function is_authentified() {
-        $session = new Session();
+        $session = $this->getSession();
         
-        if($session->_is_register('security.auth')) {
-            $auth = $session->get('security.auth');
+        if($session->_is_register('security.user')) {
+            $auth = $session->get('security.user');
             if($auth['is_secured']) {
                 return true;
             } else {
@@ -27,10 +26,10 @@ class AuthentificationService extends \core\component\Service {
     }
     
     public function is_granted() {
-        $session = new Session();
+        $session = $this->getSession();
         
-        if($session->_is_register('security.auth')) {
-            $auth = $session->get('security.auth');
+        if($session->_is_register('security.user')) {
+            $auth = $session->get('security.user');
             if($auth['is_secured'] && $auth['is_granted']) {
                 return true;
             } else {

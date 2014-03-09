@@ -8,6 +8,7 @@ use core\component\dbmanager\Dbmanager;
 use core\component\Route;
 use core\component\Service;
 use core\component\exception\CoreException;
+use core\component\Session;
 
 
 /**
@@ -70,7 +71,7 @@ class Controller extends AppAlca {
     
     public function _session() {
         
-        return $this->session;
+        return new Session();
     }
 
     public function path($name) {

@@ -96,6 +96,9 @@ class Parametrage {
         return $this->_param;
     }
     
+    public function getRoles() {
+        return $this->_param->parameters->roles;
+    }
             
 }
 

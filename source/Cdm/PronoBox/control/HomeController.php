@@ -30,7 +30,7 @@ class HomeController extends Controller {
         $test = "home controller cdm";
         
         if(isset($request->get('post')->identifiant) && isset($request->get('post')->pwd)) {
-            $this->_session()->_unregister("membre");
+            $this->_session()->_unregister("user");
 
 
             $utilisateur = new Utilisateur();
@@ -38,8 +38,8 @@ class HomeController extends Controller {
             $utilisateur->setPassword($request->get('post')->pwd);   
         }
         
-        if($this->_session()->_is_register('membre')) {           
-            $utilisateur = $this->_session()->get('membre');
+        if($this->_session()->_is_register('user')) {           
+            $utilisateur = $this->_session()->get('user');
         }
         
         $us = $this->get("Cdm/Utilisateur/Utilisateur");
@@ -49,7 +49,7 @@ class HomeController extends Controller {
             $uloader = new UtilisateurLoader();
             $utilisateur = $uloader->load($utilisateur);
             
-            $this->_session()->_register("membre", $utilisateur);
+            $this->_session()->_register("user", $utilisateur);
         } else {
             $m = $this->getManager();
             $m->load($utilisateur);
