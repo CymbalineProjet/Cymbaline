@@ -3,6 +3,7 @@
 namespace source\Cdm\UtilisateurBox\form;
 
 use core\component\tools\Form;
+use source\Cdm\UtilisateurBox\item\Utilisateur;
 
 
 /**
@@ -14,39 +15,55 @@ class EditForm extends Form {
     
     
 
-    public function __construct() {
+    public function __construct($item) {
         $this->setName('form_edit');
-        $this->build();
+        if(is_null($item) || !isset($item)) {
+            $this->build();
+        } else {
+            $this->build($item);
+        }
     }
     
-    public function build() {        
+    public function build($item = null) {     
+        
+        if(is_null($item)) {
+            $item = new Utilisateur();
+        }
         
         $this->add('nom', 'text', array(
-            "class" => "span4",
             "required" => "required",
+            "value"    => $item->getNom(),
         ), array(
             "value" => "Nom",
-            "class"    => "control-label",
         ));
-        
-        $this->add('prenom','text', array(
-            "class" => "span4",          
+
+        $this->add('prenom','text', array(         
             "required" => "required",
+            "value"    => $item->getPrenom(),
         ), array(
             "value" => "Pr&eacute;nom",
-            "class"    => "control-label",
         ));
-        
-        $this->add('username','text', array(
-            "class" => "span4",      
+
+        $this->add('username','text', array(    
             "required" => "required",
+            "value"    => $item->getUsername(),
         ), array(
             "value" => "Pseudo",
-            "class"    => "control-label",
         ));
-        
-        
-        
+
+        $this->add('password','text', array(    
+            "required" => "required",
+            "value"    => $item->getPassword(),
+        ), array(
+            "value" => "Mot de passe",
+        ));
+
+        $this->add('mail','email', array(    
+            "required" => "required",
+            "value"    => $item->getMail(),
+        ), array(
+            "value" => "Adresse mail",
+        ));
         
     }
 }

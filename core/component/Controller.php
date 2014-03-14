@@ -74,9 +74,9 @@ class Controller extends AppAlca {
         return new Session();
     }
 
-    public function path($name) {
+    public function path($name,$args = null) {
         $route = new Route('/');
-        $path = $route->createPath($name);
+        $path = $route->createPath($name,$args);
         
         return $path;
     }

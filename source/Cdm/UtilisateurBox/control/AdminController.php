@@ -55,31 +55,28 @@ class AdminController extends Controller {
         ));
     }
     
-    /*public function editAction(Request $request) {
+    public function editAction(Request $request, array $get) {
         
-        $utilisateur = $this->_session()->get('membre');      
-        
-        $form = new EditForm();
-        $form->setMethod("post");
-        $form->setAction("/AlcaFram/edit");     
-        
+        $utilisateur = new Utilisateur();
         $m = $this->getManager();
         $m->load($utilisateur);
-        $utilisateur = $m->getById($utilisateur->getId());
-
+        $utilisateur = $m->getById($get['id']);
 
         if(isset($request->get('post')->form_edit)) {
             
             $utilisateur->setNom($request->get('post')->form_edit->nom);
             $utilisateur->setPrenom($request->get('post')->form_edit->prenom);
             $utilisateur->setUsername($request->get('post')->form_edit->username);
+            $utilisateur->setMail($request->get('post')->form_edit->mail);
+            $utilisateur->setPassword($request->get('post')->form_edit->password);
             $utilisateur->setDate_last_activity(new \DateTime());
             $m->load($utilisateur);
-            $utilisateur = $m->update($utilisateur->getId());
-            $this->_session()->_unregister("membre");
-            $this->_session()->_register("membre", $utilisateur);
-           
+            $utilisateur = $m->update($get['id']);
         }
+        
+        $form = new EditForm($utilisateur);
+        $form->setMethod("post");
+        $form->setAction($this->path("admin_user_edit",$get['id']));
         
         return new View(array(
             'utilisateur' => $utilisateur,
@@ -88,7 +85,7 @@ class AdminController extends Controller {
         ));
     }
     
-    public function edituserAction(Request $request, array $get) {
+    /*public function edituserAction(Request $request, array $get) {
         
         $form = new EditForm();
         $form->setMethod("post");

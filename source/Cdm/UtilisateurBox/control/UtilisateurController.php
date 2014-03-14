@@ -51,57 +51,25 @@ class UtilisateurController extends Controller {
     
     public function editAction(Request $request) {
         
-        $utilisateur = $this->_session()->get('membre');      
-        
-        $form = new EditForm();
-        $form->setMethod("post");
-        $form->setAction("/AlcaFram/edit");     
-        
         $m = $this->getManager();
-        $m->load($utilisateur);
-        $utilisateur = $m->getById($utilisateur->getId());
-
+        $utilisateur = $this->_session()->get('user');           
 
         if(isset($request->get('post')->form_edit)) {
-            
+
             $utilisateur->setNom($request->get('post')->form_edit->nom);
             $utilisateur->setPrenom($request->get('post')->form_edit->prenom);
             $utilisateur->setUsername($request->get('post')->form_edit->username);
             $utilisateur->setDate_last_activity(new \DateTime());
             $m->load($utilisateur);
             $utilisateur = $m->update($utilisateur->getId());
-            $this->_session()->_unregister("membre");
-            $this->_session()->_register("membre", $utilisateur);
+            $this->_session()->_unregister("user");
+            $this->_session()->_register("user", $utilisateur);
            
         }
         
-        return new View(array(
-            'utilisateur' => $utilisateur,
-        ),array(
-            "form" => $form,
-        ));
-    }
-    
-    public function edituserAction(Request $request, array $get) {
-        
-        $form = new EditForm();
+        $form = new EditForm($utilisateur);
         $form->setMethod("post");
-        $form->setAction("/AlcaFram/utilisateur/edit/".$get['id']);
-        
-        $utilisateur = new Utilisateur();
-        $m = $this->getManager();
-        $m->load($utilisateur);
-        $utilisateur = $m->getById($get['id']);
-
-        if(isset($request->get('post')->form_edit)) {
-            var_dump($request->get('post')->form_edit);
-            $utilisateur->setNom($request->get('post')->form_edit->nom);
-            $utilisateur->setPrenom($request->get('post')->form_edit->prenom);
-            $utilisateur->setUsername($request->get('post')->form_edit->username);
-            $utilisateur->setDate_last_activity(new \DateTime());
-            $m->load($utilisateur);
-            $utilisateur = $m->update($get['id']);
-        }
+        $form->setAction($this->path("myutilisateur_edit"));
         
         return new View(array(
             'utilisateur' => $utilisateur,
@@ -112,8 +80,12 @@ class UtilisateurController extends Controller {
     
     public function classementAction(Request $request) {
         
+        $sUtilisateur = $this->get('Cdm/Utilisateur/Utilisateur');
+        $data = $sUtilisateur->get_classement();        
+        
         return new View(array(
             'test' => "classement des membres",
+            'data' => $data,
         ));
     }
 }

@@ -49,14 +49,25 @@ class Route {
 		}
 	}
     
-    public function createPath($name) {
+    public function createPath($name,$arg = null) {
         $path = "/";
         foreach($this->_routes['routes']['route'] as $route => $args) {
-            if($args['attrib']['name'] == $name) {
-                $path = $args['attrib']['path'];
+
+            if($args['attrib']['name'] == $name) {        
+                if(is_null($arg)) {
+                  $path = $args['attrib']['path'];  
+                } else {
+                    $explode = explode("/",$args['attrib']['path']);                  
+                    unset($explode[0]);
+                    unset($explode[sizeof($explode)]);
+                    $p = "";
+                    foreach($explode as $element) {
+                        $p .= "/$element";
+                    }
+                    $path = "$p/$arg"; 
+                }
             }
         }
-        
         return $path;
     }
     

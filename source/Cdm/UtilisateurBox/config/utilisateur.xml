@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <routes>
     
-    <route name="utilisateur_edit" path="/edit" 
+    <route name="myutilisateur_edit" path="/edit" 
            template="Cdm/UtilisateurBox/template/edit" controller="Cdm/UtilisateurBox/Utilisateur" action="edit" />
 
     <route name="utilisateur" path="/utilisateur/int@id" 
            template="Cdm/UtilisateurBox/template/utilisateur" controller="Cdm/UtilisateurBox/Utilisateur" action="obtenir" />
-    
-    <route name="admin_utilisateur_edit" path="/utilisateur/edit/int@id" 
-           template="Cdm/UtilisateurBox/template/edit" controller="Cdm/UtilisateurBox/Utilisateur" action="edituser" />
     
     <route name="classement" path="/classement" 
            template="Cdm/UtilisateurBox/template/classement" controller="Cdm/UtilisateurBox/Utilisateur" action="classement" />
@@ -18,6 +15,9 @@
     
     <route name="admin_user_detail" path="/admin/utilisateur/int@id" 
            template="Cdm/UtilisateurBox/template/admin/affiche" controller="Cdm/UtilisateurBox/Admin" action="affiche" />
+    
+    <route name="admin_user_edit" path="/admin/utilisateur/edit/int@id" 
+           template="Cdm/UtilisateurBox/template/admin/edit" controller="Cdm/UtilisateurBox/Admin" action="edit" />
 
 </routes>
 

@@ -37,9 +37,9 @@ class SqlCommand {
     
     public function build() {
         if($this->from == null) {
-            $this->query = $this->select." FROM ".$this->_from." ".$this->where." ".$this->orderby." ".$this->order;
+            $this->query = $this->select." FROM ".$this->_from." ".$this->where." ".$this->orderby." ".$this->order." ".$this->groupby;
         } else {
-            $this->query = $this->select." ".$this->from." ".$this->where." ".$this->orderby." ".$this->order;
+            $this->query = $this->select." ".$this->from." ".$this->where." ".$this->orderby." ".$this->order." ".$this->groupby;
         }
         return $this;
     }

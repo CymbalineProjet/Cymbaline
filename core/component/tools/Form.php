@@ -33,6 +33,10 @@ class Form {
                 $this->createTypeText($name,$attributs,$label);
             break;
         
+            case 'email':
+                $this->createTypeEmail($name,$attributs,$label);
+            break;
+        
             case 'password':
                 $this->createTypePwd($name,$attributs,$label);
             break;
@@ -40,8 +44,27 @@ class Form {
             case 'radio':
                 $this->createTypeRadio($name,$attributs,$label,$choices);
             break;
+        
+        
         }
 
+    }
+    
+    public function createTypeEmail($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='email' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
     }
     
     public function createTypeText($name,array $attributs,array $label) {
@@ -99,7 +122,7 @@ class Form {
             $this->addLabels($label);
         }
     }
-
+    
     public function addLabels(array $attributs) {
         $attr = "";
         foreach ($attributs as $a => $v) {
@@ -114,6 +137,10 @@ class Form {
         echo $this->fields["$ref"];
     }
     
+    public function getFields() {
+        return $this->fields;
+    }
+    
     public function getChoices($ref, $index = NULL) {
         if($index != NULL) {
             return $this->fields["$ref"][$index];
@@ -125,6 +152,10 @@ class Form {
     
     public function getLabel($ref) {
         echo $this->labels["$ref"];
+    }
+    
+    public function getLabels() {
+        return $this->labels;
     }
     
     public function open() {

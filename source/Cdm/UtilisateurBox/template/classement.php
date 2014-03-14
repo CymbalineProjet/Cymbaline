@@ -4,3 +4,4 @@ $view->extend("head", "prono14 | classement"); //toujours etendre le header
 
 echo $view->variables['test'];
 
+//var_dump($view->variables['data']);

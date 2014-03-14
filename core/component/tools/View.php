@@ -14,11 +14,12 @@ class View {
     //put your code here
     
     private $template;
-    public $form;
-    public $variables;
     private $path;
     private $baseurl;
+    
+    public $variables;
     public $title;
+    public $form;
     
     //retravailler la view -> deplace le lien en 2eme position et on le rend false par defaut (
             //on utilisera par defaut celui renseigner dans les routes
@@ -102,10 +103,9 @@ class View {
         exit;
     }
     
-    public function link($name) {
+    public function link($name,$arg = null) {
         $route = new Route('/');
-        $path = $route->createPath($name);
-        
+        $path = $route->createPath($name,$arg);
         return $path;
     }
     

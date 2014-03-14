@@ -5,6 +5,8 @@ namespace source\Cdm\UtilisateurBox\service;
 use core\component\Service;
 use source\Cdm\UtilisateurBox\item\Utilisateur;
 
+use core\component\dbmanager\SqlCommand;
+
 /**
  * Description of UtilisateurService
  *
@@ -22,6 +24,15 @@ class UtilisateurService extends Service {
             return true;
         }
         
+    }
+    
+    public function get_classement() {
+        $sqlcommand = new SqlCommand('Cdm/Utilisateur/Utilisateur');
+        $sqlcommand->setSelect("*")
+                   ->setOrderBy('point DESC, username ASC')
+                   ->build();
+        $data = $sqlcommand->execute();
+        return $data;
     }
     
 }

@@ -126,7 +126,7 @@ class DbQuery extends Dbmanager {
         return $all;
     }
     
-    function _update() {
+    function _update() { 
         $class = strtolower($this->class);
         $attr = "(";
         foreach ($this->entity as $field => $v) {
@@ -176,9 +176,8 @@ class DbQuery extends Dbmanager {
         $this->query = substr($this->query, 0, -1);
         $this->query .= " WHERE id = ".$this->entity['id']['value'];
         $connexion = new PDOConfig();
+        $connexion->getPdo()->query($this->query);
         
-        var_dump($this->query);      
-        var_dump($connexion->getPdo()->query($this->query));
     }
     
 }
