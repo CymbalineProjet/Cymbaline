@@ -2,7 +2,7 @@
 <routes>
     
     <route name="login" path="/login" 
-           template="Cdm/PronoBox/template/index" controller="Cdm/PronoBox/Defaut" action="index" />
+           template="Cdm/PronoBox/template/login" controller="Cdm/PronoBox/Defaut" action="login" />
 
     <route name="home" path="/home" 
            template="Cdm/PronoBox/template/home/index" controller="Cdm/PronoBox/Home" action="index" />

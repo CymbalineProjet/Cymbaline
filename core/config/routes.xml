@@ -23,6 +23,10 @@
         <file>
             <source>/source/Cdm/PronoBox/config/stade.xml</source>
         </file>
+        
+        <file>
+            <source>/source/Cdm/UtilisateurBox/config/admin_user.xml</source>
+        </file>
     </import>
       
         

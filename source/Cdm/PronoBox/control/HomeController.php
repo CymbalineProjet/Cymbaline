@@ -48,10 +48,11 @@ class HomeController extends Controller {
             
             $uloader = new UtilisateurLoader();
             $utilisateur = $uloader->load($utilisateur);
-            
+            $utilisateur->setAnonymous(false);
             $this->_session()->_register("user", $utilisateur);
         } else {
             $m = $this->getManager();
+            $utilisateur->setAnonymous(false);
             $m->load($utilisateur);
             $m->push();
             

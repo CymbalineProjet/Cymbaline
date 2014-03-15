@@ -13,7 +13,7 @@ use core\component\Parametrage;
  */
 class Authentification {
    
-    private $user;
+    public $user;
     
     public function __construct(User $user) {
         $this->user = $user;
@@ -46,7 +46,8 @@ class Authentification {
         
         $hash = md5($username."".$password);
         $session = new Session();
-        if($session->_is_register('security.user')) {
+        
+        if($session->_is_register('security.user') && !is_null($session->get('security.user')['user']->getId())) {
             $authentification = $session->get('security.user');
             
             if($authentification['securityContext'] == $hash) {
@@ -66,6 +67,9 @@ class Authentification {
                 $authentification['is_granted'] = true;
             }
             
+            $authentification['is_anonymous'] = $this->user->getAnonymous();
+            $authentification['user'] = $this->user;
+            
             $session->_unregister('security.user');
             $session->_register('security.user', $authentification);
         } else {
@@ -75,6 +79,7 @@ class Authentification {
                 "securityContext" => $hash,
                 'is_secured' => true,
                 'is_granted' => true,
+                'is_anonymous' => $this->user->getAnonymous(),
             ));
         }    
     }

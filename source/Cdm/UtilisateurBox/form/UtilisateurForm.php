@@ -11,7 +11,7 @@ use source\Cdm\UtilisateurBox\item\Utilisateur;
  *
  * @author Thibault
  */
-class EditForm extends Form {
+class UtilisateurForm extends Form {
     
     
 

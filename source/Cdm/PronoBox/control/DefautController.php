@@ -27,10 +27,21 @@ class DefautController extends Controller {
         //on donne au retour un attribut error à false
         $error = false;
         $test = "defaut controller cdm";
-
         $this->_session()->_unregister("user");
         $this->_session()->_unregister("security.user");
         $this->_session()->_destroy();
+        
+        return new View(array(
+            'error' => $error,
+            'test'  => $test,
+        ));
+    }
+    
+    public function loginAction(Request $request) {
+        //on donne au retour un attribut error à false
+        $error = false;
+        $test = "defaut controller cdm login";
+
         
         return new View(array(
             'error' => $error,

@@ -34,6 +34,47 @@ $request = new Request(array(
     'server' => $_SERVER,
 ));
 
+//ajout pour authentification des membres
+
+if(!$session->_is_register("user") && isset($request->get('post')->access)) {
+    
+    $user = new source\Cdm\UtilisateurBox\item\Utilisateur();
+    $user->setAnonymous(false);
+    
+    $session->_register("user", $user);
+    
+}
+
+try {
+    if($session->_is_register("user")) {
+        $authentification = new Authentification($session->get('user'));
+        if($authentification->user->getAnonymous() && $url != "home") {
+            throw new CoreException('Error authentification not granted home');
+        } else { 
+            if($authentification->user->getAnonymous()) {
+                throw new CoreException('Error authentification denied anonymous');
+            }
+            $authentification->authentification_process();
+            $sAuth = new AuthentificationService();
+
+            if(!$sAuth->is_authentified() && isset($request->get('post')->identifiant)) {
+                throw new CoreException('Error authentification denied');
+            }
+
+            if(!$sAuth->is_granted()) {
+                throw new CoreException('Error authentification not granted');
+            }      
+        }
+    } else {
+        throw new CoreException('Error authentification denied no session');
+    }
+
+} catch (CoreException $e) {
+    $e->display();
+} 
+
+//FIN
+
 $r = $route->load();
 $controller = $app->load($r['controller']);
 $controller->init($session, $param, $request);
@@ -45,31 +86,7 @@ if(isset($r['args'])) {
     $view = $controller->$action($request);
 }
 
-//ajout pour authentification des membres
-try {
-    if($session->_is_register("user")) {
-        try {
-            $authentification = new Authentification($session->get('user'));
-            $authentification->authentification_process();
-            $sAuth = new AuthentificationService();
 
-            if(!$sAuth->is_authentified()) {
-                throw new CoreException('Error authentification denied');
-            }
-
-            if(!$sAuth->is_granted()) {
-                throw new CoreException('Error authentification not granted');
-            }
-        } catch (CoreException $e) {
-            $e->display();
-        }
-    } else {
-        throw new CoreException('Access denied, not register.');
-    }
-} catch (CoreException $exception) {
-    $exception->display();
-}
-//FIN
 
 include("source/".$r['template'].".php");
 exit;

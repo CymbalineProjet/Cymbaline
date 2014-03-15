@@ -11,6 +11,6 @@ foreach($view->form['form']->getFields() as $attr => $field) {
 
 ?>
 
-<input type="submit" value="Editer" />
+<input type="submit" value="Enregistrer" />
 
 <?php $view->form['form']->close();

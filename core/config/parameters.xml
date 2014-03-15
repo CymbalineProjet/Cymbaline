@@ -21,6 +21,7 @@
     </database>
     
     <roles>
+        
         <role permission="user" path="*" />
         <role permission="admin" path="admin" />
     </roles>

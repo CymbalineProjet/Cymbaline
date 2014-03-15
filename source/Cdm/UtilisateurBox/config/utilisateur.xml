@@ -9,15 +9,6 @@
     
     <route name="classement" path="/classement" 
            template="Cdm/UtilisateurBox/template/classement" controller="Cdm/UtilisateurBox/Utilisateur" action="classement" />
-    
-    <route name="admin_user" path="/admin/utilisateur" 
-           template="Cdm/UtilisateurBox/template/admin/index" controller="Cdm/UtilisateurBox/Admin" action="index" />
-    
-    <route name="admin_user_detail" path="/admin/utilisateur/int@id" 
-           template="Cdm/UtilisateurBox/template/admin/affiche" controller="Cdm/UtilisateurBox/Admin" action="affiche" />
-    
-    <route name="admin_user_edit" path="/admin/utilisateur/edit/int@id" 
-           template="Cdm/UtilisateurBox/template/admin/edit" controller="Cdm/UtilisateurBox/Admin" action="edit" />
 
 </routes>
 
