@@ -119,8 +119,12 @@ class Dbmanager {
             $item = new $this->item();
             $query = new DbQuery($this->class, $this->entity);
             $o = $query->by($attributs);
-            $i = $item->hydrate($o);
-            return $i;
+            if($o) {
+                $i = $item->hydrate($o);
+                return $i;
+            } else {
+                return false;
+            }
             
         } catch (VarException $e) {
             $e->display();  

@@ -1,9 +1,8 @@
-<form action="/home" method="post">
-    <label for="identifiant">Identifiant : </label>
-    <input type="text" name="identifiant" id="identifiant" required />
-    
-    <label for="pwd">Password : </label>
-    <input type="password" name="pwd" id="pwd" required />
-    
-    <input type="submit" value="Connexion" />
+<form action="/home" method="post">    
+    <fieldset>
+        <label for="identifiant">ADRESSE E-MAIL :</label>
+        <input type="text" name="identifiant" id="identifiant" />
+        <label for="pwd">MOT DE PASSE :</label>
+        <input type="password" name="pwd" id="pwd" />
+    </fieldset>
 </form>

@@ -6,8 +6,8 @@ use core\component\exception\CustomException;
 
 
 /**
- * Description of RouteException
+ * Description of DeniedException
  *
  * @author Thibault
  */
-class RouteException extends CustomException {}
+class DeniedException extends CustomException {}

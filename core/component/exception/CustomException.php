@@ -82,4 +82,11 @@ abstract class CustomException extends \Exception implements IException
         //echo "<table>".$this->xdebug_message."</table>";
         exit;
     }
+    
+    public function denied() {
+        $file = file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/source/Alca/ErrorBox/template/denied.php');
+        $file = str_replace("#message#", $this->getMessage(), $file);
+        echo $file;
+        exit;
+    }
 }

@@ -5,6 +5,7 @@ namespace source\Cdm\PronoBox\control;
 use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
+use core\component\tools\Upload;
 
 use source\Cdm\UtilisateurBox\item\Utilisateur;
 
@@ -41,11 +42,46 @@ class DefautController extends Controller {
         //on donne au retour un attribut error à false
         $error = false;
         $test = "defaut controller cdm login";
-
+        $retour = null;
+        
+        
+        if(isset($request->get('post')->mail)) {
+            $ObjFichier = new Upload('photo');
+            $ObjFichier->setTypesValides = array('image/jpeg','image/png','image/gif');
+            $ObjFichier->setNom($request->get('post')->username);
+            $ObjFichier->UploadFichier(__DIR__.'/../../../../public/img/upload/avatar/') or die($ObjFichier->UploadErreur());
+            $retour = "Vous etes maintenant enregistre.";
+            
+            $utilisateur = new Utilisateur();
+            $utilisateur->setUsername($request->get('post')->username);
+            $utilisateur->setNom($request->get('post')->nom);
+            $utilisateur->setPrenom($request->get('post')->prenom);
+            $utilisateur->setComplet(true);
+            $utilisateur->setPassword($request->get('post')->password);
+            $utilisateur->setMessage($request->get('post')->message);
+            $utilisateur->setRole('user');
+            $utilisateur->setPoint(0);
+            $utilisateur->setMail($request->get('post')->mail);
+            $utilisateur->setDate_last_activity(new \DateTime());
+            $utilisateur->setDate_register(new \DateTime());
+            $utilisateur->setAnonymous(false);
+            
+            $us = $this->get("Cdm/Utilisateur/Utilisateur");
+            if(!$us->exist($utilisateur) || !$us->exist($utilisateur, 'mail')) {
+            
+                $m = $this->getManager();         
+                $m->load($utilisateur);
+                $m->push();
+            } else {
+                $retour = "Cette utilisateur existe deja.";
+            }
+            
+        }
         
         return new View(array(
             'error' => $error,
             'test'  => $test,
+            'retour' => $retour,
         ));
     }
     

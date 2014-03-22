@@ -14,10 +14,10 @@ use core\component\dbmanager\SqlCommand;
  */
 class UtilisateurService extends Service {
 
-    public function exist(Utilisateur $utilisateur) {
+    public function exist(Utilisateur $utilisateur, $attr = 'username') {
         
         $this->getManager()->load($utilisateur);
-        $user = $this->getManager()->getBy('username');
+        $user = $this->getManager()->getBy($attr);
         if(empty($user)) {
             return false;
         } else {

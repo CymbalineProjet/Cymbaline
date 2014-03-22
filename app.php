@@ -12,6 +12,7 @@ use core\component\Route;
 use source\User\SecurityBox\item\Authentification;
 use source\User\SecurityBox\service\AuthentificationService;
 use core\component\exception\CoreException;
+use core\component\exception\DeniedException;
 // fin
 
 session_start();
@@ -49,28 +50,27 @@ try {
     if($session->_is_register("user")) {
         $authentification = new Authentification($session->get('user'));
         if($authentification->user->getAnonymous() && $url != "home") {
-            throw new CoreException('Error authentification not granted home');
+            throw new DeniedException('Error authentification not granted home');
         } else { 
             if($authentification->user->getAnonymous()) {
-                throw new CoreException('Error authentification denied anonymous');
+                throw new DeniedException('Error authentification denied anonymous');
             }
             $authentification->authentification_process();
             $sAuth = new AuthentificationService();
 
             if(!$sAuth->is_authentified() && isset($request->get('post')->identifiant)) {
-                throw new CoreException('Error authentification denied');
+                throw new DeniedException('Error authentification denied');
             }
 
             if(!$sAuth->is_granted()) {
-                throw new CoreException('Error authentification not granted');
+                throw new DeniedException('Error authentification not granted');
             }      
         }
     } else {
-        throw new CoreException('Error authentification denied no session');
+        throw new DeniedException('Error authentification denied no session');
     }
-
-} catch (CoreException $e) {
-    $e->display();
+} catch (DeniedException $e) {
+    $e->denied();
 } 
 
 //FIN

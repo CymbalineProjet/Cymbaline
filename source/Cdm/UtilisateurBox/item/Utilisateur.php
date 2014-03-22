@@ -24,6 +24,12 @@ class Utilisateur extends \source\User\SecurityBox\item\User {
     private $prenom;
     
     /**
+     * #type=string#
+     * #name=message#
+     */
+    private $message;
+    
+    /**
      * #type=int#
      * #name=point#
      */
@@ -95,6 +101,15 @@ class Utilisateur extends \source\User\SecurityBox\item\User {
     
     public function setComplet($complet) {
         $this->complet = $complet;
+        return $this;
+    }
+    
+    public function getMessage() {
+        return $this->message;
+    }
+    
+    public function setMessage($message) {
+        $this->message = $message;
         return $this;
     }
     

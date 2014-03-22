@@ -109,6 +109,11 @@ class View {
         return $path;
     }
     
+    public function front($path) {
+        $_path = "http://".$_SERVER['SERVER_NAME'].$this->baseurl."/public/$path";
+        echo $_path;
+    }
+    
 }
 /*
  * pour que ca puisse fonctionne
