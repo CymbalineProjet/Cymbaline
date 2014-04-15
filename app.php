@@ -17,6 +17,7 @@ use core\component\exception\DeniedException;
 
 session_start();
 
+
 if(isset($_GET['url'])) {
     $url = $_GET['url'];
 } else {
@@ -40,7 +41,7 @@ $request = new Request(array(
 if(!$session->_is_register("user") && isset($request->get('post')->access)) {
     
     $user = new source\Cdm\UtilisateurBox\item\Utilisateur();
-    $user->setAnonymous(false);
+    $user->setAnonymous(true);
     
     $session->_register("user", $user);
     
@@ -49,23 +50,23 @@ if(!$session->_is_register("user") && isset($request->get('post')->access)) {
 try {
     if($session->_is_register("user")) {
         $authentification = new Authentification($session->get('user'));
-        if($authentification->user->getAnonymous() && $url != "home") {
-            throw new DeniedException('Error authentification not granted home');
-        } else { 
-            if($authentification->user->getAnonymous()) {
-                throw new DeniedException('Error authentification denied anonymous');
-            }
+        
+            
+			
             $authentification->authentification_process();
             $sAuth = new AuthentificationService();
-
+			if($sAuth->is_anonymous()) {
+                throw new DeniedException('Error authentification denied anonymous');
+            }
+			
             if(!$sAuth->is_authentified() && isset($request->get('post')->identifiant)) {
                 throw new DeniedException('Error authentification denied');
             }
-
+            
             if(!$sAuth->is_granted()) {
-                throw new DeniedException('Error authentification not granted');
+                throw new DeniedException('Error authentification not granted !');
             }      
-        }
+        
     } else {
         throw new DeniedException('Error authentification denied no session');
     }

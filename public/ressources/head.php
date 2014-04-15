@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title><?php echo $_GET['title']; ?></title>
+    <title>prono14</title>
     <meta name="description" content="La nouvelle version des pronostiques FIFA WORLD CUP, qui se déroulera pour cette année 2014 au Brésil, site privatisé. Développement & Réalisation : DnS - Krs">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="public/css/css.css">

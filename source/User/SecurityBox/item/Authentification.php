@@ -43,11 +43,13 @@ class Authentification {
                 }                
             }
         }
-        
+        /*echo "<pre>";
+		var_dump($this->user);
+		echo "</pre>";*/
         $hash = md5($username."".$password);
         $session = new Session();
         
-        if($session->_is_register('security.user') && !is_null($session->get('security.user')['user']->getId())) {
+        if($session->_is_register('security.user')) {
             $authentification = $session->get('security.user');
             
             if($authentification['securityContext'] == $hash) {
@@ -55,6 +57,12 @@ class Authentification {
             } else {
                 $authentification['is_secured'] = false;
             }
+
+			if($authentification['securityContext'] == 'first') {
+				$authentification['securityContext'] = $hash;
+				$authentification['is_secured'] = true;
+				
+			}
             
             $authentification['is_granted'] = false;
             foreach($roles as $role) {
@@ -66,20 +74,23 @@ class Authentification {
             if($access_role == "*") {
                 $authentification['is_granted'] = true;
             }
+			
             
-            $authentification['is_anonymous'] = $this->user->getAnonymous();
+            $authentification['is_anonymous'] = false;
             $authentification['user'] = $this->user;
-            
+			//warning
+            //$authentification['is_secured'] = true;
             $session->_unregister('security.user');
             $session->_register('security.user', $authentification);
+			
         } else {
             $session->_register('security.user', array(
                 "user" => $this->user,
                 "roles" => $roles,
-                "securityContext" => $hash,
+                "securityContext" => 'first',
                 'is_secured' => true,
                 'is_granted' => true,
-                'is_anonymous' => $this->user->getAnonymous(),
+                'is_anonymous' => false,
             ));
         }    
     }

@@ -187,14 +187,13 @@ $view->extend("head", "prono14 | Access"); //toujours etendre le header
                 }
                 
                 if(errors > 0){
-                    console.log(array);
-                    
+                    //console.log(array);
                     alert('Il faut renseigner les 3 formulaires.');
                     return false;
                 } else {
                    
                    if($("#go").val() == "go") {
-                       alert('go');
+                       
                        return true;
                    }
                    
@@ -202,7 +201,7 @@ $view->extend("head", "prono14 | Access"); //toujours etendre le header
                    $("#persoForm").append("<input type='hidden' value='"+array['password']+"' name='password' />");
                    $("#persoForm").append("<input type='hidden' value='"+array['message']+"' name='message' />");
                    $("#persoForm").append("<input type='hidden' value='go' name='go' id='go' />");
-                   alert('submit');
+
                    $("#persoForm").submit();
                    
                 }

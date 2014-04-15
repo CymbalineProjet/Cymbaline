@@ -67,9 +67,9 @@ class DbQuery extends Dbmanager {
         $this->query = substr($this->query, 0, -1);
         $this->query .= ")";
         $connexion = new PDOConfig();
-        
-        var_dump($this->query);      
-        var_dump($connexion->getPdo()->query($this->query));
+        $connexion->getPdo()->query($this->query);
+        /*var_dump($this->query);      
+        var_dump($connexion->getPdo()->query($this->query));*/
     }
     
     public function all() {

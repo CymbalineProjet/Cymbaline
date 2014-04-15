@@ -43,6 +43,9 @@ class DefautController extends Controller {
         $error = false;
         $test = "defaut controller cdm login";
         $retour = null;
+		
+        $this->_session()->_unregister("security.user");
+        
         
         
         if(isset($request->get('post')->mail)) {

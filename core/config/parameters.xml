@@ -13,16 +13,17 @@
     </database>
 
     <database env='prod'>
-        <host>localhost </host>
+        <host>mysql51-83.perso </host>
         <port> </port>
-        <dbname>alca </dbname>
-        <dbuser>root </dbuser>
-        <dbpass> </dbpass>
+        <dbname>thibaultivdev </dbname>
+        <dbuser>thibaultivdev </dbuser>
+        <dbpass>renaud88 </dbpass>
     </database>
     
     <roles>
         
         <role permission="user" path="*" />
+     
         <role permission="admin" path="admin" />
     </roles>
     

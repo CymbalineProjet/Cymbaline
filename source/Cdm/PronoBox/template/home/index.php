@@ -40,10 +40,10 @@ $view->extend("head", "prono14 | Profil de ".$view->variables['utilisateur']->ge
         <nav>
             <ul>
                 <li class="accueil">
-                    <a href="#" class="active" title="accueil"></a>
+                    <a href="/home" class="active" title="accueil"></a>
                 </li>
                 <li class="classement">
-                    <a href="#" title="classement"></a>
+                    <a href="/classement" title="classement"></a>
                 </li>
                 <li class="resultats">
                     <a href="#" title="résultats"></a>

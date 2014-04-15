@@ -6,10 +6,12 @@ use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
 
+use core\component\exception\DeniedException;
 
 use source\Cdm\UtilisateurBox\item\Utilisateur;
 use source\Cdm\UtilisateurBox\service\UtilisateurService;
 use source\Cdm\UtilisateurBox\loader\UtilisateurLoader;
+
 
 /**
  * Le Controler permet la gestion des données en fonction de la page
@@ -28,6 +30,10 @@ class HomeController extends Controller {
         //on donne au retour un attribut error à false
         $error = false;
         $test = "home controller cdm";
+		$utilisateur = new Utilisateur();
+		$utilisateur->setUsername = "anonymous";
+		$utilisateur->setPassword = "test";
+		$utilisateur->setAnonymous(true);
         
         if(isset($request->get('post')->identifiant) && isset($request->get('post')->pwd)) {
             $this->_session()->_unregister("user");
@@ -36,6 +42,7 @@ class HomeController extends Controller {
             $utilisateur = new Utilisateur();
             $utilisateur->setUsername($request->get('post')->identifiant);
             $utilisateur->setPassword($request->get('post')->pwd);   
+			$this->_session()->_register("user", $utilisateur);
         }
         
         if($this->_session()->_is_register('user')) {           
@@ -49,12 +56,14 @@ class HomeController extends Controller {
             $uloader = new UtilisateurLoader();
             $utilisateur = $uloader->load($utilisateur);
             $utilisateur->setAnonymous(false);
+			
             $this->_session()->_register("user", $utilisateur);
+			
+			
         } else {
-            $m = $this->getManager();
-            $utilisateur->setAnonymous(false);
-            $m->load($utilisateur);
-            $m->push();
+            $this->_session()->_register("user", $utilisateur);
+			$ex = new DeniedException('Access denied : anonymous user.');
+			$ex->denied();
             
             //return la view de la confirmation de l'insert + envoi mail
             

@@ -61,7 +61,7 @@ class Upload
 
 	public	function setNom($Nom)
     {
-        $this->Nom = $Nom.$this->Type;
+        $this->Nom = $Nom.".jpg";
         return $this;
     }		
 		
