@@ -15,15 +15,15 @@ class Utils {
     private $param;
     
     public function __construct() {
-        $yml = file_get_contents(__DIR__."/../../core/config/parameters.yml");
+        $yml = file_get_contents(__DIR__."/../../../core/config/parameters.yml");
         $yaml = new YamlParser();
         $arraytoobject = new ArrayToObject($yaml->load($yml),TRUE);
         $this->param = $arraytoobject->convert();
         
-        echo "<pre>";
+        /*echo "<pre>";
         var_dump($this->param);
         var_dump($yaml->load($yml));
-        echo "</pre>";
+        echo "</pre>";*/
     }
     
 }

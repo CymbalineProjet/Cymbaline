@@ -1,0 +1,3 @@
+import:  
+    - { path: /source/Alca/GenBox/config/generator.xml }
+    

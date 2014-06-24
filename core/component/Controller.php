@@ -35,7 +35,7 @@ class Controller {
         $this->session = $requestSession;
         $this->parametre = $param;
         $this->retour = new \stdClass();
-        $this->role = $this->registerRole();
+        //$this->role = $this->registerRole();
         $this->dbmanager = new Dbmanager();
         $this->request = $request;
         $this->utils = new Utils();

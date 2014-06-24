@@ -4,6 +4,8 @@ namespace core\component;
 
 use core\component\exception\RouteException;
 use core\component\parser\XmlParser;
+use core\component\parser\YamlParser;
+use core\component\tools\ArrayToObject;
 use core\component\Parametrage;
 
 /**
@@ -71,17 +73,21 @@ class Route {
     }
     
     public function import() {
-        
+       
         try {
-            foreach($this->_routes['routes']['import']['file'] as $file) {
-                $xml = file_get_contents("http://".$_SERVER['HTTP_HOST']."".$file['source']);
-                
-                $this->_parser = new XmlParser($xml);
-                $this->_xml = $this->_parser->array;
-                
-                foreach ($this->_xml['routes']['route'] as $route) {
-                    
-                    $this->_routes['routes']['route'][] = $route; 
+            $yml = file_get_contents(__DIR__."/../../core/config/import.yml");
+            $yaml = new YamlParser();
+            $arraytoobject = new ArrayToObject($yaml->load($yml),TRUE);
+            $import = $arraytoobject->convert();
+
+            if($import != "") {
+                foreach($import->import as $file) {
+                    $xml = file_get_contents(__DIR__."/../..".$file->path);
+                    $this->_parser = new XmlParser($xml);
+                    $this->_xml = $this->_parser->array;
+                    foreach ($this->_xml['routes']['route'] as $route) {
+                        $this->_routes['routes']['route'][] = $route; 
+                    }
                 }
             }
         } catch (RouteException $e) {

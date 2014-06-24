@@ -5,11 +5,6 @@
         <file>
             <source>/source/Alca/GenBox/config/generator.xml</source>
         </file>
-        
-        
-        <file>
-            <source>/source/Cdm/UtilisateurBox/config/admin_user.xml</source>
-        </file>
     </import>
       
         
