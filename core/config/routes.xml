@@ -12,8 +12,9 @@
            template="Alca/GenBox/template/index" controller="Alca/GenBox/Defaut" action="index" />
 
     <route name="error" path="/error" 
-           template="Alca/ErrorBox/template/error" controller="Alca/ErrorBox/Error" action="index" />
+           template="Cymbaline/Error/template/error" controller="Cymbaline/Error/Error" action="index" />
     
-
+    <route name="generator_todo" path="/generator/todo" 
+           template="Alca/GenBox/template/todo/index" controller="Alca/GenBox/Todo" action="todo" />        
         
 </routes>

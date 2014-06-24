@@ -3,7 +3,6 @@
 namespace core\component;
 
 use core\component\Parametrage;
-use core\AppAlca;
 use core\component\dbmanager\Dbmanager;
 use core\component\Route;
 use core\component\Service;
@@ -93,12 +92,17 @@ class Controller {
      * @param string $item
      */
     public function load($item) {
-        //$controller = parent::registerController();
         $path = explode("/", $item);
-       
         $control = "source\\".$path[0]."\\".$path[1]."\\control\\".$path[2]."Controller";
-        $c = new $control();
+        $vendor = "vendor/".$path[0]."/".$path[1]."/controller/".$path[2]."Controller.php";
         
+        if(file_exists(__DIR__."/../../".$control.".php")) {
+            $c = new $control();
+        } else if (file_exists(__DIR__."/../../".$vendor)) {
+            $control = $path[0]."\\".$path[1]."\\controller\\".$path[2]."Controller";
+            $c = new $control();
+        }
+
         return $c;
     }
     

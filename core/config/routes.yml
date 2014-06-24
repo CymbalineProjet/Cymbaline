@@ -1,7 +1,7 @@
 error:
     path: /error
-    template: Alca/ErrorBox/template/error
-    controller: Alca/ErrorBox/Error
+    template: Cymbaline/Error/template/error
+    controller: Cymbaline/Error/Error
     action: index
     
 index:

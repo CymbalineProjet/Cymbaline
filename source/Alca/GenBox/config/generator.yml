@@ -1,0 +1,54 @@
+generator:
+    path: /generator
+    template: Alca/GenBox/template/index
+    controller: Alca/GenBox/Defaut
+    action: index
+    
+generator_edit:
+    path: /generator/edit
+    template: Alca/GenBox/template/edit-parameters
+    controller: Alca/GenBox/Defaut
+    action: edit
+    
+generator_code:
+    path: /generator/component/codex
+    template: Alca/GenBox/template/coding
+    controller: Alca/GenBox/Defaut
+    action: code
+    
+generator_route:
+    path: /generator/component/route
+    template: Alca/GenBox/template/routing
+    controller: Alca/GenBox/Defaut
+    action: route
+    
+generator_todo:
+    path: /generator/todo
+    template: Alca/GenBox/template/todo/index
+    controller: Alca/GenBox/Todo
+    action: todo
+    
+generator_close_todo:
+    path: /generator/todo/close/int@id
+    template: Alca/GenBox/template/todo/close
+    controller: Alca/GenBox/Todo
+    action: close
+    
+generator_delete_todo:
+    path: /generator/todo/delete/int@id
+    template: Alca/GenBox/template/todo/delete
+    controller: Alca/GenBox/Todo
+    action: delete
+    
+generator_open_todo:
+    path: /generator/todo/open/int@id
+    template: Alca/GenBox/template/todo/open
+    controller: Alca/GenBox/Todo
+    action: open
+    
+generator_new_todo:
+    path: /generator/todo/new
+    template: Alca/GenBox/template/todo/new
+    controller: Alca/GenBox/Todo
+    action: new    
+

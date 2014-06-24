@@ -79,10 +79,18 @@ class Route {
             $yaml = new YamlParser();
             $arraytoobject = new ArrayToObject($yaml->load($yml),TRUE);
             $import = $arraytoobject->convert();
+            unset($yaml);
+            unset($yml);
 
             if($import != "") {
                 foreach($import->import as $file) {
-                    $xml = file_get_contents(__DIR__."/../..".$file->path);
+                    $yml = file_get_contents(__DIR__."/../..".$file->path);
+                    $yaml = new YamlParser();
+                    $routes = $yaml->load($yml);
+                   /* echo "<pre>";
+                    var_dump($routes);
+                    echo "</pre>";die;*/
+                    $xml = file_get_contents(__DIR__."/../config/routes.xml");
                     $this->_parser = new XmlParser($xml);
                     $this->_xml = $this->_parser->array;
                     foreach ($this->_xml['routes']['route'] as $route) {

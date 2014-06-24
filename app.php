@@ -88,6 +88,13 @@ if(isset($r['args'])) {
 }
 
 
-
-include("source/".$r['template'].".php");
-exit;
+if(file_exists("source/".$r['template'].".php")) {
+    include("source/".$r['template'].".php");
+    exit;
+} else if(file_exists("vendor/".$r['template'].".php")) {
+    include("vendor/".$r['template'].".php");
+    exit;
+} else {
+    echo "error app.php line 98";
+    exit;
+}
