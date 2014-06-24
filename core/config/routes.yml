@@ -1,0 +1,4 @@
+route:
+    import:  
+        - /source/Alca/GenBox/config/generator.xml
+        - /source/Cdm/PronoBox/config/prono.xml

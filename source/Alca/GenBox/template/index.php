@@ -1,6 +1,6 @@
 <?php
 
-$view->extend("head", "Generator"); //toujours etendre le header
+$view->extend("gen_header", "Generator"); //toujours etendre le header
 //on peut par la suite etendre un menu, un widget, un module, etc ...
 
 //$view->get('User/SecurityBox/login');
@@ -10,6 +10,7 @@ $view->extend("head", "Generator"); //toujours etendre le header
 //var_dump($view->form['form_parameters']);
 //$view->form['form_parameters']->open();
 ?>
+
 
 <div class="main">
     <div class="main-inner">

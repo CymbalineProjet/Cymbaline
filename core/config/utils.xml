@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<utils>
+    <util>
+        <name>main</name>
+        <zone>Alca</zone>
+        <load>true</load>
+    </util>
+    <util>
+        <name>second</name>
+        <zone>Cdm</zone>
+        <load>false</load>
+    </util>
+</utils>

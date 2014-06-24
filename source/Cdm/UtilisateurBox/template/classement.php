@@ -1,101 +1,65 @@
 <?php
-$view->extend("head", "prono14 | Classement"); //toujours etendre le header
-//on peut par la suite etendre un menu, un widget, un module, etc ...
+$view->extend("head", "prono14 | classement"); 
 
-//$view->get("User/SecurityBox/login");
 ?>
 <div class="main-container">
 
-        <aside>
-            <h1 id="logo">
-                <img src="<?php $view->front("img/logo.png"); ?>" alt="FIFA WORLD CUP 2014 BRAZIL" width="100%" />
-            </h1>
-            <h2 class="title">PRONOSTIQUES
-                <br/>FIFA WORLD CUP
-                <br/>2014 - BRESIL</h2>
-            <h3 class="title_id"><?php echo $view->session()->get('user')->getUsername(); ?></h3>
-            <div class="connect" style="padding:0px;">
-                <img height="100%" width="100%" src="<?php $view->front("img/upload/avatar/".$view->session()->get('user')->getUsername().".jpg"); ?>" />
-            </div>
-        </aside>
+        <?php $view->extend("sidebar"); ?>
 
         <div class="main">
             <header>
-                <h1>Inscription pour les pronos 2014</h1>
-                <h2>disponible le 15 avril</h2>
-                <h3>site actuellement en developpement</h3>
-                
+                <h1>LE CLASSEMENT</h1>
+                <h2>DATE ACTUELLE</h2>
+                <h3>VOUS AVEZ PRONOSTIQUÉ TOUS LES MATCHS DU JOUR</h3>
             </header>
-            <section>
-               
-            </section>
+            <div id="scrollbar1">
+                <div class="scrollbar">
+                    <div class="track">
+                        <div class="thumb">
+                            <div class="end"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="overview">
+                        <?php
+                        $i = 1;
+                        foreach($view->variables['utilisateurs'] as $utilisateur) {                           
+                            ?>
+                            <ul class="joueur">
+                            <li class=" position"><?php echo $i ?>e</li>
+                            <li class="pic-joueur" style="background:url(<?php $view->front("img/upload/avatar/".$utilisateur->getUsername().".jpg"); ?>)"></li>
+                            <li class=" name"><?php echo $utilisateur->getPrenom()." \"".$utilisateur->getUsername()."\" ".$utilisateur->getNom()?></li>
+                            <li class=" points"><?php echo $utilisateur->getPoint(); ?>points</li>
+                            <li class=" score">0 parfaits - 0 simples - 0 mauvais</li>
+                        </ul>
+                            <?php 
+                            $i++;
+                        } ?>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         <!-- #main -->
 
     </div>
     <!-- #main-container -->
-
-    <footer>
-        <nav>
-            <ul>
-                <li class="accueil">
-                    <a href="/home" title="accueil"></a>
-                </li>
-                <li class="classement">
-                    <a href="/classement" class="active" title="classement"></a>
-                </li>
-                <li class="resultats">
-                    <a href="#" title="résultats"></a>
-                </li>
-                <li class="calendrier">
-                    <a href="#" title="calendrier"></a>
-                </li>
-                <li class="equipes">
-                    <a href="#" title="équipes"></a>
-                </li>
-                <li class="reglesdujeu">
-                    <a href="#" title="règles du jeu"></a>
-                </li>
-            </ul>
-        </nav>
-        <a href="/"><button id="deco">DECONNEXION</button></a>
-        <blockquote style="font-size: 18px;color:white;">&nbsp;&nbsp;<?php echo $view->session()->get('user')->getMessage(); ?></blockquote>
-    </footer>
-
-    <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>');
-        
-        
-    </script>
-    <script src="<?php $view->front("js/main.js"); ?>"></script>
-
-    <!--
-        // GOOGLE ANALYTICS
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src='//www.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
     
-    <div class="tracker" style="display:none;position: fixed;padding:5px;border:1px solid blue;background:black;color:white;"><?php var_dump($view->session()->get('user')); ?></div>
-
-<a href="./login">Deconnexion</a>
-
-<script type="text/javascript" src="./public/js/jquery.js"></script>
-<script type="text/javascript" src="./public/js/keypress.js"></script>
-<script type="text/javascript" src="./public/js/tracker.js"></script>
-<script>
-    $(document).ready(function() {
-        keypress.combo("shift s", function() {
-            tracker('.tracker');
-        }); 
-    });
-</script>
--->
+    <?php $view->extend("bottombar",null,array("active" => "classement")); ?>
+    <script type="text/javascript" language="javascript">
+        function resize(event) {
+            var content = $('.overview').width();
+            var change = ($('li.position').width()) + ($('li.pic_joueur').width()) + ($('li.points').width()) + ($('li.score').width());
+            console.log(change);
+            var nameSize = $('li.name').width(content - (change + 220));
+        };
+        window.onresize = resize;
+    </script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(resize);
+    </script>
 </body>
 
 </html>
-
-

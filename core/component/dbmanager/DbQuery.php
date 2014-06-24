@@ -38,7 +38,7 @@ class DbQuery extends Dbmanager {
             
             switch($v['type']) {
                 case 'string' :
-                    $this->query .= "'".$v['value']."',";
+                    $this->query .= "'".addslashes($v['value'])."',";
                 break;
             
                 case 'int' : 
@@ -69,7 +69,7 @@ class DbQuery extends Dbmanager {
         $connexion = new PDOConfig();
         $connexion->getPdo()->query($this->query);
         /*var_dump($this->query);      
-        var_dump($connexion->getPdo()->query($this->query));*/
+        /*var_dump($connexion->getPdo()->query($this->query));*/
     }
     
     public function all() {
@@ -96,7 +96,7 @@ class DbQuery extends Dbmanager {
         try {
             $class = strtolower($this->class);
             $this->query = "SELECT * FROM $class WHERE id = ".$this->entity['id']['value'];
-
+            
             $connexion = new PDOConfig();
             $query = $connexion->getPdo()->prepare($this->query);
             $query->execute();
@@ -126,6 +126,19 @@ class DbQuery extends Dbmanager {
         return $all;
     }
     
+    public function allby($attributs) {
+        //var_dump($this->entity["$attributs"]['value']);
+        $class = strtolower($this->class);
+        $this->query = "SELECT * FROM $class WHERE $attributs = '".$this->entity["$attributs"]['value']."'";
+        $connexion = new PDOConfig();
+        $pdo = $connexion->getPdo();
+        $query = $pdo->prepare($this->query);
+        $query->execute();
+        $all = $query->fetchAll();
+        //var_dump($all);
+        return $all;
+    }
+    
     function _update() { 
         $class = strtolower($this->class);
         $attr = "(";
@@ -142,7 +155,7 @@ class DbQuery extends Dbmanager {
             
             switch($v['type']) {
                 case 'string' :
-                    $this->query .= "$field = '".$v['value']."',";
+                    $this->query .= "$field = '".addslashes($v['value'])."',";
                 break;
             
                 case 'int' : 
@@ -175,9 +188,24 @@ class DbQuery extends Dbmanager {
         
         $this->query = substr($this->query, 0, -1);
         $this->query .= " WHERE id = ".$this->entity['id']['value'];
+        
+        //var_dump($this->query);
         $connexion = new PDOConfig();
         $connexion->getPdo()->query($this->query);
         
+    }
+    
+    public function _delete() {
+        try {
+            $class = strtolower($this->class);
+            $this->query = "DELETE FROM $class WHERE id = ".$this->entity['id']['value'];
+            
+            $connexion = new PDOConfig();
+            $connexion->getPdo()->query($this->query);
+
+        } catch (PDOException $e) {
+            $e->display();
+        }
     }
     
 }

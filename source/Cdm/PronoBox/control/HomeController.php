@@ -9,7 +9,6 @@ use core\component\Controller;
 use core\component\exception\DeniedException;
 
 use source\Cdm\UtilisateurBox\item\Utilisateur;
-use source\Cdm\UtilisateurBox\service\UtilisateurService;
 use source\Cdm\UtilisateurBox\loader\UtilisateurLoader;
 
 
@@ -56,6 +55,7 @@ class HomeController extends Controller {
             $uloader = new UtilisateurLoader();
             $utilisateur = $uloader->load($utilisateur);
             $utilisateur->setAnonymous(false);
+            $utilisateur->setClassement = $us->get_classement($utilisateur);
 			
             $this->_session()->_register("user", $utilisateur);
 			
@@ -66,14 +66,16 @@ class HomeController extends Controller {
 			$ex->denied();
             
             //return la view de la confirmation de l'insert + envoi mail
-            
             return new View(array(
                 'error' => $error,
                 'test'  => new \source\User\SecurityBox\item\Identity(),
                 'utilisateur' => $utilisateur,
             ));
         }
-
+        
+        //add en attendant le debut de la coupe du monde
+        //$this->redirect($this->path('pronos'));
+        
         return new View(array(
             'error' => $error,
             'test'  => new \source\User\SecurityBox\item\Identity(),

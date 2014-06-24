@@ -22,7 +22,7 @@ $request = new Request(array(
 
 $param = new Parametrage();
 $app   = new Controller();
-$route = new Route('/');
+$route = new Route('generator');
 $r = $route->load();
 
 $controller = $app->load($r['controller']);

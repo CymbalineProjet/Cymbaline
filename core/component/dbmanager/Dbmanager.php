@@ -84,6 +84,14 @@ class Dbmanager {
         return $this->getById($id);
     }
     
+    public function delete($id) {
+        $this->entity['id']['value'] = $id;
+        $this->entity['id']['type'] = "int";
+        //var_dump($this->entity);
+        $query = new DbQuery($this->class, $this->entity);
+        $query->_delete();
+    }
+    
     public function get() {
         $query = new DbQuery($this->class, $this->entity);
         $all = $query->all();
@@ -121,6 +129,28 @@ class Dbmanager {
             $o = $query->by($attributs);
             if($o) {
                 $i = $item->hydrate($o);
+                return $i;
+            } else {
+                return false;
+            }
+            
+        } catch (VarException $e) {
+            $e->display();  
+        } 
+        
+    }
+    
+    public function getAllBy($attributs = NULL) {
+        try {
+            if($attributs == NULL) {
+                throw new VarException("La variable de la fonction getBy est nulle.");              
+            }
+
+            $item = new $this->item();
+            $query = new DbQuery($this->class, $this->entity);
+            $o = $query->allby($attributs);
+            if($o) {
+                $i = $item->hydrateAll($o);
                 return $i;
             } else {
                 return false;

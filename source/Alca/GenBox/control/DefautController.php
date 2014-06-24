@@ -136,4 +136,18 @@ class DefautController extends Controller {
         ));
     }
     
+    public function codeAction() {
+        return new View(array(
+            'error' => 'test',
+        ));
+    }
+    
+    public function routeAction() {
+        $route = new \core\component\Route('/');
+        $routes = $route->getRoutes();
+        return new View(array(
+            'routes' => $routes['routes']['route'],
+        ));
+    }
+    
 }

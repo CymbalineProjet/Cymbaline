@@ -1,34 +1,55 @@
 <?php
-$view->extend("head", "prono14 | Profil de ".$view->variables['utilisateur']->getUsername()); //toujours etendre le header
+$view->extend("head", "prono14 | vos pronos"); //toujours etendre le header
 //on peut par la suite etendre un menu, un widget, un module, etc ...
 
-//$view->get("User/SecurityBox/login");
+
+//var_dump($view->variables['stades']);
 ?>
 <div class="main-container">
 
-        <aside>
-            <h1 id="logo">
-                <img src="<?php $view->front("img/logo.png"); ?>" alt="FIFA WORLD CUP 2014 BRAZIL" width="100%" />
-            </h1>
-            <h2 class="title">PRONOSTIQUES
-                <br/>FIFA WORLD CUP
-                <br/>2014 - BRESIL</h2>
-            <h3 class="title_id"><?php echo $view->variables['utilisateur']->getUsername(); ?></h3>
-            <div class="connect" style="padding:0px;">
-                <img height="100%" width="100%" src="<?php $view->front("img/upload/avatar/".$view->variables['utilisateur']->getUsername().".jpg"); ?>" />
-            </div>
-        </aside>
+        <?php $view->extend("sidebar"); ?>
 
         <div class="main">
             <header>
-                <h1>Inscription pour les pronos 2014</h1>
-                <h2>disponible le 15 avril</h2>
-                <h3>site actuellement en developpement</h3>
-                
+                <h1>BIENVENUE <?php echo strtoupper($view->session()->get('user')->getUsername()); ?> !</h1>
+                <h2>BIENTÔT LA COUPE DU MONDE</h2>
+                <h3>DÉBUT LE 12 JUIN 2014</h3>
             </header>
-            <section>
-               
-            </section>
+            <div id="scrollbar1">
+                <div class="scrollbar">
+                    <div class="track">
+                        <div class="thumb">
+                            <div class="end"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="overview">
+                        <div class="countdown">
+                            <h1>TEMPS RESTANT :</h1>
+                            <ul class="label">
+                                <li>Jours</li>
+                                <li>Heures</li>
+                                <li>Minutes</li>
+                                <li>Secondes</li>
+                            </ul>
+                            <div class="dw_clock"></div>
+                            <h1>EN ATTENDANT VOUS POUVEZ COMMENCER VOS PRONOSTIQUES :</h1>
+                            <a href="<?php echo $view->link('pronos'); ?>" style="text-decoration: none;">
+                            <div class="bloc button">
+                                Commencer vos<br /><span class="arrow">→ &nbsp;</span> pronostiques <span class="arrow">&nbsp; ←</span>
+                            </div>
+                            </a>
+                            <!--a href="">
+                            <div class="bloc button">
+                                Voir vos<br /><span class="arrow">→ &nbsp;</span> pronostiques <span class="arrow">&nbsp; ←</span>
+                            </div>
+                            </a-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
         <!-- #main -->
@@ -36,39 +57,32 @@ $view->extend("head", "prono14 | Profil de ".$view->variables['utilisateur']->ge
     </div>
     <!-- #main-container -->
 
-    <footer>
-        <nav>
-            <ul>
-                <li class="accueil">
-                    <a href="/home" class="active" title="accueil"></a>
-                </li>
-                <li class="classement">
-                    <a href="/classement" title="classement"></a>
-                </li>
-                <li class="resultats">
-                    <a href="#" title="résultats"></a>
-                </li>
-                <li class="calendrier">
-                    <a href="#" title="calendrier"></a>
-                </li>
-                <li class="equipes">
-                    <a href="#" title="équipes"></a>
-                </li>
-                <li class="reglesdujeu">
-                    <a href="#" title="règles du jeu"></a>
-                </li>
-            </ul>
-        </nav>
-        <a href="/"><button id="deco">DECONNEXION</button></a>
-        <blockquote style="font-size: 18px;color:white;">&nbsp;&nbsp;<?php echo $view->variables['utilisateur']->getMessage(); ?></blockquote>
-    </footer>
+    <?php $view->extend("bottombar",null,array("active" => "accueil")); ?>
 
     <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>');
-        
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')
+    </script>
+    
+    <script src="<?php $view->front('vendor/flipclock/flipclock.js'); ?>"></script>
+    <script>
+        <?php
+        echo "var now = ".strtotime("now").";";
+        echo "var debut = ".strtotime("14-06-12 18:00:00").";";
+        ?>
+
+		$(document).ready(function() {
+            var time = debut - now;
+            
+			var clock = $('.dw_clock').FlipClock(time, {
+		        clockFace: 'DailyCounter',
+		        countdown: true
+		        
+		    });
+
+		});
+	
         
     </script>
-    <script src="<?php $view->front("js/main.js"); ?>"></script>
 
     <!--
         // GOOGLE ANALYTICS
@@ -78,24 +92,7 @@ $view->extend("head", "prono14 | Profil de ".$view->variables['utilisateur']->ge
             g.src='//www.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-    
-    <div class="tracker" style="display:none;position: fixed;padding:5px;border:1px solid blue;background:black;color:white;"><?php var_dump($view->variables['utilisateur']); ?></div>
-
-<a href="./login">Deconnexion</a>
-
-<script type="text/javascript" src="./public/js/jquery.js"></script>
-<script type="text/javascript" src="./public/js/keypress.js"></script>
-<script type="text/javascript" src="./public/js/tracker.js"></script>
-<script>
-    $(document).ready(function() {
-        keypress.combo("shift s", function() {
-            tracker('.tracker');
-        }); 
-    });
-</script>
 -->
 </body>
 
 </html>
-
-

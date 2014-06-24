@@ -239,6 +239,20 @@ class Matchs
         return $this->stade;
     }
     
+    public function getVainqueur() {
+        if($this->scoredom > $this->scoreext) {
+            return 1;
+        } 
+        
+        if($this->scoredom < $this->scoreext) {
+            return 2;
+        }
+        
+        if($this->scoredom == $this->scoreext) {
+            return 0;
+        }
+    }
+    
     public function hydrate(\stdClass $match) {
         
         $_match = new Matchs();

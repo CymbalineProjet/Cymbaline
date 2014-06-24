@@ -42,6 +42,16 @@ class EquipeController extends Controller {
         ));
     }
     
+    public function listeAction(Request $request) {
+        
+        $sEquipe = $this->get('Cdm/Prono/Equipe');
+        $equipes = $sEquipe->equipe_by_poule();
+
+        return new View(array(
+            'equipes' => $equipes,
+        ));
+    }
+    
     public function afficheAction(Request $request, array $args) {
         
         $test = "equipe controller cdm";

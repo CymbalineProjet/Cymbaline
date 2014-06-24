@@ -7,6 +7,7 @@ use core\component\Request;
 use core\component\Controller;
 use source\Cdm\UtilisateurBox\item\Utilisateur;
 use source\Cdm\UtilisateurBox\form\EditForm;
+use core\component\tools\Upload;
 
 /**
  * Description of Utilisateur
@@ -84,8 +85,69 @@ class UtilisateurController extends Controller {
         $data = $sUtilisateur->get_classement();        
         
         return new View(array(
-            'test' => "classement des membres",
-            'data' => $data,
+            'utilisateurs' => $data,
         ));
+    }
+    
+    public function modifierAction(Request $request) {
+        
+        return new View(array(
+            'retour' => null,
+        ));
+    }
+    
+    public function editfirstAction(Request $request) {
+        
+        $utilisateur = $this->_session()->get('user');
+        $m = $this->getManager();
+        $m->load($utilisateur);
+        
+        if(isset($request->get('post')->mail)) {
+            $utilisateur->setMail($request->get('post')->mail);
+            $utilisateur->setPassword($request->get('post')->password);
+            $utilisateur->setDate_last_activity(new \DateTime());
+            $m->load($utilisateur);
+            $m->update($utilisateur->getId());
+        }        
+        
+        $this->redirect($this->path('modifier'));
+    }
+    
+    public function editsecondAction(Request $request) {
+        
+        $utilisateur = $this->_session()->get('user');
+        $m = $this->getManager();
+        $m->load($utilisateur);
+        
+        if(isset($request->get('post')->publication)) {
+            $utilisateur->setMessage($request->get('post')->publication);
+            $utilisateur->setDate_last_activity(new \DateTime());
+            $m->load($utilisateur);
+            $m->update($utilisateur->getId());
+        }
+        
+        $this->redirect($this->path('modifier'));
+    }
+    
+    public function editthirdAction(Request $request) {
+        $utilisateur = $this->_session()->get('user');
+        $m = $this->getManager();
+        $m->load($utilisateur);
+        
+        if(isset($request->get('post')->username)) {
+            if($_FILES['photo']['name'] != "") {
+                $ObjFichier = new Upload('photo');
+                $ObjFichier->setTypesValides = array('image/jpeg','image/png','image/gif');
+                $ObjFichier->setNom($request->get('post')->username);
+                $ObjFichier->UploadFichier(__DIR__.'/../../../../public/img/upload/avatar/') or die($ObjFichier->UploadErreur());
+            }
+            $utilisateur->setUsername($request->get('post')->username);
+            $utilisateur->setNom($request->get('post')->nom);
+            $utilisateur->setPrenom($request->get('post')->prenom);
+            $utilisateur->setDate_last_activity(new \DateTime());
+            $m->load($utilisateur);
+            $m->update($utilisateur->getId());
+        }
+        $this->redirect($this->path('modifier'));
     }
 }

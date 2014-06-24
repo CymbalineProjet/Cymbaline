@@ -9,6 +9,7 @@ use core\component\Route;
 use core\component\Service;
 use core\component\exception\CoreException;
 use core\component\Session;
+use Cymbaline\Utils\Utils;
 
 
 /**
@@ -17,7 +18,7 @@ use core\component\Session;
  *
  * @author tjeannet
  */
-class Controller extends AppAlca {
+class Controller {
     
     public $post;
     private $get;
@@ -27,6 +28,7 @@ class Controller extends AppAlca {
     public  $retour;
     public $dbmanager;
     public $request;
+    public $utils;
     
     public function init($requestSession, Parametrage $param, Request $request) {
         
@@ -36,7 +38,7 @@ class Controller extends AppAlca {
         $this->role = $this->registerRole();
         $this->dbmanager = new Dbmanager();
         $this->request = $request;
-        
+        $this->utils = new Utils();
         
     }
     
@@ -79,6 +81,11 @@ class Controller extends AppAlca {
         $path = $route->createPath($name,$args);
         
         return $path;
+    }
+    
+    public function redirect($url) {
+        header("Location: $url");
+        exit;
     }
     
     /**

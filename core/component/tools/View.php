@@ -52,20 +52,26 @@ class View {
     
     public function get($base, array $replace = NULL) {
         $path = explode("/", $base);
-        $_path = "http://".$_SERVER['SERVER_NAME'].$this->baseurl."/source/".$path[0]."/".$path[1]."/template/".$path[2].".php";
-        
+        $_path = __DIR__."/../../../source/".$path[0]."/".$path[1]."/template/".$path[2].".php";
+        $view = $this;
         return include($_path);
     }
     
-    public function extend($base, $title = NULL) {
-        //var_dump($title);
-        if($title == NULL) {
-            $title = $this->title;
+    public function extend($base, $title = NULL, array $args = null) {
+        
+        if(is_array($args) && !is_null($args)) {
+            foreach($args as $name => $value) {
+                $this->$name = $value;
+            }
         }
         
-        $title = str_replace(" ", "%20", $title);
-        $_path = __DIR__."/../../../public/ressources/$base.php";
+        if($title != NULL) {
+            $this->title = $title;
+        }
         
+        
+        $_path = __DIR__."/../../../public/ressources/$base.php";
+        $view = $this;
         return include($_path);
     }
     

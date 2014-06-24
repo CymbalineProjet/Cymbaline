@@ -1,5 +1,5 @@
 <?php
-$view->extend("head", ""); //toujours etendre le header
+$view->extend("header", ""); //toujours etendre le header
 //on peut par la suite etendre un menu, un widget, un module, etc ...
 
 $view->form['form']->open();
@@ -14,3 +14,5 @@ foreach($view->form['form']->getFields() as $attr => $field) {
 <input type="submit" value="Enregistrer" />
 
 <?php $view->form['form']->close();
+
+$view->extend("admin_footer");

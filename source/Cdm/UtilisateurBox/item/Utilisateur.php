@@ -46,7 +46,8 @@ class Utilisateur extends \source\User\SecurityBox\item\User {
      * #name=complet#
      */
     private $complet;
-    private $_test;
+    private $_classement;
+    
 
 
     public function __construct() {
@@ -57,7 +58,14 @@ class Utilisateur extends \source\User\SecurityBox\item\User {
          
     }
     
+    public function setClassement($classement) {
+        $this->_classement = $classement;
+        return $this;
+    }
     
+    public function getClassement() {
+        return $this->_classement;
+    }
     
     public function getNom() {
         return $this->nom;

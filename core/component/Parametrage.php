@@ -2,9 +2,10 @@
 
 namespace core\component;
 
-use core\component\parser\XmlParser;
+use core\component\parser\YamlParser;
 use core\component\tools\ArrayToObject;
 use core\component\exception\PDOException;
+use core\component\exception\CoreException;
 
 /** 
  * Class de paramétrage du site
@@ -23,12 +24,14 @@ class Parametrage {
      * Initialise la connexion et les routes
      */
     public function __construct() {
-        //var_dump($_SERVER);die;
-        $xml = file_get_contents("http://".$_SERVER['HTTP_HOST']."/core/config/parameters.xml");
-        $this->_parser = new XmlParser($xml); 
-        $arraytoobject = new ArrayToObject($this->_parser->array,TRUE);
-        $this->_param = $arraytoobject->convert();
-        //$this->initConnexion();
+        try {
+            $yml = file_get_contents(__DIR__."/../config/parameters.yml");
+            $yaml = new YamlParser($xml); 
+            $arraytoobject = new ArrayToObject($yaml->load($yml),TRUE);
+            $this->_param = $arraytoobject->convert();
+        } catch(CoreException $e) {
+            $e->display();
+        }
         
     }
     
@@ -38,13 +41,10 @@ class Parametrage {
      */
     public function initConnexion() {
         try {
-            if($this->_parser->parse_error) {
-                new \Exception($this->_parser->get_xml_error()); 
-            }
 
             $db = ("dev" == $this->_param->parameters->env) ? 0 : 1;
 
-            if($this->_connexion = new \PDO('mysql:host='.$this->_param->parameters->database[$db]->host.';port='.$this->_param->parameters->database[$db]->port.';dbname='.$this->_param->parameters->database[$db]->dbname, $this->_param->parameters->database[$db]->dbuser, $this->_param->parameters->database[$db]->dbpass)) {
+            if($this->_connexion = new \PDO('mysql:host='.$this->_param->parameters->database->$db->host.';port='.$this->_param->parameters->database->$db->port.';dbname='.$this->_param->parameters->database->$db->dbname, $this->_param->parameters->database->$db->dbuser, $this->_param->parameters->database->$db->dbpass)) {
                 
             } else {
                 throw new PDOException('Parametrage::initConnexion : impossible de se connecter.');

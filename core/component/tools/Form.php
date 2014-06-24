@@ -44,6 +44,64 @@ class Form {
             case 'radio':
                 $this->createTypeRadio($name,$attributs,$label,$choices);
             break;
+			
+			//add thibault taff
+			
+			case 'file':
+                $this->createTypeFile($name,$attributs,$label);
+            break;
+			
+			case 'checkbox':
+                $this->createTypeCheckbox($name,$attributs,$label,$choices);
+            break;
+			
+			case 'color':
+                $this->createTypeColor($name,$attributs,$label);
+            break;
+			
+			case 'date':
+                $this->createTypeDate($name,$attributs,$label);
+            break;
+			
+			case 'time':
+                $this->createTypeTime($name,$attributs,$label);
+            break;
+			
+			case 'datetime':
+                $this->createTypeDatetime($name,$attributs,$label);
+            break;
+			
+			case 'datetime-local':
+                $this->createTypeDatetimeLocal($name,$attributs,$label);
+            break;
+			
+			case 'month':
+                $this->createTypeMonth($name,$attributs,$label);
+            break;
+			
+			case 'week':
+                $this->createTypeWeek($name,$attributs,$label);
+            break;
+			
+			case 'number':
+                $this->createTypeNumber($name,$attributs,$label);
+            break;
+			
+			case 'range':
+                $this->createTyperange($name,$attributs,$label);
+            break;
+			
+			case 'search':
+                $this->createTypeSearch($name,$attributs,$label);
+            break;
+			
+			case 'tel':
+                $this->createTypeTel($name,$attributs,$label);
+            break;
+			
+			case 'url':
+                $this->createTypeUrl($name,$attributs,$label);
+            break;
         
         
         }
@@ -73,6 +131,23 @@ class Form {
                 $attr .= "$a='$v' ";
         }
         $this->fields["$name"] = "<input type='text' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeFile($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='file' name='".$this->name."[$name]' $attr />";
         if($label == NULL || !isset($label['for'])) {
             $label['for'] = $name;
             $this->addLabels($label);
@@ -122,6 +197,237 @@ class Form {
             $this->addLabels($label);
         }
     }
+	
+	public function createTypeCheckbox($name,array $attributs,array $label, array $choices) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = array();
+        foreach($choices as $choice) {
+            $this->fields["$name"][] = "<input type='checkbox' name='".$this->name."[$name]' $attr value='".$choice."' /> ".$choice." ";
+        }
+        
+        
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeColor($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='color' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeDate($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='date' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeTime($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='time' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeDatetime($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+            
+            if(is_object($v))
+                $attr .= "$a='".$v->format('d/m/Y H:i')."' ";
+            else
+                $attr .= "$a='$v' ";
+                
+        }
+        $this->fields["$name"] = "<input type='datetime' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeDatetimeLocal($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='datetime-local' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeMonth($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='month' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeWeek($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='week' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeNumber($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='number' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeRange($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='range' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeSearch($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='search' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeTel($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='tel' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
+	
+	public function createTypeUrl($name,array $attributs,array $label) {
+        $attr = "";
+        foreach ($attributs as $a => $v) {
+                $attr .= "$a='$v' ";
+        }
+        $this->fields["$name"] = "<input type='url' name='".$this->name."[$name]' $attr />";
+        if($label == NULL || !isset($label['for'])) {
+            $label['for'] = $name;
+            $this->addLabels($label);
+        } else if($label == NULL) {
+            $this->addLabels(array('for' => $name));
+        } 
+        else {
+            $this->addLabels($label);
+        }
+    }
     
     public function addLabels(array $attributs) {
         $attr = "";
@@ -133,7 +439,6 @@ class Form {
     }
     
     public function getField($ref) {
-        
         echo $this->fields["$ref"];
     }
     

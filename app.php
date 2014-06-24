@@ -37,7 +37,7 @@ $request = new Request(array(
 ));
 
 //ajout pour authentification des membres
-
+/*
 if(!$session->_is_register("user") && isset($request->get('post')->access)) {
     
     $user = new source\Cdm\UtilisateurBox\item\Utilisateur();
@@ -73,7 +73,7 @@ try {
 } catch (DeniedException $e) {
     $e->denied();
 } 
-
+*/
 //FIN
 
 $r = $route->load();

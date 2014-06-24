@@ -5,6 +5,9 @@
            template="Cdm/PronoBox/template/equipe/index" controller="Cdm/PronoBox/Equipe" action="index" />
 
     <route name="equipe" path="/equipe/int@id" 
-           template="Cdm/PronoBox/template/equipe/affiche" controller="Cdm/PronoBox/Equipe" action="affiche" />      
+           template="Cdm/PronoBox/template/equipe/affiche" controller="Cdm/PronoBox/Equipe" action="affiche" />   
+    
+    <route name="affiche_equipe" path="/equipes" 
+           template="Cdm/PronoBox/template/equipe/equipes" controller="Cdm/PronoBox/Equipe" action="liste" />   
 
 </routes>

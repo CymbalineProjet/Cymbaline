@@ -49,8 +49,9 @@ class DefautController extends Controller {
         
         
         if(isset($request->get('post')->mail)) {
+            
             $ObjFichier = new Upload('photo');
-            $ObjFichier->setTypesValides = array('image/jpeg','image/png','image/gif');
+            $ObjFichier->setTypesValides = array('image/jpeg');
             $ObjFichier->setNom($request->get('post')->username);
             $ObjFichier->UploadFichier(__DIR__.'/../../../../public/img/upload/avatar/') or die($ObjFichier->UploadErreur());
             $retour = "Vous etes maintenant enregistre.";
@@ -85,6 +86,13 @@ class DefautController extends Controller {
             'error' => $error,
             'test'  => $test,
             'retour' => $retour,
+        ));
+    }
+    
+    public function regleAction() {
+        
+        return new View(array(
+            'test'  => 'regles',
         ));
     }
     

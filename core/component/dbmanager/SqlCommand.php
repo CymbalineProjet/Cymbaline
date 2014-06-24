@@ -30,7 +30,7 @@ class SqlCommand {
         $this->query = "";
         $this->class = $class;
         $_from = explode("/",$this->class);
-        $this->_from = $_from[2];
+        $this->_from = strtolower($_from[2]);
         $this->from = null;
         
     }

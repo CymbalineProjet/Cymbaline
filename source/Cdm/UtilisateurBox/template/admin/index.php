@@ -1,13 +1,13 @@
 <?php
-$view->extend("head", "prono14 | admin "); //toujours etendre le header
+$view->extend("header", "prono14 | admin "); //toujours etendre le header
 //on peut par la suite etendre un menu, un widget, un module, etc ...
-
 
 ?>
 <style>
     th {text-align: left;}
 </style>
-<table cellspacing="0" cellpadding="0" style="padding:2px;width:80%;">
+<table cellspacing="0" cellpadding="0" style="padding:2px;width:900px;" id="dynatable">
+    <thead>
     <tr>
         <th>#</th>
         <th>Username</th>
@@ -16,7 +16,8 @@ $view->extend("head", "prono14 | admin "); //toujours etendre le header
         <th>Email</th>
         <th>Edit</th>
     </tr>
-
+    </thead>
+    <tbody>
 <?php
 foreach($view->variables['utilisateurs'] as $utilisateur) {
     
@@ -31,4 +32,7 @@ foreach($view->variables['utilisateurs'] as $utilisateur) {
             
 }
 ?>
+    </tbody>
 </table>
+<?php
+$view->extend("admin_footer");

@@ -71,8 +71,8 @@ abstract class CustomException extends \Exception implements IException
         $class = end($class);
         $trace = str_replace("#","<br/>",$this->getTraceAsString());
         
-        $file = file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/source/Alca/ErrorBox/template/error.php');
-        $file = str_replace("#xdebug_message#", $this->xdebug_message, $file);
+        $file = file_get_contents(__DIR__.'/../../../vendor/Cymbaline/Error/template/error.php');
+        //$file = str_replace("#xdebug_message#", $this->xdebug_message, $file);
         $file = str_replace("#class#", $class, $file);
         $file = str_replace("#file#", $this->getFile(), $file);
         $file = str_replace("#line#", $this->getLine(), $file);
@@ -84,7 +84,7 @@ abstract class CustomException extends \Exception implements IException
     }
     
     public function denied() {
-        $file = file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/source/Alca/ErrorBox/template/denied.php');
+        $file = file_get_contents(__DIR__.'/../../../vendor/Cymbaline/Error/template/denied.php');
         $file = str_replace("#message#", $this->getMessage(), $file);
         echo $file;
         exit;

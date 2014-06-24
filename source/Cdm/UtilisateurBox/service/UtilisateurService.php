@@ -26,13 +26,42 @@ class UtilisateurService extends Service {
         
     }
     
-    public function get_classement() {
+    public function count() {
+        $m = $this->getManager();
+        $m->load(new Utilisateur());
+        $users = Utilisateur::hydrateAll($m->get());
+        
+        return sizeof($users);
+    }
+    
+    public function get_classement(Utilisateur $utilisateur = null) {
+        
         $sqlcommand = new SqlCommand('Cdm/Utilisateur/Utilisateur');
         $sqlcommand->setSelect("*")
                    ->setOrderBy('point DESC, username ASC')
                    ->build();
         $data = $sqlcommand->execute();
-        return $data;
+        
+        if(is_null($utilisateur)) {
+            return $data;
+        } else {
+            foreach($data as $id => $user) {
+                if($user->getId() == $utilisateur->getId()) {
+                    $utilisateur->classement = $id+1;
+                    break;
+                }
+            }
+            return $utilisateur;
+        }
+    }
+    
+    public function get_publication() {
+        $utilisateur = new Utilisateur();
+        $m = $this->getManager();
+        $m->load($utilisateur);
+        $users = Utilisateur::hydrateAll($m->get());
+        
+        return $users;
     }
     
 }

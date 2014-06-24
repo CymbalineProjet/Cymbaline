@@ -45,7 +45,7 @@ class Prono {
     private $utilisateur;
 
     /**
-     * #type=id#
+     * #type=int#
      * #name=matchs#
      */
     private $matchs;
@@ -80,7 +80,7 @@ class Prono {
      */
     public function setScoreDom($scoreDom)
     {
-        $this->scoreDom = $scoreDom;
+        $this->scoredom = $scoreDom;
 
         return $this;
     }
@@ -92,7 +92,7 @@ class Prono {
      */
     public function getScoreDom()
     {
-        return $this->scoreDom;
+        return $this->scoredom;
     }
 
     /**
@@ -103,7 +103,7 @@ class Prono {
      */
     public function setScoreExt($scoreExt)
     {
-        $this->scoreExt = $scoreExt;
+        $this->scoreext = $scoreExt;
 
         return $this;
     }
@@ -115,7 +115,7 @@ class Prono {
      */
     public function getScoreExt()
     {
-        return $this->scoreExt;
+        return $this->scoreext;
     }
 
     /**
@@ -208,6 +208,20 @@ class Prono {
     public function getMatchs()
     {
         return $this->matchs;
+    }
+    
+    public function getVainqueur() {
+        if($this->scoredom > $this->scoreext) {
+            return 1;
+        } 
+        
+        if($this->scoredom < $this->scoreext) {
+            return 2;
+        }
+        
+        if($this->scoredom == $this->scoreext) {
+            return 0;
+        }
     }
     
     public function hydrate(\stdClass $prono) {
