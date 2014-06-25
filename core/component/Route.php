@@ -3,7 +3,6 @@
 namespace core\component;
 
 use core\component\exception\RouteException;
-use core\component\parser\XmlParser;
 use core\component\parser\YamlParser;
 use core\component\tools\ArrayToObject;
 use core\component\Parametrage;
@@ -37,12 +36,17 @@ class Route {
 				throw new RouteException("La route passée dans le controller est nulle.");
 			}
 			
-			$xml = file_get_contents(__DIR__."/../config/routes.xml");
+            $yml = file_get_contents(__DIR__."/../../core/config/routes.yml");
+            $yaml = new YamlParser();
+            $this->_routes = $yaml->load($yml);
+            
+			/*$xml = file_get_contents(__DIR__."/../config/routes.xml");
 			$this->_parser = new XmlParser($xml);
-			$this->_routes = $this->_parser->array;
+			$this->_routes = $this->_parser->array;*/
 			$this->path = $url;
 			$this->param = new Parametrage();
             $this->import();
+
            
 		} catch (RouteException $e) {
 			$e->display();
@@ -51,13 +55,13 @@ class Route {
     
     public function createPath($name,$arg = null) {
         $path = $this->param->getBaseUrl();
-        foreach($this->_routes['routes']['route'] as $route => $args) {
+        foreach($this->_routes as $route => $args) {
 
-            if($args['attrib']['name'] == $name) {        
+            if($route == $name) {        
                 if(is_null($arg)) {
-                  $path = $this->param->getBaseUrl().$args['attrib']['path'];  
+                  $path = $this->param->getBaseUrl().$args['path'];  
                 } else {
-                    $explode = explode("/",$args['attrib']['path']);                  
+                    $explode = explode("/",$args['path']);                  
                     unset($explode[0]);
                     unset($explode[sizeof($explode)]);
                     $p = "";
@@ -87,15 +91,9 @@ class Route {
                     $yml = file_get_contents(__DIR__."/../..".$file->path);
                     $yaml = new YamlParser();
                     $routes = $yaml->load($yml);
-                   /* echo "<pre>";
-                    var_dump($routes);
-                    echo "</pre>";die;*/
-                    $xml = file_get_contents(__DIR__."/../config/routes.xml");
-                    $this->_parser = new XmlParser($xml);
-                    $this->_xml = $this->_parser->array;
-                    foreach ($this->_xml['routes']['route'] as $route) {
-                        $this->_routes['routes']['route'][] = $route; 
-                    }
+                    
+                    $this->_routes = array_merge((array)$this->_routes, (array)$routes);
+                    
                 }
             }
         } catch (RouteException $e) {
@@ -121,9 +119,9 @@ class Route {
 			if($this->path == NULL) {
 				throw new RouteException("Path null. Impossible de charger la route.");
 			} else if($this->path == "/") {                
-                foreach($this->_routes['routes']['route'] as $route => $args) {  
-                    if($args['attrib']['path'] == $this->path) {
-                        return $this->_routes['routes']['route'][$route]['attrib'];
+                foreach($this->_routes as $route => $args) {  
+                    if($args['path'] == $this->path) {
+                        return $this->_routes[$route];
                     }
                 }                
             }
@@ -132,29 +130,29 @@ class Route {
             
 			$true = false;
             $is_route = false;
-            foreach($this->_routes['routes']['route'] as $route => $args) {
-                    
-				$r = explode("/", $args['attrib']['path']);
+            foreach($this->_routes as $route => $args) {
+				$r = explode("/", $args['path']);
 				unset($r[0]);
                 
 				if(sizeof($url) == sizeof($r)) {
-                    if($args['attrib']['path'] == "/".$this->path) {
+                    if($args['path'] == "/".$this->path) {
                         $is_route = true;
                         $idroute = $route;
                         break;
                     }
                 }
             }
-			foreach($this->_routes['routes']['route'] as $route => $args) {
+            
+			foreach($this->_routes as $route => $args) {
                     
                 if($is_route)
                     break;
                     
-				$r = explode("/", $args['attrib']['path']);
+				$r = explode("/", $args['path']);
 				unset($r[0]);
                 
 				if(sizeof($url) == sizeof($r)) {
-                    $nbre_arg = substr_count($args['attrib']['path'], '@');
+                    $nbre_arg = substr_count($args['path'], '@');
                     
                     if($nbre_arg == 1) {
                         
@@ -172,7 +170,7 @@ class Route {
                             $end_r = str_replace("@","",$end_r);
                             $_args[$end_r] = end($url);
                             $idroute = $route;
-                            $this->_routes['routes']['route'][$route]['attrib']['args'] = $_args;
+                            $this->_routes[$route]['args'] = $_args;
                             break;
                         }
                     } else if($nbre_arg != 0) {
@@ -195,7 +193,7 @@ class Route {
                                 $_args[$end_r] = $url[$i-1];
                             }
                             $idroute = $route;
-                            $this->_routes['routes']['route'][$route]['attrib']['args'] = $_args;
+                            $this->_routes[$route]['args'] = $_args;
                             break;
                         }
                     } 
@@ -207,7 +205,7 @@ class Route {
             }
             
             $path = str_replace($this->param->getBaseUrl(),"","/".$this->path);
-            $route_path = $this->_routes['routes']['route'][$idroute]['attrib']['path'];
+            $route_path = $this->_routes[$idroute]['path'];
             $mypath = explode("/",$path);
             $myroute_path = explode("/",$route_path);
             if(sizeof($mypath) != sizeof($myroute_path)) {
@@ -254,11 +252,11 @@ class Route {
                 }                
             }
 
-			if(isset($this->_routes['routes']['route'][$idroute]) or $true)  {
+			if(isset($this->_routes[$idroute]) or $true)  {
 				if($true) {
-					$route = $rrr['attrib'];
+					$route = $rrr;
 				} else {
-					$route = $this->_routes['routes']['route'][$idroute]['attrib'];
+					$route = $this->_routes[$idroute];
 				}
 			} else {
 				throw new RouteException("La route demandée n'existe pas dans le fichier de configuration.");
