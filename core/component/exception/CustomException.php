@@ -64,29 +64,12 @@ abstract class CustomException extends \Exception implements IException
         return $this;
     }
     
-    /*public function display() {
-        $p = new Parametrage();
-        $base = $p->getBaseUrl();
-        
-        $session = new Session();
-        if($session->_is_register('flag.error')) {
-            $session->_unregister('flag.error');
-        }
-        $session->_register('flag.error', $this->xdebug_message);
-   
-        //header("Location: $base/error");
-        //exit;
-        
-    }*/
-    
     public function display() {
         
         $class = explode("\\", get_class($this));
         $class = end($class);
-        $trace = str_replace("#","<br/>",$this->getTraceAsString());
-        
+        $trace = str_replace("#","<br/>",$this->getTraceAsString());   
         $file = file_get_contents(__DIR__.'/../../../vendor/Cymbaline/Error/template/error.php');
-        //$file = str_replace("#xdebug_message#", $this->xdebug_message, $file);
 
         if($class == "DeniedException") {
             $file = str_replace("#class#", $class, $file);
@@ -107,12 +90,10 @@ abstract class CustomException extends \Exception implements IException
                 $line = (int)$this->trace['args'][3];
             }
             $line--;
-
             $start = $line - 6;
             $end = $line + 6;
             $f = new File($this->fil);
             $content = $f->get_content_file_error_display($line,$start,$end);
-
             $trace = "<pre class='prettyprint linenums lang-php' style='overflow-x:auto;'>$content</pre>";
             $file = str_replace("#trace#", $trace, $file);
             $file = str_replace("#message#", $this->getMessage(), $file);
@@ -135,12 +116,10 @@ abstract class CustomException extends \Exception implements IException
                     $line = (int)$error['args'][3];
                 }
                 $line--;
-                
                 $start = $line - 6;
                 $end = $line + 6;
                 $f = new File($error['file']);
                 $content = $f->get_content_file_error_display($line,$start,$end);
-                
                 $trace .= "<pre class='prettyprint linenums lang-php' style='overflow-x:auto;'>$content</pre>";
             }
             $file = str_replace("#trace#", $trace, $file);
@@ -148,14 +127,6 @@ abstract class CustomException extends \Exception implements IException
             $file = str_replace("#trace#", "", $file);
         }
         
-        echo $file;
-        //echo "<table>".$this->xdebug_message."</table>";
-        exit;
-    }
-    
-    public function denied() {
-        $file = file_get_contents(__DIR__.'/../../../vendor/Cymbaline/Error/template/denied.php');
-        $file = str_replace("#message#", $this->getMessage(), $file);
         echo $file;
         exit;
     }

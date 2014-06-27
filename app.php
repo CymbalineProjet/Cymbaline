@@ -13,10 +13,7 @@ use source\User\SecurityBox\item\Authentification;
 use source\User\SecurityBox\service\AuthentificationService;
 use core\component\exception\CoreException;
 use core\component\exception\DeniedException;
-
-
 session_start();
-
 
 if(isset($_GET['url'])) {
     $url = $_GET['url'];
@@ -38,20 +35,14 @@ $request = new Request(array(
 
 //ajout pour authentification des membres
 /*
-if(!$session->_is_register("user") && isset($request->get('post')->access)) {
-    
+if(!$session->_is_register("user") && isset($request->get('post')->access)) {   
     $user = new source\Cdm\UtilisateurBox\item\Utilisateur();
     $user->setAnonymous(true);
-    
-    $session->_register("user", $user);
-    
+    $session->_register("user", $user);   
 }
 
 if($session->_is_register("user")) {
-    $authentification = new Authentification($session->get('user'));
-
-
-
+        $authentification = new Authentification($session->get('user'));
         $authentification->authentification_process();
         $sAuth = new AuthentificationService();
         if($sAuth->is_anonymous()) {
@@ -65,7 +56,6 @@ if($session->_is_register("user")) {
         if(!$sAuth->is_granted()) {
             throw new DeniedException('Error authentification not granted !');
         }      
-
 } else {
     throw new DeniedException('Error authentification denied no session');
 }
@@ -82,7 +72,6 @@ if(isset($r['args'])) {
 } else {
     $view = $controller->$action($request);
 }
-
 
 if(file_exists("source/".$r['template'].".php")) {
     include("source/".$r['template'].".php");
