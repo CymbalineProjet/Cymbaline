@@ -37,7 +37,7 @@ $request = new Request(array(
 ));
 
 //ajout pour authentification des membres
-
+/*
 if(!$session->_is_register("user") && isset($request->get('post')->access)) {
     
     $user = new source\Cdm\UtilisateurBox\item\Utilisateur();
@@ -47,33 +47,29 @@ if(!$session->_is_register("user") && isset($request->get('post')->access)) {
     
 }
 
-try {
-    if($session->_is_register("user")) {
-        $authentification = new Authentification($session->get('user'));
-        
-            
-			
-            $authentification->authentification_process();
-            $sAuth = new AuthentificationService();
-			if($sAuth->is_anonymous()) {
-                throw new DeniedException('Error authentification denied anonymous');
-            }
-			
-            if(!$sAuth->is_authentified() && isset($request->get('post')->identifiant)) {
-                throw new DeniedException('Error authentification denied');
-            }
-            
-            if(!$sAuth->is_granted()) {
-                throw new DeniedException('Error authentification not granted !');
-            }      
-        
-    } else {
-        throw new DeniedException('Error authentification denied no session');
-    }
-} catch (DeniedException $e) {
-    $e->denied();
-} 
+if($session->_is_register("user")) {
+    $authentification = new Authentification($session->get('user'));
 
+
+
+        $authentification->authentification_process();
+        $sAuth = new AuthentificationService();
+        if($sAuth->is_anonymous()) {
+            throw new DeniedException('Error authentification denied anonymous');
+        }
+
+        if(!$sAuth->is_authentified() && isset($request->get('post')->identifiant)) {
+            throw new DeniedException('Error authentification denied');
+        }
+
+        if(!$sAuth->is_granted()) {
+            throw new DeniedException('Error authentification not granted !');
+        }      
+
+} else {
+    throw new DeniedException('Error authentification denied no session');
+}
+*/
 //FIN
 
 $r = $route->load();

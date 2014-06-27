@@ -25,4 +25,25 @@ class File {
         fwrite($fichier, $text); 
         fclose($fichier);
     }
+    
+    public function get_content_file_error_display($line,$start = false,$end = false) {
+        $contenu = fread(fopen($this->file, "r"), filesize($this->file));
+        $contenu_array = explode("\n",$contenu);
+        $text = "";
+        if($start && $end) {
+            for($i=$start;$i<=$end;$i++) {
+                if($line == $i) {
+                    $text .= "<p style='color:red;'>$i ".$contenu_array[$i]."</p>";
+                } else {
+                    $text .= "<p>$i ".$contenu_array[$i]."</p>";
+                }   
+            }
+        } else {
+            foreach($contenu_array as $id => $content) {
+                $text .= "<p>$id ".$content."</p>";
+            }
+        }
+        
+        return $text;
+    }
 }
