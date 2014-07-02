@@ -69,8 +69,20 @@ class View {
             $this->title = $title;
         }
         
-        
         $_path = __DIR__."/../../../public/ressources/$base.php";
+        
+        if($this->ressources) {
+            if(!file_exists(__DIR__."/../../../source/".$this->ressources."/$base.php")) {
+                if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$base.php")) {
+                    throw new \core\component\exception\CoreException("Extend $base.php error not found.");
+                } else {
+                    $_path = __DIR__."/../../../vendor/".$this->ressources."/$base.php";
+                }
+            } else {
+                $_path = __DIR__."/../../../source/".$this->ressources."/$base.php";
+            }
+        }
+        
         $view = $this;
         return include($_path);
     }
@@ -91,7 +103,16 @@ class View {
     }
     
     public function front($path) {
-        $_path = "http://".$_SERVER['SERVER_NAME'].$this->baseurl."/public/$path";
+        if(!file_exists(__DIR__."/../../../public/$path")) {
+            if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$path") || !isset($this->ressources)) {
+                throw new \core\component\exception\CoreException("View front link error.");
+            } else {
+                $_path = "/../../../vendor/".$this->ressources."/$path";
+            }
+        } else {
+            $_path = "/../../../public/$path";
+        }
+        
         echo $_path;
     }
     
@@ -101,15 +122,3 @@ class View {
     }
     
 }
-/*
- * pour que ca puisse fonctionne
- * $view->extend($base,$title = null); //$view->extend('demo','nouveau titre');
- * ou
- * $view->get($path); //$view->get('footer');
- * 
- * dans index.php il faut supprimer le html et le passé dans des vues
- * exemple : template/base/header.php ou template/menu.php
- * 
- * retourne l'include du fichier  
- *  
- */

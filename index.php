@@ -35,6 +35,12 @@ if(isset($r['args'])) {
     $view = $controller->$action($request);
 }
 
+if(isset($r['ressources'])) {
+    $view->ressources = $r['ressources'];
+} else {
+    $view->ressources = false;
+}
+
 $template = $r["template"];
 
 include("source/".$template.".php");

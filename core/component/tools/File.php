@@ -21,8 +21,7 @@ class File {
     
     public function ecrire($text, $file) {
         $fichier = fopen($file, 'w+');
-
-        fwrite($fichier, $text); 
+        fwrite($fichier, $text);         
         fclose($fichier);
     }
     
@@ -32,11 +31,13 @@ class File {
         $text = "";
         if($start && $end) {
             for($i=$start;$i<=$end;$i++) {
-                if($line == $i) {
-                    $text .= "<p style='color:red;'>$i ".$contenu_array[$i]."</p>";
-                } else {
-                    $text .= "<p>$i ".$contenu_array[$i]."</p>";
-                }   
+                if(isset($contenu_array[$i])) {
+                    if($line == $i) {
+                        $text .= "<p style='color:red;'>$i ".$contenu_array[$i]."</p>";
+                    } else {
+                        $text .= "<p>$i ".$contenu_array[$i]."</p>";
+                    }   
+                }
             }
         } else {
             foreach($contenu_array as $id => $content) {

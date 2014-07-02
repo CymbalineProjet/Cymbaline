@@ -73,6 +73,12 @@ if(isset($r['args'])) {
     $view = $controller->$action($request);
 }
 
+if(isset($r['ressources'])) {
+    $view->ressources = $r['ressources'];
+} else {
+    $view->ressources = false;
+}
+
 if(file_exists("source/".$r['template'].".php")) {
     include("source/".$r['template'].".php");
     exit;

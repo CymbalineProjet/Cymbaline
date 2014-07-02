@@ -54,33 +54,25 @@ class Parameters {
     }
     
     public function save() {
-        $xml = "<?xml version='1.0' encoding='UTF-8'?>
-        <parameters>
-            <env>$this->env </env>
-            <baseurl>$this->baseurl </baseurl>
-            <basetitle>$this->basetitle </basetitle>
-            <controllerdefault>$this->controllerdefault </controllerdefault>
-            <database env='dev'>
-                <host>".$this->dbdev->host." </host>
-                <port>".$this->dbdev->port." </port>
-                <dbname>".$this->dbdev->dbname." </dbname>
-                <dbuser>".$this->dbdev->dbuser." </dbuser>
-                <dbpass>".$this->dbdev->dbpass." </dbpass>
-            </database>
+        $yml = file_get_contents(__DIR__."/../../../../vendor/Cymbaline/Generator/template/modele/modele-parameters.txt");
+        
+        $yml = str_replace("#env", $this->env, $yml);
+        $yml = str_replace("#baseurl", $this->baseurl, $yml);
+        $yml = str_replace("#basetitle", $this->basetitle, $yml);
+        $yml = str_replace("#controllerdefault", $this->controllerdefault, $yml);
+        $yml = str_replace("#host", $this->dbdev->host, $yml);
+        $yml = str_replace("#port", $this->dbdev->port, $yml);
+        $yml = str_replace("#dbname", $this->dbdev->dbname, $yml);
+        $yml = str_replace("#dbuser", $this->dbdev->dbuser, $yml);
+        $yml = str_replace("#dbpass", $this->dbdev->dbpass, $yml);
+        $yml = str_replace("#phost", $this->dbprod->host, $yml);
+        $yml = str_replace("#pport", $this->dbprod->port, $yml);
+        $yml = str_replace("#pdbname", $this->dbprod->dbname, $yml);
+        $yml = str_replace("#pdbuser", $this->dbprod->dbuser, $yml);
+        $yml = str_replace("#pdbpass", $this->dbprod->dbpass, $yml);
 
-            <database env='prod'>
-                <host>".$this->dbprod->host." </host>
-                <port>".$this->dbprod->port." </port>
-                <dbname>".$this->dbprod->dbname." </dbname>
-                <dbuser>".$this->dbprod->dbuser." </dbuser>
-                <dbpass>".$this->dbprod->dbpass." </dbpass>
-            </database>
-        </parameters>";
         
         $file = new File();
-        $file->ecrire($xml, "core/config/parameters.xml");
-        
-                
-                
+        $file->ecrire($yml, __DIR__."/../../../../core/config/parameters.yml");
     }
 }

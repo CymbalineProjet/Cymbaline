@@ -22,9 +22,6 @@ use Cymbaline\Generator\item\Box;
  */
 class DefautController extends Controller {
 
-    public function __construct() {
-        
-    }
     /**
      * indexAction() traitera les données pour la page index
      * @return stdClass $this->retour Tableau des données nécessaires à l'affichage 
@@ -40,7 +37,7 @@ class DefautController extends Controller {
         $form_parameters->setMethod('post');
         $form_parameters->setAction($this->path('generator_edit'));
         $form_parameters->setClass('form-horizontal');
-        
+
         return new View(array(
             'error' => $error,
             'test'  => $test,
@@ -58,6 +55,8 @@ class DefautController extends Controller {
         $test = "defaut controller generator edit-parameters";
         $parameters = new Parameters($request->get('post'));
         $parameters->save();
+        
+        $this->redirect($this->path('generator_parameters'));
         
         return new View(array(
             'error' => $error,

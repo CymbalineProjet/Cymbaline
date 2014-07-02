@@ -1,6 +1,6 @@
 error:
     path: /error
-    template: Cymbaline/Error/template/error
+    template: Cymbaline/Error/template/fatal
     controller: Cymbaline/Error/Error
     action: index
     

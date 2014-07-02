@@ -1,22 +1,22 @@
 parameters:
     env: dev
-    baseurl: ~
-    basetitle: DKs Fram 
+    baseurl: 
+    basetitle: Cymbaline PHP Framework
     controllerdefault: Cdm/PronoBox/Defaut
     
     database:
         dev:
             host: localhost
-            port: ~
+            port: 
             dbname: alca
             dbuser: root
-            dbpass: ~
+            dbpass: 
         prod:
-            host: ~
-            port: ~
-            dbname: ~
-            dbuser: ~
-            dbpass: ~
+            host: 
+            port: 
+            dbname: 
+            dbuser: 
+            dbpass: 
             
     
     roles:
