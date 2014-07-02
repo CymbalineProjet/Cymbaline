@@ -6,6 +6,6 @@ error:
     
 index:
     path: /
-    template: Alca/GenBox/template/index
-    controller: Alca/GenBox/Defaut
+    template: Cymbaline/Generator/template/index
+    controller: Cymbaline/Generator/Defaut
     action: index
