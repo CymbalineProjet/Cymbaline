@@ -1,0 +1,34 @@
+<?php
+
+namespace source\#namespace#\form;
+
+use core\component\tools\Form;
+
+/**
+ * Description of #name#Form
+ *
+ * @author #author#
+ */
+class #name#Form extends Form {
+    
+    
+
+    public function __construct() {
+        $this->setName('form_#name#');
+        $this->build();
+    }
+    
+    public function build() {        
+        
+        /*$this->add('baseurl', 'text', array(
+            "class" => "span4",
+        ), array(
+            "value" => "Base url",
+            "class"    => "control-label",
+        ));*/
+
+        #build#
+        
+       
+    }
+}

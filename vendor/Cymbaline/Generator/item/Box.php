@@ -40,21 +40,15 @@ class Box {
     
     public function create() {
        
-        if (is_dir('source/'.$this->zone.'/'.$this->name.'/') && !mkdir('source/'.$this->zone.'/'.$this->name.'/', 0777, true)) {
+        if (is_dir('source/'.$this->zone.'/'.$this->name.'Box/') && !mkdir('source/'.$this->zone.'/'.$this->name.'Box/', 0777, true)) {
             die("erreur create dir box $this->zone/$this->name ");
         } else {
-            mkdir('source/'.$this->zone.'/'.$this->name.'/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/control/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/form/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/item/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/loader/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/ressources/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/ressources/css/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/ressources/images/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/ressources/js/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/service/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/template/', 0777, true);
-            mkdir('source/'.$this->zone.'/'.$this->name.'/template/base/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/controller/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/form/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/item/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/service/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/template/', 0777, true);
         }
     }
     

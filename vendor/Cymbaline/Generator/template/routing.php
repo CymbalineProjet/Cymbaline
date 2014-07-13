@@ -16,14 +16,15 @@ $view->extend("gen_header", "Generator"); //toujours etendre le header
             <tbody>
         <?php
             //var_dump($view->variables['routes']);
-            foreach ($view->variables['routes'] as $route) {
+            foreach ($view->variables['routes'] as $id => $route) {
+               
         ?>
             <tr>
-                <td><?php echo $route['attrib']['name'] ?></td>
-                <td><?php echo $route['attrib']['path'] ?></td>
-                <td><?php echo $route['attrib']['controller'] ?></td>
-                <td><?php echo $route['attrib']['action'] ?></td>
-                <td><?php echo $route['attrib']['template'] ?></td>
+                <td><?php echo $id ?></td>
+                <td><?php echo $route['path'] ?></td>
+                <td><?php echo $route['controller'] ?></td>
+                <td><?php echo $route['action'] ?></td>
+                <td><?php echo $route['template'] ?></td>
             </tr>
         <?php
             }

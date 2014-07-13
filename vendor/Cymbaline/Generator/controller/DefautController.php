@@ -11,6 +11,8 @@ use Cymbaline\Generator\form\ParametersForm;
 use Cymbaline\Generator\item\Parameters;
 use Cymbaline\Generator\item\ModeleFileItem;
 use Cymbaline\Generator\item\ModeleFileController;
+use Cymbaline\Generator\item\ModeleFileService;
+use Cymbaline\Generator\item\ModeleFileForm;
 use Cymbaline\Generator\item\Zone;
 use Cymbaline\Generator\item\Box;
 
@@ -64,43 +66,67 @@ class DefautController extends Controller {
         ));
     }
     
-    public function createitemAction(Request $request) {
+    public function additemAction(Request $request) {
         
-        $error = false;
-        $test = "defaut controller generator create item";
+        $controller = null;
+        $model = null;
+        $service = null;
+        $form = null;
         
-        $model = new ModeleFileItem(array(
-            'name'   => $request->post->name,
-            'attr'   => $request->post->attr_name,
-            'author' => $request->post->author,
-            'path'   => $request->post->path,
-        ));
-       
-        if(isset($request->post->controller_item)) {
-            $controller = new ModeleFileController(array(
-                'name'   => $request->post->name,
-                'attr'   => $request->post->attr_name,
-                'author' => $request->post->author,
-                'path'   => $request->post->path,
+        if(isset($request->get('post')->name)) {
+            $model = new ModeleFileItem(array(
+                'name'   => $request->get('post')->name,
+                'attr'   => $request->get('post')->attr_name,
+                'author' => $request->get('post')->author,
+                'path'   => $request->get('post')->path,
             ));
+
+            if(isset($request->get('post')->controller_item)) {
+                $controller = new ModeleFileController(array(
+                    'name'   => $request->get('post')->name,
+                    'attr'   => $request->get('post')->attr_name,
+                    'author' => $request->get('post')->author,
+                    'path'   => $request->get('post')->path,
+                ));
+            }
+            
+            if(isset($request->get('post')->form_item)) {
+                $form = new ModeleFileForm(array(
+                    'name'   => $request->get('post')->name,
+                    'attr'   => $request->get('post')->attr_name,
+                    'author' => $request->get('post')->author,
+                    'path'   => $request->get('post')->path,
+                ));
+            }
+            
+            if(isset($request->get('post')->service_item)) {
+                $service = new ModeleFileService(array(
+                    'name'   => $request->get('post')->name,
+                    'attr'   => $request->get('post')->attr_name,
+                    'author' => $request->get('post')->author,
+                    'path'   => $request->get('post')->path,
+                ));
+            }
+            
+            $this->redirect($this->path('generator_add_item'));
         }
         
-        return new View('Alca/GenBox/create-item', array(
-            'error' => $error,
-            'test'  => $test,
-        ));
+        return new View(array());
     }
+
     
     public function addzoneAction(Request $request) {
         
         $error = false;
         $test = "defaut controller generator create zone";
         
-        $nameZone = $request->post->addzone;
-        $zone = new Zone($nameZone);
-        $zone->create();
+        if(isset($request->get('post')->addzone)) {
+            $zone = new Zone($request->get('post')->addzone);
+            $zone->create();
+            $this->redirect($this->path('generator_add_zone'));
+        }
         
-        return new View('Alca/GenBox/create-zone', array(
+        return new View(array(
             'error' => $error,
             'test'  => $test,
         ));
@@ -110,17 +136,18 @@ class DefautController extends Controller {
         
         $error = false;
         $test = "defaut controller generator create box";
-        
-        $zone = $request->post->zone;
-        $nameBox = $request->post->addbox;
-        
-        $zone = new Zone($zone);
-        $box = new Box($nameBox,$zone->getName());
-        $box->create();
-        
-        return new View('Alca/GenBox/create-box', array(
+       
+        if(isset($request->get('post')->zone)) {
+            $zone = new Zone($request->get('post')->zone);
+            $box = new Box($request->get('post')->addbox,$zone->getName());
+            $box->create();
+            $this->redirect($this->path('generator_add_box'));
+        }
+        $zone = new Zone();
+        return new View(array(
             'error' => $error,
             'test'  => $test,
+            'zone'  => $zone->getList(),
         ));
     }
     
@@ -133,8 +160,9 @@ class DefautController extends Controller {
     public function routeAction() {
         $route = new \core\component\Route('/');
         $routes = $route->getRoutes();
+        
         return new View(array(
-            'routes' => $routes['routes']['route'],
+            'routes' => $routes,
         ));
     }
     

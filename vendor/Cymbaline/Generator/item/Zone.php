@@ -30,11 +30,12 @@ class Zone {
     
     public function create() {
        
-        if (is_dir('source/'.$this->name.'/') && !mkdir('source/'.$this->name.'/', 0777, true)) {
+        if (is_dir(__DIR__.'/../../../../source/'.$this->name.'/') && !mkdir(__DIR__.'/../../../../source/'.$this->name.'/', 0777, true)) {
             die("erreur create dir zone $this->name ");
         } else {
-            mkdir('source/'.$this->name.'/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->name.'/', 0777, true);
         }
+        
     }
     
     public function getList() {

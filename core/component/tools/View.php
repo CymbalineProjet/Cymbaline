@@ -103,7 +103,7 @@ class View {
     }
     
     public function front($path) {
-        if(!file_exists(__DIR__."/../../../public/$path")) {
+        /*if(!file_exists(__DIR__."/../../../public/$path")) {
             if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$path") || !isset($this->ressources)) {
                 throw new \core\component\exception\CoreException("View front link error.");
             } else {
@@ -111,7 +111,9 @@ class View {
             }
         } else {
             $_path = "/../../../public/$path";
-        }
+        }*/
+        
+        $_path = "http://".$_SERVER['HTTP_HOST']."/public/$path";
         
         echo $_path;
     }

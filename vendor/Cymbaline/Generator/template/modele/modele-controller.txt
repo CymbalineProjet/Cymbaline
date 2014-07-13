@@ -2,7 +2,7 @@
 
 namespace source\#namespace#\controller;
 
-use core\component\View;
+use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
 
@@ -14,10 +14,6 @@ use core\component\Controller;
  */
 class #name#Controller extends Controller {
 
-    public function __construct() {
-         //do something
-    }
-
     /**
      * indexAction() traitera les données pour la page index
      * @return View $view
@@ -28,7 +24,7 @@ class #name#Controller extends Controller {
         $test = "#name# controller";
         
         
-        return new View('#namespacev#/index', array(
+        return new View(array(
             'error' => $error,
             'test'  => $test,
         ));

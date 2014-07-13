@@ -25,11 +25,10 @@ class ModeleFileItem extends ModeleFile {
     }
     
     public function load() {
-        $this->modele = file_get_contents("http://alca.dev/AlcaFram/source/Alca/GenBox/template/modele/modele-item.txt");
+        $this->modele = file_get_contents(__DIR__."/../template/modele/modele-item.txt");
     }
     
     public function hydrate() {
-        var_dump($this->attributs);
         $attributs = "";
         $i = 0;
         foreach($this->attributs->attr as $attr) {
@@ -49,7 +48,7 @@ class ModeleFileItem extends ModeleFile {
     
     public function save() {
         $file = new File();
-        $file->ecrire($this->modele, 'source/'.$this->attributs->path.'/item/'.$this->attributs->name.'.php');
+        $file->ecrire($this->modele, __DIR__.'/../../../../source/'.$this->attributs->path.'/item/'.$this->attributs->name.'.php');
     }
     
     
