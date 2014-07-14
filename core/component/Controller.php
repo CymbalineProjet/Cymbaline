@@ -93,13 +93,21 @@ class Controller {
      */
     public function load($item) {
         $path = explode("/", $item);
+        $path_end = end($path);
+        $p = $path;
+        array_pop($p);
+        $p = implode("/",$p);
         $control = "source\\".$path[0]."\\".$path[1]."\\control\\".$path[2]."Controller";
         $vendor = "vendor/".$path[0]."/".$path[1]."/controller/".$path[2]."Controller.php";
-        
+        $vendor2 = "vendor/".$p."/controller/".$path_end."Controller.php";
+       
         if(file_exists(__DIR__."/../../".$control.".php")) {
             $c = new $control();
         } else if (file_exists(__DIR__."/../../".$vendor)) {
             $control = $path[0]."\\".$path[1]."\\controller\\".$path[2]."Controller";
+            $c = new $control();
+        } else if (file_exists(__DIR__."/../../".$vendor2)) {
+            $control = $p."\\controller\\".$path_end."Controller";
             $c = new $control();
         }
 

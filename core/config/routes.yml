@@ -9,3 +9,9 @@ index:
     template: Cymbaline/Generator/template/index
     controller: Cymbaline/Generator/Defaut
     action: index
+    
+documentation:
+    path: /documentation
+    template: Documentation/index
+    controller: Documentation/Defaut
+    action: index
