@@ -1,0 +1,23 @@
+<?php
+$view->extend("header", "#namelower#"); 
+
+echo "<h1>#name#</h1>";
+echo "<table width='100%' border='1' cellspacing='0' cellpadding='0'>";
+echo "<tr>
+		#attr_head#
+		<td>edit</td>
+		<td>delete</td>
+	  </tr>";
+
+foreach($view->variables["items"] as $item) {
+	echo "<tr>";
+	#attr#
+	echo "<td><a href='".$view->link('#namelower#_edit', $item->getId())."'>click</a></td>";
+	echo "<td><a href='".$view->link('#namelower#_delete', $item->getId())."'>click</a></td>";
+	echo "</tr>";
+}
+echo "</table>";
+
+echo "<p><a href='".$view->link('#namelower#_new')."'>New item</a></p>";
+
+$view->extend("footer");

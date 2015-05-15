@@ -97,7 +97,8 @@ class Controller {
         $p = $path;
         array_pop($p);
         $p = implode("/",$p);
-        $control = "source\\".$path[0]."\\".$path[1]."\\control\\".$path[2]."Controller";
+
+        $control = "source\\".$path[0]."\\".$path[1]."\\controller\\".$path[2]."Controller";
         $vendor = "vendor/".$path[0]."/".$path[1]."/controller/".$path[2]."Controller.php";
         $vendor2 = "vendor/".$p."/controller/".$path_end."Controller.php";
        

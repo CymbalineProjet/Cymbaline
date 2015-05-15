@@ -1,0 +1,35 @@
+#hello routes
+
+hello_index:
+    path: /hello
+    template: Demo/DemoBox/template/Hello/index
+    controller: Demo/DemoBox/Hello
+    action: index
+
+hello_new:
+    path: /hello/new
+    template: Demo/DemoBox/template/Hello/new
+    controller: Demo/DemoBox/Hello
+    action: new
+
+hello_create:
+    path: /hello/create
+    controller: Demo/DemoBox/Hello
+    action: create
+
+hello_edit:
+    path: /hello/edit/int@id
+    template: Demo/DemoBox/template/Hello/edit
+    controller: Demo/DemoBox/Hello
+    action: edit
+
+hello_update:
+    path: /hello/update/int@id
+    controller: Demo/DemoBox/Hello
+    action: update
+
+hello_delete:
+    path: /hello/delete/int@id
+    controller: Demo/DemoBox/Hello
+    action: delete
+

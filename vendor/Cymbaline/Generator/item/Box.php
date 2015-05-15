@@ -49,6 +49,7 @@ class Box {
             mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/item/', 0777, true);
             mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/service/', 0777, true);
             mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/template/', 0777, true);
+            mkdir(__DIR__.'/../../../../source/'.$this->zone.'/'.$this->name.'Box/config/', 0777, true);
         }
     }
     

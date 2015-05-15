@@ -23,6 +23,6 @@
         </ul>
     </li>
     <li>
-        <a href="#">DOCUMENTATION</a>
+        <a href="<?php echo $view->link('documentation'); ?>">DOCUMENTATION</a>
     </li>
 </ul>

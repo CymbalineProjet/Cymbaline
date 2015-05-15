@@ -13,6 +13,8 @@ use source\User\SecurityBox\item\Authentification;
 use source\User\SecurityBox\service\AuthentificationService;
 use core\component\exception\CoreException;
 use core\component\exception\DeniedException;
+use core\component\exception\TemplateException;
+
 session_start();
 
 if(isset($_GET['url'])) {
@@ -62,8 +64,11 @@ if($session->_is_register("user")) {
 */
 //FIN
 
+
+
 $r = $route->load();
 $controller = $app->load($r['controller']);
+
 $controller->init($session, $param, $request);
 $action = $r['action']."Action";
 
@@ -86,6 +91,7 @@ if(file_exists("source/".$r['template'].".php")) {
     include("vendor/".$r['template'].".php");
     exit;
 } else {
-    echo "error app.php line 98";
+    $message = "Aucun template valide pour cette page";
+    throw new TemplateException($message);
     exit;
 }

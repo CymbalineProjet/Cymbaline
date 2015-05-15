@@ -18,6 +18,14 @@ class File {
     public function getFile() {
         return $this->file;
     }
+
+    public function getContent() {
+        return file_get_contents($this->file);
+    }
+
+    public function exists() {
+        return file_exists($this->file);
+    }
     
     public function ecrire($text, $file) {
         $fichier = fopen($file, 'w+');

@@ -58,6 +58,11 @@ class DbQuery extends Dbmanager {
                 break;
             
                 case 'datetime' :
+                    
+                    if(is_null($v['value'])) {
+                        $v['value'] = new \core\component\tools\Date();
+                    }
+                    
                     $this->query .= "'".$v['value']->format('Y/m/d H:i:s')."',";
                 break;
             }
@@ -81,9 +86,9 @@ class DbQuery extends Dbmanager {
             $query->execute();
             $all = $query->fetchAll();
             
-            if($all == null) {
+            /*if($all == null) {
                 throw new PDOException("Aucune $this->class en base de données.");
-            }
+            }*/
             
             return $all;
             

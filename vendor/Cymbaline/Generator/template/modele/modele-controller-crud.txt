@@ -1,0 +1,124 @@
+<?php
+
+namespace source\#namespace#\controller;
+
+use core\component\tools\View;
+use core\component\Request;
+use core\component\Controller;
+use core\component\exception\VarException;
+
+use source\#namespace#\item\#name#;
+use source\#namespace#\form\#name#Form;
+use source\#namespace#\form\#name#EditForm;
+
+/**
+ * Description of #name#
+ * 
+ *
+ * @author #author#
+ */
+class #name#Controller extends Controller {
+
+    /**
+     * indexAction() show items
+     * @return View $view
+     */
+    public function indexAction() {
+        
+        $item = new #name#();
+        $this->dbmanager->load($item);
+        $items = $this->dbmanager->get();
+        
+        
+        return new View(array(
+            'items' => $items,
+        ));
+    }
+
+    /**
+     * newAction() show form for new item
+     * @return View $view
+     */
+    public function newAction() {
+        
+        $form = new #name#Form();
+        $form->setMethod('post');
+        $form->setAction($this->path('#namelower#_create'));
+        
+        return new View(array(
+            
+        ), array(
+            'form' => $form,
+        ));
+    }
+
+    /**
+     * createAction() save item in database 
+     * @return null
+     */
+    public function createAction(Request $request) {
+
+        if($request->get('post')->form_#namelower#->label == "")
+            throw new VarException("form_#namelower#[label] is null");
+
+        $item = new #name#();
+        $item->setLabel($request->get('post')->form_#namelower#->label);
+        $this->dbmanager->load($item);
+        $this->dbmanager->push();
+
+        $this->redirect($this->path('#namelower#_index'));
+    }
+
+    /**
+     * editAction() show form to edit an item
+     * @return View $view
+     */
+    public function editAction(Request $request, array $args) {
+
+        $this->dbmanager->load(new #name#());
+        $item = $this->dbmanager->getById($args['id']);
+
+        $form = new #namelower#EditForm($item);
+        $form->setMethod('post');
+        $form->setAction($this->path('#namelower#_update', $args['id']));
+        
+        return new View(array(
+
+        ), array(
+            'form' => $form,
+        ));
+    }
+
+    /**
+     * updateAction() update an item in database 
+     * @return null
+     */
+    public function updateAction(Request $request, array $args) {
+
+        if($request->get('post')->form_edit_#namelower#->label == "")
+            throw new VarException("form_edit_#namelower#[label] is null");
+
+        $item = $this->dbmanager->load(new #name#())->getById($args['id']);
+        $item->setLabel($request->get('post')->form_edit_#namelower#->label);
+        $this->dbmanager->load($item)->update($args['id']);
+
+        $this->redirect($this->path('#namelower#_index'));
+    }
+
+    /**
+     * deleteAction() delete an item in database 
+     * @return null
+     */
+    public function deleteAction(Request $request, array $args) {
+
+        if($args['id'] == "")
+            throw new VarException("args[id] is null");
+
+        $item = $this->dbmanager->load(new #name#())->getById($args['id']);
+        $this->dbmanager->load($item)->delete($args['id']);
+
+        $this->redirect($this->path('#namelower#_index'));
+    }
+
+    
+}

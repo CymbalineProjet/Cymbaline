@@ -15,6 +15,13 @@ $view->extend("gen_header", "Generator");
         </div> <!-- /control-group -->
 
         <div class="control-group">
+            <label for="crud_item" class="control-label">CRUD :</label>
+            <div class="controls"> 
+                <input type="checkbox" name="crud_item" id="crud_item" class="" > CRUD&nbsp;&nbsp;
+            </div> <!-- /controls -->               
+        </div> <!-- /control-group -->
+
+        <div class="control-group">
             <label for="path" class="control-label">Path :</label>
             <div class="controls">                         
                 <input type="text" name="path" id="path_item" class="span4" value="{zone}/{box}">
@@ -72,6 +79,21 @@ $view->extend("gen_header", "Generator");
             //$(".attributs").append("test");
             //alert('test');
             return false;
+       });
+
+       $("#crud_item").click(function() {
+            if($(this).is(":checked")) {
+                $("#controller_item").attr("checked",true);
+                $("#form_item").attr("checked",true);
+            } else {
+                $("#controller_item").attr("checked",false);
+                $("#form_item").attr("checked",false);
+            }
+       });
+
+       $("#form_item, #controller_item").click(function() {
+            if( $("#crud_item").is(":checked"))
+                return false;
        });
        
     });

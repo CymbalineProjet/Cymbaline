@@ -1,20 +1,20 @@
 <?php
 
-namespace source\#namespace#\form;
+namespace source\Demo\DemoBox\form;
 
 use core\component\tools\Form;
 
 /**
- * Description of #name#Form
+ * Description of HelloForm
  *
- * @author #author#
+ * @author Jaxx
  */
-class #name#Form extends Form {
+class HelloForm extends Form {
     
     
 
     public function __construct() {
-        $this->setName('form_#name#');
+        $this->setName('form_Hello');
         $this->build();
     }
     

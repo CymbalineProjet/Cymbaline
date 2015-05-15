@@ -33,9 +33,9 @@ class ModeleFileItem extends ModeleFile {
         $i = 0;
         foreach($this->attributs->attr as $attr) {
             if($i != 0) {
-                $attributs .= "    "."private $".$attr.";\n";
+                $attributs .= "\t"."/**\n\t*#type=int#\n\t*#name=attr#\n\t*/\n\tprivate $$attr;\n\n";
             } else {
-                $attributs .= "private $".$attr.";\n";
+                $attributs .= "/**\n\t*#type=int#\n\t*#name=attr#\n\t*/\n\tprivate $$attr;\n\n";
             }
             $i++;
         }
@@ -44,11 +44,44 @@ class ModeleFileItem extends ModeleFile {
         $this->modele = str_replace("#author#", $this->attributs->author, $this->modele);
         $this->modele = str_replace("#namespace#", str_replace(" ","",str_replace("/",'\ ',$this->attributs->path)), $this->modele);
         $this->modele = str_replace("#attribs#", $attributs, $this->modele);
+        $this->modele = str_replace("#getter#",$this->getter(),$this->modele);
+        $this->modele = str_replace("#setter#",$this->setter(),$this->modele);
+
     }
     
     public function save() {
         $file = new File();
         $file->ecrire($this->modele, __DIR__.'/../../../../source/'.$this->attributs->path.'/item/'.$this->attributs->name.'.php');
+    }
+
+    public function getter() {
+        $getter = "";
+        $i = 0;
+        foreach($this->attributs->attr as $attr) {
+            if($i != 0) {
+                $getter .= "\tpublic function get".ucfirst($attr)."() {\n\t\treturn ".'$this'."->$attr;\n\t}\n\n";
+            } else {
+                $getter .= "public function get".ucfirst($attr)."() {\n\t\treturn ".'$this'."->$attr;\n\t}\n\n";
+            }
+            $i++;
+        }
+
+        return $getter;
+    }
+
+    public function setter() {
+        $setter = "";
+        $i = 0;
+        foreach($this->attributs->attr as $attr) {
+            if($i != 0) {
+                $setter .= "\tpublic function set".ucfirst($attr)."($$attr) {\n\t\t".'$this'."->$attr = $$attr;\n\t\treturn ".'$this'."->$attr;\n\t}\n\n";
+            } else {
+                $setter .= "public function set".ucfirst($attr)."($$attr) {\n\t\t".'$this'."->$attr = $$attr;\n\t\treturn ".'$this'."->$attr;\n\t}\n\n";
+            }
+            $i++;
+        }
+
+        return $setter;
     }
     
     

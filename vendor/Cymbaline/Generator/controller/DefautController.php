@@ -13,6 +13,8 @@ use Cymbaline\Generator\item\ModeleFileItem;
 use Cymbaline\Generator\item\ModeleFileController;
 use Cymbaline\Generator\item\ModeleFileService;
 use Cymbaline\Generator\item\ModeleFileForm;
+use Cymbaline\Generator\item\ModeleFileRoute;
+use Cymbaline\Generator\item\ModeleFileTemplate;
 use Cymbaline\Generator\item\Zone;
 use Cymbaline\Generator\item\Box;
 
@@ -72,8 +74,11 @@ class DefautController extends Controller {
         $model = null;
         $service = null;
         $form = null;
+        $route = null;
+        $crud = false;        
         
         if(isset($request->get('post')->name)) {
+
             $model = new ModeleFileItem(array(
                 'name'   => $request->get('post')->name,
                 'attr'   => $request->get('post')->attr_name,
@@ -82,11 +87,31 @@ class DefautController extends Controller {
             ));
 
             if(isset($request->get('post')->controller_item)) {
+                if(isset($request->get('post')->crud_item)) {
+                    $crud = true;
+
+                    new ModeleFileTemplate(array(
+                        'name'   => $request->get('post')->name,
+                        'attr'   => $request->get('post')->attr_name,
+                        'author' => $request->get('post')->author,
+                        'path'   => $request->get('post')->path,
+                    ));
+                    }
+
                 $controller = new ModeleFileController(array(
                     'name'   => $request->get('post')->name,
                     'attr'   => $request->get('post')->attr_name,
                     'author' => $request->get('post')->author,
                     'path'   => $request->get('post')->path,
+                    'crud'   => $crud,
+                ));
+
+                $route = new ModeleFileRoute(array(
+                    'name'   => $request->get('post')->name,
+                    'attr'   => $request->get('post')->attr_name,
+                    'author' => $request->get('post')->author,
+                    'path'   => $request->get('post')->path,
+                    'crud'   => $crud,
                 ));
             }
             
@@ -107,7 +132,7 @@ class DefautController extends Controller {
                     'path'   => $request->get('post')->path,
                 ));
             }
-            
+            die('ok');
             $this->redirect($this->path('generator_add_item'));
         }
         

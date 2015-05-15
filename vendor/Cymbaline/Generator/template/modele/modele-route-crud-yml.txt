@@ -1,0 +1,34 @@
+##namelower# routes
+
+#namelower#_index:
+    path: /#namelower#
+    template: #path#/#template#/index
+    controller: #path#/#name#
+    action: index
+
+#namelower#_new:
+    path: /#namelower#/new
+    template: #path#/#template#/new
+    controller: #path#/#name#
+    action: new
+
+#namelower#_create:
+    path: /#namelower#/create
+    controller: #path#/#name#
+    action: create
+
+#namelower#_edit:
+    path: /#namelower#/edit/int@id
+    template: #path#/#template#/edit
+    controller: #path#/#name#
+    action: edit
+
+#namelower#_update:
+    path: /#namelower#/update/int@id
+    controller: #path#/#name#
+    action: update
+
+#namelower#_delete:
+    path: /#namelower#/delete/int@id
+    controller: #path#/#name#
+    action: delete

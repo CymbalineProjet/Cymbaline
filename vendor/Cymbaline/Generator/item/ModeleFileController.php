@@ -25,7 +25,12 @@ class ModeleFileController extends ModeleFile {
     }
     
     public function load() {
-        $this->modele = file_get_contents(__DIR__."/../template/modele/modele-controller.txt");
+        if($this->attributs->crud) {
+            $this->modele = file_get_contents(__DIR__."/../template/modele/modele-controller-crud.txt");
+        }
+        else {
+            $this->modele = file_get_contents(__DIR__."/../template/modele/modele-controller.txt");
+        }
     }
     
     public function hydrate() {
@@ -42,10 +47,12 @@ class ModeleFileController extends ModeleFile {
         }
         
         $this->modele = str_replace("#name#", $this->attributs->name, $this->modele);
+        $this->modele = str_replace("#namelower#", strtolower($this->attributs->name), $this->modele);
         $this->modele = str_replace("#author#", $this->attributs->author, $this->modele);
         $this->modele = str_replace("#namespace#", str_replace(" ","",str_replace("/",'\ ',$this->attributs->path)), $this->modele);
         $this->modele = str_replace("#namespacev#", str_replace(" ","",str_replace("/",'/ ',$this->attributs->path)), $this->modele);
         $this->modele = str_replace("#attribs#", $attributs, $this->modele);
+
     }
     
     public function save() {

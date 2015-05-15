@@ -5,9 +5,10 @@ namespace Cymbaline\Generator\controller;
 use core\component\tools\View;
 use core\component\Request;
 use core\component\Controller;
+use core\component\dbmanager\SqlCommand;
 
 use Cymbaline\Generator\item\Todo;
-use Cymbaline\Generator\TodoForm;
+use Cymbaline\Generator\form\TodoForm;
 
 /**
  * Description of Todo
@@ -81,6 +82,12 @@ class TodoController extends Controller {
 		$m = $this->getManager();
         $m->load(new Todo());
 		$todos = Todo::HydrateAll($m->get());
+        
+        /*$sqlcommand = new SqlCommand('Cdm/Utilisateur/Utilisateur');
+        $sqlcommand->setSelect("*")
+                   ->setOrderBy('point DESC, username ASC')
+                   ->build();
+        $data = $sqlcommand->execute();*/
 	
         return new View(array(
             'todos' => $todos,

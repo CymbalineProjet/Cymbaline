@@ -21,6 +21,8 @@ class Form {
     private $fields;
     private $labels;
 
+    private $item;
+
 	public function __construct() {
 		$this->fields = array();
         $this->enctype = "";
@@ -503,6 +505,15 @@ class Form {
     
     public function getEnctype() {
         return $this->enctype;
+    }
+
+    public function setItem($item) {
+        $this->item = $item;
+        return $this;
+    }
+
+    public function getItem() {
+        return $this->item;
     }
 	
 	

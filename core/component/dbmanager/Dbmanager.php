@@ -68,6 +68,8 @@ class Dbmanager {
         }
         unset($array_entity['id']);
         $this->entity = $array_entity;
+
+        return $this;
     }
     
     public function push() {
@@ -94,7 +96,7 @@ class Dbmanager {
     
     public function get() {
         $query = new DbQuery($this->class, $this->entity);
-        $all = $query->all();
+        $all = $this->hydrate($query->all(),true);
         
         return $all;
     }
@@ -105,11 +107,10 @@ class Dbmanager {
                 throw new VarException('error getbyid id null or = 0');
             }
             
-            $item = new $this->item();
             $this->entity['id']['value'] = $id;
             $query = new DbQuery($this->class, $this->entity);
             $o = $query->one();
-            $i = $item->hydrate($o);
+            $i = $this->hydrate($o);
             
             return $i;
             
@@ -124,11 +125,10 @@ class Dbmanager {
                 throw new VarException("La variable de la fonction getBy est nulle.");              
             }
 
-            $item = new $this->item();
             $query = new DbQuery($this->class, $this->entity);
             $o = $query->by($attributs);
             if($o) {
-                $i = $item->hydrate($o);
+                $i = $this->hydrate($o);
                 return $i;
             } else {
                 return false;
@@ -146,11 +146,10 @@ class Dbmanager {
                 throw new VarException("La variable de la fonction getBy est nulle.");              
             }
 
-            $item = new $this->item();
             $query = new DbQuery($this->class, $this->entity);
             $o = $query->allby($attributs);
             if($o) {
-                $i = $item->hydrateAll($o);
+                $i = $this->hydrate($o, true);
                 return $i;
             } else {
                 return false;
@@ -160,6 +159,42 @@ class Dbmanager {
             $e->display();  
         } 
         
+    }
+
+    public function hydrate($datas, $all = false) {
+        $item = $this->item;
+
+        if($all) {
+            $stdClass = new \stdClass();
+            
+            foreach($datas as $attr => $value) {
+                
+                foreach($value as $id => $valeur) {
+                    
+                    if(!is_int($id)) {
+                        $stdClass->{$id} = $valeur;
+                    }
+                    
+                }
+                $datas[$attr] = $this->hydrate($stdClass);
+                unset($stdClass);
+                $stdClass = new \stdClass();
+            }
+
+            return $datas;
+
+        } else {
+            $_e = new $item();
+            foreach($datas as $attr => $value) {
+                
+                $attribut = "set".ucfirst($attr);
+                $_e->$attribut($value);
+              
+            }
+
+            return $_e;
+        }        
+
     }
     
     

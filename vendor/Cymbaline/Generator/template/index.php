@@ -87,39 +87,40 @@ $view->extend("gen_header", "Generator"); //toujours etendre le header
                                 
                                 
                                 <h3 style="margin-left:158px;">Database configuration (dev)</h3>
+
                                 <br/>
                                 <div class="control-group">
                                     <label for="host" class="control-label">Hote :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="host" id="host" class="span4" value="<?php echo $view->variables['param']->database[0]->host; ?>">
+                                        <input type="text" name="host" id="host" class="span4" value="<?php echo $view->variables['param']->database->dev->host; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="port" class="control-label">Port :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="port" id="port" class="span4" value="<?php echo $view->variables['param']->database[0]->port; ?>">
+                                        <input type="text" name="port" id="port" class="span4" value="<?php echo $view->variables['param']->database->dev->port; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbname" class="control-label">Nom de la base :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbname" id="dbname" class="span4" value="<?php echo $view->variables['param']->database[0]->dbname; ?>">
+                                        <input type="text" name="dbname" id="dbname" class="span4" value="<?php echo $view->variables['param']->database->dev->dbname; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbuser" class="control-label">Utilisateur :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbuser" id="dbuser" class="span4" value="<?php echo $view->variables['param']->database[0]->dbuser; ?>">
+                                        <input type="text" name="dbuser" id="dbuser" class="span4" value="<?php echo $view->variables['param']->database->dev->dbuser; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbpass" class="control-label">Mot de passe :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbpass" id="dbpass" class="span4" value="<?php echo $view->variables['param']->database[0]->dbpass; ?>">
+                                        <input type="text" name="dbpass" id="dbpass" class="span4" value="<?php echo $view->variables['param']->database->dev->dbpass; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
@@ -129,35 +130,35 @@ $view->extend("gen_header", "Generator"); //toujours etendre le header
                                 <div class="control-group">
                                     <label for="host_prod" class="control-label">Hote :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="host_prod" id="host_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->host; ?>">
+                                        <input type="text" name="host_prod" id="host_prod" class="span4" value="<?php echo $view->variables['param']->database->prod->host; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="port_prod" class="control-label">Port :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="port_prod" id="port_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->port; ?>">
+                                        <input type="text" name="port_prod" id="port_prod" class="span4" value="<?php echo $view->variables['param']->database->prod->port; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbname_prod" class="control-label">Nom de la base :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbname_prod" id="dbname_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->dbname; ?>">
+                                        <input type="text" name="dbname_prod" id="dbname_prod" class="span4" value="<?php echo $view->variables['param']->database->prod->dbname; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbuser_prod" class="control-label">Utilisateur :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbuser_prod" id="dbuser_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->dbuser; ?>">
+                                        <input type="text" name="dbuser_prod" id="dbuser_prod" class="span4" value="<?php echo $view->variables['param']->database->prod->dbuser; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
                                 
                                 <div class="control-group">
                                     <label for="dbpass_prod" class="control-label">Mot de passe :</label>
                                     <div class="controls">                         
-                                        <input type="text" name="dbpass_prod" id="dbpass_prod" class="span4" value="<?php echo $view->variables['param']->database[1]->dbpass; ?>">
+                                        <input type="text" name="dbpass_prod" id="dbpass_prod" class="span4" value="<?php echo $view->variables['param']->database->prod->dbpass; ?>">
                                     </div> <!-- /controls -->				
                                 </div> <!-- /control-group -->
 											
@@ -329,8 +330,7 @@ $view->extend("gen_header", "Generator"); //toujours etendre le header
 
 </div> <!-- /widget -->
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
 
 <script>
     $(document).ready(function() {
