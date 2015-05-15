@@ -25,10 +25,9 @@ class HelloController extends Controller {
      */
     public function indexAction() {
         
-        $item = new Hello();
-        $this->dbmanager->load($item);
-        $items = $this->dbmanager->get();
-        
+        $items = $this->dbmanager
+                      ->load(new Hello()
+                      ->get();
         
         return new View(array(
             'items' => $items,
@@ -63,8 +62,9 @@ class HelloController extends Controller {
 
         $item = new Hello();
         $item->setLabel($request->get('post')->form_hello->label);
-        $this->dbmanager->load($item);
-        $this->dbmanager->push();
+        $this->dbmanager
+             ->load($item)
+             ->push();
 
         $this->redirect($this->path('hello_index'));
     }
@@ -98,9 +98,14 @@ class HelloController extends Controller {
         if($request->get('post')->form_edit_hello->label == "")
             throw new VarException("form_edit_hello[label] is null");
 
-        $item = $this->dbmanager->load(new Hello())->getById($args['id']);
+        $item = $this->dbmanager
+                     ->load(new Hello())
+                     ->getById($args['id']);
         $item->setLabel($request->get('post')->form_edit_hello->label);
-        $this->dbmanager->load($item)->update($args['id']);
+
+        $this->dbmanager
+             ->load($item)
+             ->update($args['id']);
 
         $this->redirect($this->path('hello_index'));
     }
@@ -114,8 +119,13 @@ class HelloController extends Controller {
         if($args['id'] == "")
             throw new VarException("args[id] is null");
 
-        $item = $this->dbmanager->load(new Hello())->getById($args['id']);
-        $this->dbmanager->load($item)->delete($args['id']);
+        $item = $this->dbmanager
+                     ->load(new Hello())
+                     ->getById($args['id']);
+
+        $this->dbmanager
+             ->load($item)
+             ->delete($args['id']);
 
         $this->redirect($this->path('hello_index'));
     }

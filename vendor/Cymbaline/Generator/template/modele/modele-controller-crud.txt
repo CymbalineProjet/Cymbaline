@@ -25,10 +25,9 @@ class #name#Controller extends Controller {
      */
     public function indexAction() {
         
-        $item = new #name#();
-        $this->dbmanager->load($item);
-        $items = $this->dbmanager->get();
-        
+        $items = $this->dbmanager
+                      ->load(new #name#()
+                      ->get();
         
         return new View(array(
             'items' => $items,
@@ -63,8 +62,9 @@ class #name#Controller extends Controller {
 
         $item = new #name#();
         $item->setLabel($request->get('post')->form_#namelower#->label);
-        $this->dbmanager->load($item);
-        $this->dbmanager->push();
+        $this->dbmanager
+             ->load($item)
+             ->push();
 
         $this->redirect($this->path('#namelower#_index'));
     }
@@ -98,9 +98,14 @@ class #name#Controller extends Controller {
         if($request->get('post')->form_edit_#namelower#->label == "")
             throw new VarException("form_edit_#namelower#[label] is null");
 
-        $item = $this->dbmanager->load(new #name#())->getById($args['id']);
+        $item = $this->dbmanager
+                     ->load(new #name#())
+                     ->getById($args['id']);
         $item->setLabel($request->get('post')->form_edit_#namelower#->label);
-        $this->dbmanager->load($item)->update($args['id']);
+
+        $this->dbmanager
+             ->load($item)
+             ->update($args['id']);
 
         $this->redirect($this->path('#namelower#_index'));
     }
@@ -114,8 +119,13 @@ class #name#Controller extends Controller {
         if($args['id'] == "")
             throw new VarException("args[id] is null");
 
-        $item = $this->dbmanager->load(new #name#())->getById($args['id']);
-        $this->dbmanager->load($item)->delete($args['id']);
+        $item = $this->dbmanager
+                     ->load(new #name#())
+                     ->getById($args['id']);
+
+        $this->dbmanager
+             ->load($item)
+             ->delete($args['id']);
 
         $this->redirect($this->path('#namelower#_index'));
     }
