@@ -41,7 +41,14 @@ if(isset($r['ressources'])) {
     $view->ressources = false;
 }
 
-$template = $r["template"];
-
-include("source/".$template.".php");
-exit;
+if(file_exists("source/".$r['template'].".php")) {
+    include("source/".$r['template'].".php");
+    exit;
+} else if(file_exists("vendor/".$r['template'].".php")) {
+    include("vendor/".$r['template'].".php");
+    exit;
+} else {
+    $message = "Aucun template valide pour cette page";
+    throw new TemplateException($message);
+    exit;
+}
