@@ -75,8 +75,9 @@ class HelloController extends Controller {
      */
     public function editAction(Request $request, array $args) {
 
-        $this->dbmanager->load(new Hello());
-        $item = $this->dbmanager->getById($args['id']);
+        $item = $this->dbmanager
+                     ->load(new Hello())
+                     ->getById($args['id']);
 
         $form = new helloEditForm($item);
         $form->setMethod('post');

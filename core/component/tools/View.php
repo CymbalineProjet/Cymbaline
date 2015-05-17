@@ -17,6 +17,7 @@ class View {
     private $template;
     private $path;
     private $baseurl;
+    private $param;
     
     public $variables;
     public $title;
@@ -27,9 +28,15 @@ class View {
         $this->form = $form;
         
         $this->variables = $variables;
-        $param = new Parametrage();
-        $this->baseurl = $param->getBaseUrl();
-        $this->title = $param->getBaseTitle();
+        $this->param = new Parametrage();
+        $this->baseurl = $this->param->getBaseUrl();
+        $this->title = $this->param->getBaseTitle();
+    }
+
+    public function getParam() {
+        $param = $this->param->getParam();
+        unset($param->import);
+        return $param->parameters;
     }
     
     public function is_template() {
@@ -103,18 +110,21 @@ class View {
     }
     
     public function front($path) {
-        /*if(!file_exists(__DIR__."/../../../public/$path")) {
-            if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$path") || !isset($this->ressources)) {
-                throw new \core\component\exception\CoreException("View front link error.");
-            } else {
-                $_path = "/../../../vendor/".$this->ressources."/$path";
-            }
-        } else {
-            $_path = "/../../../public/$path";
-        }*/
         
         $_path = "http://".$_SERVER['HTTP_HOST']."/public/$path";
         
+        if($this->ressources) {
+            if(!file_exists(__DIR__."/../../../source/".$this->ressources."/$path")) {
+                if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$path")) {
+                    throw new \core\component\exception\CoreException("http://".$_SERVER['HTTP_HOST']."/vendor/".$this->ressources."/$path");
+                } else {
+                    $_path = "http://".$_SERVER['HTTP_HOST']."/vendor/".$this->ressources."/$path";
+                }
+            } else {
+                $_path = "http://".$_SERVER['HTTP_HOST']."/source/".$this->ressources."/$path";
+            }
+        }
+
         echo $_path;
     }
     

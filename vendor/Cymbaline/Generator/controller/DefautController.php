@@ -40,7 +40,7 @@ class DefautController extends Controller {
         $form_parameters = new ParametersForm();
         $form_parameters->setMethod('post');
         $form_parameters->setAction($this->path('generator_edit'));
-        $form_parameters->setClass('form-horizontal');
+        $form_parameters->setClass('form-horizontal row-fluid');
 
         return new View(array(
             'error' => $error,
@@ -96,7 +96,7 @@ class DefautController extends Controller {
                         'author' => $request->get('post')->author,
                         'path'   => $request->get('post')->path,
                     ));
-                    }
+                }
 
                 $controller = new ModeleFileController(array(
                     'name'   => $request->get('post')->name,

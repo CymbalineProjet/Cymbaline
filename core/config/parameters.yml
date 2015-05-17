@@ -1,3 +1,6 @@
+import: 
+    - { path: /vendor/Cymbaline/Administration/config/parameters.yml }
+
 parameters:
     env: dev
     baseurl: 
@@ -22,4 +25,5 @@ parameters:
     roles:
         user: *
         admin: admin
-    
+    #tasks:
+        #used: false

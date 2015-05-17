@@ -45,8 +45,16 @@ class Route {
 			$this->_routes = $this->_parser->array;*/
 			$this->path = $url;
 			$this->param = new Parametrage();
+			
             $this->import();
 
+            //on load les prefix
+			foreach($this->_routes as $route => $args) {  
+                if(isset($args['prefix'])) {
+                    $this->_routes[$route]['path'] = $args['prefix'].$args['path'];
+
+                }
+            } 
            
 		} catch (RouteException $e) {
 			$e->display();
@@ -60,6 +68,7 @@ class Route {
             if($route == $name) {        
                 if(is_null($arg)) {
                   $path = $this->param->getBaseUrl().$args['path'];  
+                  
                 } else {
                     $explode = explode("/",$args['path']);                  
                     unset($explode[0]);
@@ -79,6 +88,7 @@ class Route {
     public function import() {
        
         try {
+
             $yml = file_get_contents(__DIR__."/../../core/config/import.yml");
             $yaml = new YamlParser();
             $arraytoobject = new ArrayToObject($yaml->load($yml),TRUE);
@@ -88,10 +98,11 @@ class Route {
 
             if($import != "") {
                 foreach($import->import as $file) {
+                	
                     $yml = file_get_contents(__DIR__."/../..".$file->path);
                     $yaml = new YamlParser();
                     $routes = $yaml->load($yml);
-                    
+
                     $this->_routes = array_merge((array)$this->_routes, (array)$routes);
                     
                 }
@@ -115,6 +126,8 @@ class Route {
 	*/
 	public function load() {
 		try {
+
+			
             
 			if($this->path == NULL) {
 				throw new RouteException("Path null. Impossible de charger la route.");

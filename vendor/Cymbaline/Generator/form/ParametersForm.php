@@ -21,21 +21,21 @@ class ParametersForm extends Form {
     public function build() {        
         
         $this->add('baseurl', 'text', array(
-            "class" => "span4",
+            "class" => "span8",
         ), array(
             "value" => "Base url",
             "class"    => "control-label",
         ));
         
         $this->add('basetitle','text', array(
-            "class" => "span4",          
+            "class" => "span8",          
         ), array(
             "value" => "Titre par d&eacute;faut",
             "class"    => "control-label",
         ));
         
         $this->add('controllerdefault','text', array(
-            "class" => "span4",          
+            "class" => "span8",          
         ), array(
             "value" => "Controller par d&eacute;faut",
             "class"    => "control-label",

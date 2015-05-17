@@ -29,10 +29,48 @@ class Parametrage {
             $yaml = new YamlParser($xml); 
             $arraytoobject = new ArrayToObject($yaml->load($yml),TRUE);
             $this->_param = $arraytoobject->convert();
+
+            if(isset($this->_param->import)) {
+                $this->_param->parameters = null;
+                $this->import();
+            }
+
+            $arraytoobject = new ArrayToObject($yaml->load($yml),TRUE);
+            $o = $arraytoobject->convert();
+
+            $this->_param->parameters = array_merge((array)$this->_param->parameters, (array)$o->parameters);
+
         } catch(CoreException $e) {
             $e->display();
         }
         
+    }
+
+    public function import() {
+       
+        try {
+
+            foreach ($this->_param->import as $file) {
+                $yml = file_get_contents(__DIR__."/../..".$file->path);
+                $yaml = new YamlParser();
+                $param = $yaml->load($yml);
+
+                
+                $arraytoobject = new ArrayToObject((array)$param['parameters'],TRUE);
+                $o = $arraytoobject->convert();
+              
+                if(is_null($this->_param->parameters)) {
+                    $this->_param->parameters = $o;
+                } else {
+                    $this->_param->parameters = array_merge((array)$this->_param->parameters, (array)$o);
+                }
+                
+                //$this->_param->parameters = array_replace($this->_param->parameters, (array)$o);
+            }
+                
+        } catch (RouteException $e) {
+            $e->display();
+        }
     }
     
     /**
@@ -93,6 +131,8 @@ class Parametrage {
     }
     
     public function getParam() {
+        $arraytoobject = new ArrayToObject($this->_param,TRUE);
+        $this->_param = $arraytoobject->convert();
         return $this->_param;
     }
     
