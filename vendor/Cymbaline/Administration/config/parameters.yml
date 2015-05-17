@@ -1,0 +1,12 @@
+parameters:
+	tasks:
+		used: true
+		database : use_parent_db #or use_db
+
+		#if database = use_db
+		db:
+		    host: ~
+            port: ~
+            dbname: ~
+            dbuser: ~
+            dbpass: ~
