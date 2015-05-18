@@ -6,6 +6,8 @@ use core\component\Parametrage;
 use core\component\Route;
 use core\component\Session;
 
+use core\component\exception\VarException;
+
 /**
  * Description of View
  *
@@ -18,6 +20,7 @@ class View {
     private $path;
     private $baseurl;
     private $param;
+    private $tools;
     
     public $variables;
     public $title;
@@ -31,6 +34,38 @@ class View {
         $this->param = new Parametrage();
         $this->baseurl = $this->param->getBaseUrl();
         $this->title = $this->param->getBaseTitle();
+
+        $this->loadTools();
+    }
+
+    public function loadTools() {
+        
+        $files = scandir(__DIR__);
+        unset($files[0]);
+        unset($files[1]);
+        unset($files[6]);
+
+        foreach ($files as $value) {
+            $v = explode(".",$value);
+            $class = $v[0];
+            $c = str_replace(" ","",'core\component\tools\ '.$class);
+            
+            $this->tools[$v[0]] = $c;
+        }
+          
+    }
+
+    public function tool($name) {
+        if(is_null($name))
+            throw new VarException("$view->tool(name) name is null");
+
+        if(!isset($this->tools[$name]))
+            throw new VarException("$view->tool(name) $name is not a tool");
+
+        $tool = $this->tools[$name];
+
+        return  new $tool();
+
     }
 
     public function getParam() {

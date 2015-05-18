@@ -9,9 +9,23 @@ namespace core\component\tools;
  */
 class Date extends \DateTime {
     
+    public function _new($date = "") {
+        return new Date($date);
+    }
     
-    public function affiche() {
-        return $this->_translate_day()." ".$this->format('d')." ".$this->_translate_month(). " ".$this->format('Y');
+    public function affiche($format = "full") {
+        switch ($format) {
+            case 'full':
+                return $this->_translate_day()." ".$this->format('d')." ".$this->_translate_month(). " ".$this->format('Y');
+                break;
+
+            case 'numeric':
+                return $this->format('d')."/".$this->format('m'). "/".$this->format('Y');
+                break;
+            
+           
+        }
+        
     }
     
     public function _translate_day($day = null) {

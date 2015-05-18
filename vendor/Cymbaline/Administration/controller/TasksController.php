@@ -89,12 +89,6 @@ class TasksController extends Controller {
                       ->load(new Tasks())
                       ->get();
         
-        /*$sqlcommand = new SqlCommand('Cdm/Utilisateur/Utilisateur');
-        $sqlcommand->setSelect("*")
-                   ->setOrderBy('point DESC, username ASC')
-                   ->build();
-        $data = $sqlcommand->execute();*/
-    
         return new View(array(
             'tasks' => $tasks,
         ));
@@ -109,6 +103,7 @@ class TasksController extends Controller {
         $form = new TasksForm();
         $form->setMethod("post");
         $form->setAction($this->path("tasks_new"));
+        $form->setClass('form-horizontal row-fluid');
         
         if(isset($request->get('post')->form_tasks)) {
             $flag = 0;
@@ -118,8 +113,8 @@ class TasksController extends Controller {
             $task = new Tasks();
             $task->setFlag($flag);
             $task->setContent($request->get('post')->form_tasks->content);
-            $m->load($task);
-            $m->push();
+            $this->dbmanager->load($task);
+            $this->dbmanager->push();
             
             $this->redirect($this->path('tasks_new'));
         }
