@@ -10,9 +10,15 @@ use core\component\parser\YamlParser;
  *
  * @author Thibault Jeannet
  */
-class PDOConfig  { 
+class PDOConfig  {
 
+    /**
+     * @var stdClass
+     */
     private $_param;
+    /**
+     * @var PDO
+     */
     private $_pdo;
     
     public function __construct(){ 

@@ -26,7 +26,7 @@ class HelloController extends Controller {
     public function indexAction() {
         
         $items = $this->dbmanager
-                      ->load(new Hello()
+                      ->load(new Hello())
                       ->get();
         
         return new View(array(

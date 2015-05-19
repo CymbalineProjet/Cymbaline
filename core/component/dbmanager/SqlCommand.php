@@ -12,17 +12,50 @@ use core\component\tools\ArrayToObject;
  * @author Thibault
  */
 class SqlCommand {
-    
+
+    /**
+     * @var String
+     */
     private $class;
+    /**
+     * @var String
+     */
     private $query;
+    /**
+     * @var String
+     */
     private $select;
+    /**
+     * @var String
+     */
     private $from;
+    /**
+     * @var String
+     */
     private $_from;
+    /**
+     * @var String
+     */
     private $where;
+    /**
+     * @var String
+     */
     private $orderby;
+    /**
+     * @var String
+     */
     private $order;
+    /**
+     * @var String
+     */
     private $groupby;
+    /**
+     * @var String
+     */
     private $having;
+    /**
+     * @var String
+     */
     private $subquery;
     
     public function __construct($class) {

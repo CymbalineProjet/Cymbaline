@@ -11,15 +11,28 @@ use core\component\exception\PDOException;
  * @author Thibault
  */
 class DbQuery extends Dbmanager {
-    
+
+    /**
+     * @var String
+     */
     private $class;
+    /**
+     * @var Array
+     */
     private $entity;
+    /**
+     * @var String
+     */
     private $query;
-    private $error;
+    /**
+     * @var String
+     */
+    private $order;
     
-    public function __construct($class, array $entity) {
+    public function __construct($class, array $entity, $order = NULL) {
         $this->class = $class;
         $this->entity = $entity;
+        $this->order = $order;
     }
     
     public function save() {
@@ -80,7 +93,12 @@ class DbQuery extends Dbmanager {
     public function all() {
         try {
             $class = strtolower($this->class);
-            $this->query = "SELECT * FROM $class";
+
+            if(!is_null($this->order))
+                $this->query = "SELECT * FROM $class ".$this->order;
+            else
+                $this->query = "SELECT * FROM $class";
+
             $connexion = new PDOConfig();
             $query = $connexion->getPdo()->prepare($this->query);
             $query->execute();

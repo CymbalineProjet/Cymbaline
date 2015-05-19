@@ -11,7 +11,7 @@ use Cymbaline\Administration\item\Tasks;
 use Cymbaline\Administration\form\TasksForm;
 
 /**
- * Description of Todo
+ * Description of Tasks
  * 
  *
  * @author Thibault
@@ -31,7 +31,8 @@ class TasksController extends Controller {
 
         $t->setFlag(1);
 
-        $task = $m->dbmanager
+
+        $task = $this->dbmanager
                   ->load($t)
                   ->update($args['id']);
         
@@ -39,29 +40,10 @@ class TasksController extends Controller {
         
     }
     
-    /**
-     * openAction() open a todo
-     * @return redirect
-     */
-    public function openAction(Request $request, array $args) {
-        
-        $t = $this->dbmanager
-                  ->load(new Tasks())
-                  ->getById($args['id']);
 
-        
-        $t->setFlag(0);
-
-        $task = $this->dbmanager
-                     ->load($t)
-                     ->update($args['id']);
-      
-        
-        $this->redirect($this->path('tasks'));
-    }
     
     /**
-     * deleteAction() delete a todo
+     * deleteAction() delete a tasks
      * @return redirect
      */
     public function deleteAction(Request $request, array $args) {
@@ -70,11 +52,9 @@ class TasksController extends Controller {
                   ->load(new Tasks())
                   ->getById($args['id']);
 
-        $t->setFlag(1);
-        
-        $task = $this->dbmanager
-                     ->load($t)
-                     ->delete($args['id']);
+        $this->dbmanager
+             ->load($t)
+             ->delete($args['id']);
         
         $this->redirect($this->path('tasks'));
     }
@@ -87,7 +67,10 @@ class TasksController extends Controller {
     
         $tasks = $this->dbmanager
                       ->load(new Tasks())
+                      ->setOrder("ORDER BY date DESC")
                       ->get();
+
+
         
         return new View(array(
             'tasks' => $tasks,
@@ -116,7 +99,7 @@ class TasksController extends Controller {
             $this->dbmanager->load($task);
             $this->dbmanager->push();
             
-            $this->redirect($this->path('tasks_new'));
+            $this->redirect($this->path('tasks'));
         }
     
         return new View(array(
@@ -124,5 +107,25 @@ class TasksController extends Controller {
         ),array(
             'form' => $form,
         ));
+    }
+
+    /**
+     * @param Request $request
+     * @param array $args
+     */
+    public function updateAction(Request $request, array $args) {
+
+        $item = $this->dbmanager
+            ->load(new Tasks())
+            ->getById($args['id']);
+
+        $item->setFlag(1);
+
+        $this->dbmanager
+            ->load($item)
+            ->update($args['id']);
+
+        $this->redirect($this->path('tasks'));
+
     }
 }

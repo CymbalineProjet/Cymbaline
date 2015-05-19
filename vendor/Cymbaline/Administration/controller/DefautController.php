@@ -30,5 +30,25 @@ class DefautController extends Controller {
             'test'  => $test,
         ));
     }
+
+    /**
+     * @param Request $request
+     * @param $args
+     */
+    public function viewAction(Request $request, $args) {
+
+        $pos = strpos($args['path'], ":");
+        if($pos === false) {
+            $path = str_replace("{","",str_replace("}","",$args['path']));
+            //echo $this->path($path);
+            $this->redirect($this->path($path));
+        } else {
+            $path = str_replace("{","",str_replace("}","",$args['path']));
+            $a = explode(":",$path);
+            //echo $this->path($a[0],$a[1]);
+            $this->redirect($this->path($a[0],$a[1]));
+        }
+
+    }
     
 }

@@ -8,7 +8,12 @@ namespace core\component\tools;
  * @author Thibault
  */
 class Date extends \DateTime {
-    
+
+    /**
+     * @param string $date
+     * @var Date
+     * @return Date
+     */
     public function _new($date = "") {
         return new Date($date);
     }

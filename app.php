@@ -7,6 +7,7 @@ use core\component\Parametrage;
 use core\component\Controller;
 use core\component\Session;
 use core\component\Route;
+use core\component\tools\View;
 
 //ajout pour authentification des membres
 use source\User\SecurityBox\item\Authentification;
@@ -67,11 +68,12 @@ if($session->_is_register("user")) {
 
 
 $r = $route->load();
+
 $controller = $app->load($r['controller']);
 
 $controller->init($session, $param, $request);
 $action = $r['action']."Action";
-
+$view = new View(null);
 if(isset($r['args'])) {
     $view = $controller->$action($request,$r['args']);
 } else {

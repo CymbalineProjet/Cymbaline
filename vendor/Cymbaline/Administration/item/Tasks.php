@@ -4,7 +4,7 @@ namespace Cymbaline\Administration\item;
 
 
 /**
- * Description of Todo
+ * Description of Tasks
  * 
  *
  * @author Thibault Jaxx Floyd Jeannet thibault.jeannet@gmail.com
@@ -60,7 +60,7 @@ class Tasks {
      * Set content
      *
      * @param string $content
-     * @return Todo
+     * @return Tasks
      */
     public function setContent($content)
     {
@@ -83,7 +83,7 @@ class Tasks {
      * Set flag
      *
      * @param bool $flag
-     * @return Todo
+     * @return Tasks
      */
     public function setFlag($flag)
     {
@@ -106,7 +106,7 @@ class Tasks {
      * Set date
      *
      * @param mixed $date
-     * @return Matchs
+     * @return Date
      */
     public function setDate($date)
     {

@@ -50,11 +50,11 @@ $view->extend("administration_header", "Administration");
 										</tr>
 										<?php foreach ($view->variables['tasks'] as $task) {
 											$date = $view->tool('Date')->_new($task->getDate())->affiche('numeric');// new \DateTime($task->getDate());
-											
+
 											if(!$task->getFlag()) { 
 										 ?>
 
-											<tr class="task">
+											<tr class="task" rel="<?php echo $task->getId(); ?>">
 											<td class="cell-icon"><i class="icon-checker high"></i></td>
 											<td class="cell-title"><div><?php echo $task->getContent(); ?></div></td>
 											<td class="cell-status hidden-phone hidden-tablet"><b class="due">Missed</b></td>
@@ -64,7 +64,7 @@ $view->extend("administration_header", "Administration");
 										<?php 
 											} else { ?>
 
-											<tr class="task resolved">
+											<tr class="task resolved" rel="<?php echo $task->getId(); ?>">
 											<td class="cell-icon"><i class="icon-checker high"></i></td>
 											<td class="cell-title"><div><?php echo $task->getContent(); ?></div></td>
 											<td class="cell-status hidden-phone hidden-tablet"></td>
@@ -79,10 +79,16 @@ $view->extend("administration_header", "Administration");
 									</tbody>
 								</table>
 
+                                <div id="dialog-confirm" title="Que faire ?" style="display: none;">
+                                    <p>Choisissez l'action suviante :</p>
+                                </div>
+
 
 							</div>
 							<div class="module-foot">
 							</div>
+
+
 						</div>
 
 						
@@ -92,6 +98,58 @@ $view->extend("administration_header", "Administration");
 			</div>
 		</div><!--/.container-->
 	</div><!--/.wrapper-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script>
+    $(document).ready(function() {
+
+
+
+        $('.task').click(function(e) {
+            var url;
+            var id = $(this).attr('rel');
+            if(!$(this).hasClass('resolved')) {
+                e.preventDefault();
+                $("#dialog-confirm").dialog({
+                    resizable: false,
+                    height: 150,
+                    modal: false,
+                    buttons: {
+                        "Done": function () {
+                            url = view.link('tasks_update',id);
+                            view.execute();
+                            $(this).dialog("close");
+                        },
+                        "Delete": function () {
+                            url = view.link('tasks_delete',id);
+                            view.execute();
+                            $(this).dialog("close");
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            } else {
+                e.preventDefault();
+                $("#dialog-confirm").dialog({
+                    resizable: false,
+                    height: 150,
+                    modal: false,
+                    buttons: {
+                        "Delete": function () {
+                            url = view.link('tasks_delete',id);
+                            view.execute();
+                            $(this).dialog("close");
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
 
 <?php
 $view->extend("administration_footer", "");

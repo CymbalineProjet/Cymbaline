@@ -15,3 +15,8 @@ documentation:
     template: Documentation/index
     controller: Documentation/Defaut
     action: index
+
+view:
+    path: /view/get/path/string@path
+    controller: Cymbaline/Administration/Defaut
+    action: view

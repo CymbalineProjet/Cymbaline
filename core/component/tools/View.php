@@ -14,16 +14,39 @@ use core\component\exception\VarException;
  * @author Thibault
  */
 class View {
-    //put your code here
-    
+
+    /**
+     * @var String
+     */
     private $template;
+    /**
+     * @var String
+     */
     private $path;
+    /**
+     * @var String
+     */
     private $baseurl;
+    /**
+     * @var Parametrage
+     */
     private $param;
+    /**
+     * @var Object
+     */
     private $tools;
-    
+
+    /**
+     * @var Array
+     */
     public $variables;
+    /**
+     * @var String
+     */
     public $title;
+    /**
+     * @var Array
+     */
     public $form;
 
     public function __construct(array $variables, array $form = NULL, $template = NULL) {
@@ -144,11 +167,11 @@ class View {
         return $path;
     }
     
-    public function front($path) {
+    public function front($path,$ressources = true) {
         
         $_path = "http://".$_SERVER['HTTP_HOST']."/public/$path";
         
-        if($this->ressources) {
+        if($this->ressources && $ressources) {
             if(!file_exists(__DIR__."/../../../source/".$this->ressources."/$path")) {
                 if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$path")) {
                     throw new \core\component\exception\CoreException("http://".$_SERVER['HTTP_HOST']."/vendor/".$this->ressources."/$path");

@@ -18,22 +18,41 @@ use Cymbaline\Utils\Utils;
  * @author tjeannet
  */
 class Controller {
-    
+
+    /**
+     * @var $_POST
+     */
     public $post;
+    /**
+     * @var $_GET
+     */
     private $get;
+    /**
+     * @var Session
+     */
     private $session;
+    /**
+     * @var Parametrage
+     */
     private $parametre;
-    private $role;
-    public  $retour;
+    /**
+     * @var Dbmanager
+     */
     public $dbmanager;
+    /**
+     * @var Request
+     */
     public $request;
+    /**
+     * @var Utils
+     */
     public $utils;
+
     
     public function init($requestSession, Parametrage $param, Request $request) {
         
         $this->session = $requestSession;
         $this->parametre = $param;
-        $this->retour = new \stdClass();
         //$this->role = $this->registerRole();
         $this->dbmanager = new Dbmanager();
         $this->request = $request;
@@ -43,6 +62,36 @@ class Controller {
     
     public function getManager() {
         return $this->dbmanager;
+    }
+
+    /**
+     * Class casting
+     *
+     * @param string|object $destination
+     * @param object $sourceObject
+     * @return object
+     */
+    function cast($destination, $sourceObject)
+    {
+        if (is_string($destination)) {
+            $destination = new $destination();
+        }
+        $sourceReflection = new ReflectionObject($sourceObject);
+        $destinationReflection = new ReflectionObject($destination);
+        $sourceProperties = $sourceReflection->getProperties();
+        foreach ($sourceProperties as $sourceProperty) {
+            $sourceProperty->setAccessible(true);
+            $name = $sourceProperty->getName();
+            $value = $sourceProperty->getValue($sourceObject);
+            if ($destinationReflection->hasProperty($name)) {
+                $propDest = $destinationReflection->getProperty($name);
+                $propDest->setAccessible(true);
+                $propDest->setValue($destination,$value);
+            } else {
+                $destination->$name = $value;
+            }
+        }
+        return $destination;
     }
     
     public function get($service = null) {

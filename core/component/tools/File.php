@@ -8,7 +8,9 @@ namespace core\component\tools;
  * @author Thibault
  */
 class File {
-    
+    /**
+     * @var String
+     */
     private $file;
     
     public function __construct($file = NULL) {

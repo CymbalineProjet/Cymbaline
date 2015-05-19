@@ -155,6 +155,8 @@ class Route {
                     }
                 }
             }
+
+
             
 			foreach($this->_routes as $route => $args) {
                     
@@ -170,13 +172,16 @@ class Route {
                     if($nbre_arg == 1) {
                         
                         $n = sizeof($url);
+                        $egal = true;
                         for($y=0;$y<=$n-2;$y++) {
+
                             if($url[$y] == $r[$y+1]) {
-                                $egal = true;
+
                             } else {
                                 $egal = false;
                             }
                         }
+
                         if($egal) {
                             $posaro = strpos(end($r),"@");
                             $end_r = substr(end($r), $posaro);
@@ -184,6 +189,7 @@ class Route {
                             $_args[$end_r] = end($url);
                             $idroute = $route;
                             $this->_routes[$route]['args'] = $_args;
+
                             break;
                         }
                     } else if($nbre_arg != 0) {

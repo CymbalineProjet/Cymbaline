@@ -13,19 +13,34 @@ use core\component\parser\CommentParser;
  * @author Thibault
  */
 class Dbmanager {
-    
+
+    /**
+     * @var Item
+     */
     private $entity;
+    /**
+     * @var String
+     */
     private $class;
+    /**
+     * @var String
+     */
     private $item;
+
+    /**
+     * @var String
+     */
+    private $order;
 
     
     public function __construct() {
-
+        $this->order = NULL;
     }
+
     
     public function load($entity) {
         $class = get_class($entity);
-        $pos = strpos($class, "\item");
+        $pos = strpos($class, '\item');
         $this->class = substr($class, $pos+6);  
 
         $this->item = $class;
@@ -73,7 +88,7 @@ class Dbmanager {
     }
     
     public function push() {
-        $query = new DbQuery($this->class, $this->entity);
+        $query = new DbQuery($this->class, $this->entity,$this->order);
         $query->save();
     }
     
@@ -81,7 +96,7 @@ class Dbmanager {
         $this->entity['id']['value'] = $id;
         $this->entity['id']['type'] = "int";
         //var_dump($this->entity);
-        $query = new DbQuery($this->class, $this->entity);
+        $query = new DbQuery($this->class, $this->entity,$this->order);
         $query->_update();
         return $this->getById($id);
     }
@@ -90,17 +105,21 @@ class Dbmanager {
         $this->entity['id']['value'] = $id;
         $this->entity['id']['type'] = "int";
         //var_dump($this->entity);
-        $query = new DbQuery($this->class, $this->entity);
+        $query = new DbQuery($this->class, $this->entity,$this->order);
         $query->_delete();
     }
     
     public function get() {
-        $query = new DbQuery($this->class, $this->entity);
+        $query = new DbQuery($this->class, $this->entity,$this->order);
         $all = $this->hydrate($query->all(),true);
         
         return $all;
     }
-    
+
+    /**
+     * @param $id
+     * @return Item
+     */
     public function getById($id) {
         try {
             if($id == 0 or $id == NULL) {
@@ -108,7 +127,7 @@ class Dbmanager {
             }
             
             $this->entity['id']['value'] = $id;
-            $query = new DbQuery($this->class, $this->entity);
+            $query = new DbQuery($this->class, $this->entity,$this->order);
             $o = $query->one();
             $i = $this->hydrate($o);
             
@@ -125,7 +144,7 @@ class Dbmanager {
                 throw new VarException("La variable de la fonction getBy est nulle.");              
             }
 
-            $query = new DbQuery($this->class, $this->entity);
+            $query = new DbQuery($this->class, $this->entity,$this->order);
             $o = $query->by($attributs);
             if($o) {
                 $i = $this->hydrate($o);
@@ -146,7 +165,7 @@ class Dbmanager {
                 throw new VarException("La variable de la fonction getBy est nulle.");              
             }
 
-            $query = new DbQuery($this->class, $this->entity);
+            $query = new DbQuery($this->class, $this->entity,$this->order);
             $o = $query->allby($attributs);
             if($o) {
                 $i = $this->hydrate($o, true);
@@ -196,6 +215,18 @@ class Dbmanager {
         }        
 
     }
-    
+
+    /**
+     * @param $order
+     * @return Dbmanager
+     */
+    public function setOrder($order) {
+        $this->order = $order;
+        return $this;
+    }
+
+    public function getOrder() {
+        return $this->order;
+    }
     
 }

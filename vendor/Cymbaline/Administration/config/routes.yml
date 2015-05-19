@@ -21,3 +21,15 @@ tasks_new:
     action: new
     ressources: Cymbaline/Administration/ressources
     prefix: /administration
+
+tasks_update:
+    path: /tasks/update/int@id
+    controller: Cymbaline/Administration/Tasks
+    action: update
+    prefix: /administration
+
+tasks_delete:
+    path: /tasks/delete/int@id
+    controller: Cymbaline/Administration/Tasks
+    action: delete
+    prefix: /administration

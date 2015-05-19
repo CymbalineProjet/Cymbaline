@@ -11,6 +11,14 @@
         <link type="text/css" href="<?php $view->front('images/icons/css/font-awesome.css'); ?>" rel="stylesheet">
         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
             rel='stylesheet'>
+
+        <script src="<?php $view->front('scripts/jquery-1.9.1.min.js'); ?>" type="text/javascript"></script>
+        <script src="<?php $view->front('scripts/jquery-ui-1.10.1.custom.min.js'); ?>" type="text/javascript"></script>
+        <script src="<?php $view->front('bootstrap/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
+        <script src="<?php $view->front('scripts/flot/jquery.flot.js'); ?>" type="text/javascript"></script>
+        <script src="<?php $view->front('js/function/view.js',false); ?>" type="text/javascript"></script>
+
+
     </head>
     <body>
 

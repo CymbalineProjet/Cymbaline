@@ -11,16 +11,42 @@ use core\component\tools\ArrayToObject;
  */
 class Form {
 
+    /**
+     * @var String
+     */
     private $method;
+    /**
+     * @var String
+     */
     private $action;
+    /**
+     * @var String
+     */
     private $name;
+    /**
+     * @var String
+     */
     private $class;
+    /**
+     * @var String
+     */
     private $enctype;
-    
+    /**
+     * @var String
+     */
     private $attr;
+    /**
+     * @var Array
+     */
     private $fields;
+    /**
+     * @var Array
+     */
     private $labels;
 
+    /**
+     * @var Item
+     */
     private $item;
 
 	public function __construct() {

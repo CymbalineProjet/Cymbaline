@@ -8,13 +8,34 @@ namespace core\component\tools;
  */
 class Upload
 {
-	private $Fichier        ='';
-	private $Nom            ='';
-	private $Type           ='';
-	private $Repertoire     ='';
-	private $Temp           ='';
-	private $TypesValides   = array();
-	private $Erreur         ='';
+    /**
+     * @var String
+     */
+    private $Fichier        ='';
+    /**
+     * @var String
+     */
+    private $Nom            ='';
+    /**
+     * @var String
+     */
+    private $Type           ='';
+    /**
+     * @var String
+     */
+    private $Repertoire     ='';
+    /**
+     * @var String
+     */
+    private $Temp           ='';
+    /**
+     * @var Array
+     */
+    private $TypesValides   = array();
+    /**
+     * @var String
+     */
+    private $Erreur         ='';
 
 
 	public function __construct($Fichier) {
