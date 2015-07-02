@@ -12,27 +12,47 @@ use core\component\Session;
  * @author Thibault
  */
 class Service {
-    
+
+    /**
+     * @var Dbmanager
+     */
     private $manager;
+    /**
+     * @var String
+     */
     private $name;
     
     public function __construct() {
         $this->manager = new Dbmanager();
     }
-    
+
+    /**
+     * @return Dbmanager
+     */
     public function getManager() {
         return $this->manager;
     }
-    
+
+    /**
+     * @return String
+     */
     public function getName() {
         return $this->name;
     }
-    
+
+    /**
+     * @param $name
+     * @return TasksService
+     */
     public function setName($name) {
         $this->name = $name;
         return $this;
     }
-    
+
+    /**
+     * @param $service
+     * @return mixed
+     */
     public function get($service) {
         try {
             
@@ -52,7 +72,10 @@ class Service {
         }
         
     }
-    
+
+    /**
+     * @return Session
+     */
     public function getSession() {
        return new Session();        
     }

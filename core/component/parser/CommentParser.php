@@ -59,5 +59,70 @@ class CommentParser {
         
         return $this->attributs;
     }
+
+    /**
+     * @return mixed
+     */
+    public function parseDBManager() {
+        $explode = explode("*", $this->comment);
+
+        foreach($explode as $id => $comment) {
+            $pos = strpos($comment, "DBManager");
+            if($pos === false) {
+                unset($explode[$id]);
+            }
+        }
+
+        $dbcomment = end($explode);
+        $dbcomment = str_replace("*","",$dbcomment);
+        $dbcomment = str_replace("/","",$dbcomment);
+        $dbcomment = str_replace("DBManager","",$dbcomment);
+        $dbcomment = str_replace("(","",$dbcomment);
+        $dbcomment = str_replace(")","",$dbcomment);
+        $dbcomment = trim($dbcomment);
+
+        $com = explode(";", $dbcomment);
+        foreach($com as $attr) {
+            $c = explode("=", $attr);
+            $array_return["$c[0]"] = $c[1];
+        }
+
+        $array = new ArrayToObject($array_return);
+        $this->attributs = $array->convert();
+
+
+        return $this->attributs;
+    }
+
+    public function parseForm() {
+        $explode = explode("*", $this->comment);
+
+        foreach($explode as $id => $comment) {
+            $pos = strpos($comment, "Form");
+            if($pos === false) {
+                unset($explode[$id]);
+            }
+        }
+
+        $dbcomment = end($explode);
+        $dbcomment = str_replace("*","",$dbcomment);
+        $dbcomment = str_replace("/","",$dbcomment);
+        $dbcomment = str_replace("DBManager","",$dbcomment);
+        $dbcomment = str_replace("(","",$dbcomment);
+        $dbcomment = str_replace(")","",$dbcomment);
+        $dbcomment = trim($dbcomment);
+
+        $com = explode(";", $dbcomment);
+        foreach($com as $attr) {
+            $c = explode("=", $attr);
+            $array_return["$c[0]"] = $c[1];
+        }
+
+        $array = new ArrayToObject($array_return);
+        $this->attributs = $array->convert();
+
+
+        return $this->attributs;
+    }
     
 }

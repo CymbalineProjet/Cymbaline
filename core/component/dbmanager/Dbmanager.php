@@ -52,7 +52,7 @@ class Dbmanager {
             $property->setAccessible(true);
             $array_entity[$property->getName()]['value'] = $property->getValue($entity);
             $comment->setComment($property->getDocComment());
-            $comments = $comment->parse();
+            $comments = $comment->parseDBManager();
             
             if($comments != NULL) {
                 $array_entity[$property->getName()]['type'] = $comments->type;

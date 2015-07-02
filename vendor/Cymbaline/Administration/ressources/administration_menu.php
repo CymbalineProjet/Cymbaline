@@ -41,7 +41,7 @@
 				<a href="<?php echo $view->link('tasks'); ?>">
 					<i class="menu-icon icon-tasks"></i>
 					Tasks
-					<b class="label orange pull-right">19</b>
+					<b class="label orange pull-right" id="nbreTasks">19</b>
 				</a>
 			</li>
 			<?php } ?>

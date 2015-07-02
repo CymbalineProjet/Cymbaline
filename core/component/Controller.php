@@ -2,31 +2,18 @@
 
 namespace core\component;
 
-use core\component\Parametrage;
+
 use core\component\dbmanager\Dbmanager;
-use core\component\Route;
-use core\component\Service;
 use core\component\exception\CoreException;
-use core\component\Session;
-use Cymbaline\Utils\Utils;
 
 
 /**
- * Le Controler permet la gestion des données en fonction de la page
- * Le Controler retournera un tableau des données utiles à  l'affichage
- *
- * @author tjeannet
+ * Class Controller
+ * @package core\component
+ * @author Thibault Jeannet
  */
 class Controller {
 
-    /**
-     * @var $_POST
-     */
-    public $post;
-    /**
-     * @var $_GET
-     */
-    private $get;
     /**
      * @var Session
      */
@@ -43,57 +30,28 @@ class Controller {
      * @var Request
      */
     public $request;
-    /**
-     * @var Utils
-     */
-    public $utils;
 
     
     public function init($requestSession, Parametrage $param, Request $request) {
         
         $this->session = $requestSession;
         $this->parametre = $param;
-        //$this->role = $this->registerRole();
         $this->dbmanager = new Dbmanager();
         $this->request = $request;
-        $this->utils = new Utils();
         
     }
-    
+
+    /**
+     * @return Dbmanager
+     */
     public function getManager() {
         return $this->dbmanager;
     }
 
     /**
-     * Class casting
-     *
-     * @param string|object $destination
-     * @param object $sourceObject
-     * @return object
+     * @param null $service
+     * @return mixed $service
      */
-    function cast($destination, $sourceObject)
-    {
-        if (is_string($destination)) {
-            $destination = new $destination();
-        }
-        $sourceReflection = new ReflectionObject($sourceObject);
-        $destinationReflection = new ReflectionObject($destination);
-        $sourceProperties = $sourceReflection->getProperties();
-        foreach ($sourceProperties as $sourceProperty) {
-            $sourceProperty->setAccessible(true);
-            $name = $sourceProperty->getName();
-            $value = $sourceProperty->getValue($sourceObject);
-            if ($destinationReflection->hasProperty($name)) {
-                $propDest = $destinationReflection->getProperty($name);
-                $propDest->setAccessible(true);
-                $propDest->setValue($destination,$value);
-            } else {
-                $destination->$name = $value;
-            }
-        }
-        return $destination;
-    }
-    
     public function get($service = null) {
         try {
             
@@ -110,35 +68,44 @@ class Controller {
             $e->display();
         }
     }
-    
-    public function initSecurity($ref) {
-        var_dump($this->session->getSession($ref));
-    }
-    
+
+    /**
+     * @return Parametrage
+     */
     public function getParam() {
         return $this->parametre;
     }
-    
+
+    /**
+     * @return Session
+     */
     public function _session() {
-        
         return new Session();
     }
 
-    public function path($name,$args = null) {
+    /**
+     * @param $name
+     * @param array $args
+     * @return string
+     */
+    public function path($name,array $args = null) {
         $route = new Route('/');
         $path = $route->createPath($name,$args);
         
         return $path;
     }
-    
+
+    /**
+     * @param String $url
+     */
     public function redirect($url) {
         header("Location: $url");
         exit;
     }
-    
+
     /**
-     * Retourne un controller grace au nom de l'item
-     * @param string $item
+     * @param $item
+     * @return mixed
      */
     public function load($item) {
         $path = explode("/", $item);
@@ -150,6 +117,9 @@ class Controller {
         $control = "source\\".$path[0]."\\".$path[1]."\\controller\\".$path[2]."Controller";
         $vendor = "vendor/".$path[0]."/".$path[1]."/controller/".$path[2]."Controller.php";
         $vendor2 = "vendor/".$p."/controller/".$path_end."Controller.php";
+        $component = "/".$p."/".$path_end."Controller.php";
+
+
        
         if(file_exists(__DIR__."/../../".$control.".php")) {
             $c = new $control();
@@ -159,12 +129,21 @@ class Controller {
         } else if (file_exists(__DIR__."/../../".$vendor2)) {
             $control = $p."\\controller\\".$path_end."Controller";
             $c = new $control();
+        } else if(file_exists(__DIR__."/../../".$component)) {
+            $control = $p."/".$path_end."Controller";
+            $c = new core\component\dbmanager\DBController();
+            $this->dump($c, true);
+            $c = new $control();
         }
 
         return $c;
     }
-    
-    public function dump($var, $die = false) {
+
+    /**
+     * @param mixed $var
+     * @param bool $die
+     */
+    public function dump(mixed $var, $die = false) {
         echo "<pre>";
         var_dump($var);
         echo "</pre>";

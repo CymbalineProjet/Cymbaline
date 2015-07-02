@@ -4,10 +4,17 @@
 function __autoload($class_name) {
     try {
 		$class_name= str_replace("\\","/",$class_name);
+
         if(!file_exists($class_name.".php")) {
             if(!file_exists("vendor/".$class_name.".php")) {
-                throw new core\component\exception\CoreException('Impossible de charger '.$class_name.'.php');
+                if(!file_exists(__DIR__."/../".$class_name.".php")) {
+                    throw new core\component\exception\CoreException('Impossible de charger '.__DIR__."/../".$class_name.'.php');
+                } else {
+                    echo __DIR__."/..".$class_name.".php";
+                    require_once(__DIR__."/../".$class_name.".php");
+                }
             } else {
+
                 require_once("vendor/".$class_name.".php");
             }
         } else {

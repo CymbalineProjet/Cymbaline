@@ -19,7 +19,7 @@ class DefautController extends Controller {
      * indexAction() traitera les données pour la page index
      * @return stdClass $this->retour Tableau des données nécessaires à l'affichage 
      */
-    public function indexAction(Request $request) {
+    public function indexAction() {
         
         $error = false;
         $test = "defaut controller administration";
@@ -32,23 +32,29 @@ class DefautController extends Controller {
     }
 
     /**
-     * @param Request $request
      * @param $args
      */
-    public function viewAction(Request $request, $args) {
+    public function viewAction(array $args) {
 
+        $path = null;
         $pos = strpos($args['path'], ":");
         if($pos === false) {
             $path = str_replace("{","",str_replace("}","",$args['path']));
-            //echo $this->path($path);
-            $this->redirect($this->path($path));
+            $path = $this->path($path);
+            //$this->redirect($this->path($path));
         } else {
             $path = str_replace("{","",str_replace("}","",$args['path']));
             $a = explode(":",$path);
-            //echo $this->path($a[0],$a[1]);
-            $this->redirect($this->path($a[0],$a[1]));
+            $path =  $this->path($a[0],$a[1]);
+            //$this->redirect($this->path($a[0],$a[1]));
         }
 
+        if(is_null($path))
+            echo "error";
+        else
+            echo $path;
+
+        exit;
     }
     
 }

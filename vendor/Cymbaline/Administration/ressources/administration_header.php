@@ -17,8 +17,16 @@
         <script src="<?php $view->front('bootstrap/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
         <script src="<?php $view->front('scripts/flot/jquery.flot.js'); ?>" type="text/javascript"></script>
         <script src="<?php $view->front('js/function/view.js',false); ?>" type="text/javascript"></script>
+        <script src="<?php $view->front('js/function/dbmanager.js',false); ?>" type="text/javascript"></script>
 
-
+        <script>
+            $(document).ready(function () {
+                dbmanager.item = 'Tasks';
+                dbmanager.target = '#nbreTasks';
+                dbmanager.getAllBy('flag',0);
+                dbmanager.execute();
+            });
+        </script>
     </head>
     <body>
 

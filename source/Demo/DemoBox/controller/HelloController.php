@@ -52,8 +52,8 @@ class HelloController extends Controller {
     }
 
     /**
-     * createAction() save item in database 
-     * @return null
+     * @param Request $request
+     * @throws VarException
      */
     public function createAction(Request $request) {
 

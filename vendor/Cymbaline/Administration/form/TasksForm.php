@@ -2,6 +2,7 @@
 
 namespace Cymbaline\Administration\form;
 
+use core\component\interfaces\IForm;
 use core\component\tools\Form;
 
 /**
@@ -9,7 +10,7 @@ use core\component\tools\Form;
  *
  * @author Thibault
  */
-class TasksForm extends Form {
+class TasksForm extends Form implements IForm {
     
     
 
@@ -28,7 +29,7 @@ class TasksForm extends Form {
 			"required" => "required",
         ));
         
-        $this->add('flag','radio', array(
+        /*$this->add('flag','radio', array(
 		),array(
             "value" => "Traité",
             "class"    => "control-label",
@@ -36,7 +37,7 @@ class TasksForm extends Form {
         ), array(
             "1" => "oui",
             "0" => "non",
-        ));
+        ));*/
         
         
     }

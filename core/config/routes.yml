@@ -20,3 +20,8 @@ view:
     path: /view/get/path/string@path
     controller: Cymbaline/Administration/Defaut
     action: view
+
+dbmanager:
+    path: /sql/string@datas
+    controller: core/component/dbmanager/DB
+    action: sql

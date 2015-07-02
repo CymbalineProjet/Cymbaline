@@ -30,9 +30,9 @@ $controller->init($session, $param, $request);
 $action = $r['action']."Action";
 
 if(isset($r['args'])) {
-    $view = $controller->$action($request,$r['args']);
+    $view = $controller->$action($r['args']);
 } else {
-    $view = $controller->$action($request);
+    $view = $controller->$action();
 }
 
 if(isset($r['ressources'])) {

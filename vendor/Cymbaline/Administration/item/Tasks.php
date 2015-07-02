@@ -2,6 +2,8 @@
 
 namespace Cymbaline\Administration\item;
 
+use Cymbaline\Generator\interfaces\ItemCRUD;
+
 
 /**
  * Description of Tasks
@@ -9,29 +11,29 @@ namespace Cymbaline\Administration\item;
  *
  * @author Thibault Jaxx Floyd Jeannet thibault.jeannet@gmail.com
  */
-class Tasks {
+class Tasks implements ItemCRUD {
 
     /**
-     * #type=int#
-     * #name=id#
+     * DBManager(name=id;type=int;null=false)
+     * Form(type=integer;required=true)
      */
     private $id;
 	
 	/**
-     * #type=string#
-     * #name=content#
+     * DBManager(name=content;type=string)
+     * Form(type=text;required=true)
      */
     private $content;
 	
 	/**
-     * #type=bool#
-     * #name=flag#
+     * DBManager(name=flag;type=bool)
+     * Form(type=bool;required=false)
      */
     private $flag;
     
     /**
-     * #type=datetime#
-     * #name=date#
+     * DBManager(name=date;type=datetime;default=now)
+     * Form(type=datetime;required=true)
      */
     private $date;
 	
@@ -44,11 +46,10 @@ class Tasks {
     {
         return $this->id;
     }
-    
+
     /**
-     * Set id
-     *
-     * @return integer 
+     * @param $id
+     * @return Tasks
      */
     public function setId($id)
     {
