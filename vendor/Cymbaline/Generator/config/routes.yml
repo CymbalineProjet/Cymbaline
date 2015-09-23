@@ -3,7 +3,7 @@ generator:
     template: Cymbaline/Generator/template/index
     controller: Cymbaline/Generator/Defaut
     action: index
-    ressources: Cymbaline/Administration/ressources
+    ressources: Cymbaline/Generator/ressources
     
 generator_edit:
     path: /generator/edit

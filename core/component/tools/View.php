@@ -80,10 +80,10 @@ class View {
 
     public function tool($name) {
         if(is_null($name))
-            throw new VarException("$view->tool(name) name is null");
+            throw new VarException("$this->tool(name) name is null");
 
         if(!isset($this->tools[$name]))
-            throw new VarException("$view->tool(name) $name is not a tool");
+            throw new VarException("$this->tool(name) $name is not a tool");
 
         $tool = $this->tools[$name];
 
@@ -139,7 +139,7 @@ class View {
         if($this->ressources) {
             if(!file_exists(__DIR__."/../../../source/".$this->ressources."/$base.php")) {
                 if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$base.php")) {
-                    throw new \core\component\exception\CoreException("Extend $base.php error not found.");
+                    throw new \core\component\exception\CoreException(__DIR__."/../../../vendor/".$this->ressources."/$base.php");
                 } else {
                     $_path = __DIR__."/../../../vendor/".$this->ressources."/$base.php";
                 }
@@ -174,7 +174,7 @@ class View {
         if($this->ressources && $ressources) {
             if(!file_exists(__DIR__."/../../../source/".$this->ressources."/$path")) {
                 if(!file_exists(__DIR__."/../../../vendor/".$this->ressources."/$path")) {
-                    throw new \core\component\exception\CoreException("http://".$_SERVER['HTTP_HOST']."/vendor/".$this->ressources."/$path");
+                    throw new \core\component\exception\CoreException(__DIR__."/../../../vendor/".$this->ressources."/$path");
                 } else {
                     $_path = "http://".$_SERVER['HTTP_HOST']."/vendor/".$this->ressources."/$path";
                 }

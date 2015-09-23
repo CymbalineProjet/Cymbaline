@@ -1,4 +1,5 @@
 import:  
     - { path: /vendor/Cymbaline/Generator/config/routes.yml }
+    - { path: /vendor/Cymbaline/Book/config/routes.yml }
     - { path: /vendor/Cymbaline/Administration/config/routes.yml, param: tasks }
     - { path: /source/Demo/DemoBox/config/routes.yml }

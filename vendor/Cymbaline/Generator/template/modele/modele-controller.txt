@@ -3,7 +3,6 @@
 namespace source\#namespace#\controller;
 
 use core\component\tools\View;
-use core\component\Request;
 use core\component\Controller;
 
 /**

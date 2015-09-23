@@ -20,7 +20,7 @@ $view->extend("gen_header", "Generator"); //toujours etendre le header
                
         ?>
             <tr>
-                <td><?php echo $id ?></td>
+                <td><a target="_blank" href="<?php $view->link($route['path']); ?>"><?php echo $id ?></a></td>
                 <td><?php echo $route['path'] ?></td>
                 <td><?php echo $route['controller'] ?></td>
                 <td><?php echo $route['action'] ?></td>

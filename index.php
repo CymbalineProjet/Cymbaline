@@ -25,6 +25,7 @@ $app   = new Controller();
 $route = new Route('generator');
 $r = $route->load();
 
+
 $controller = $app->load($r['controller']);
 $controller->init($session, $param, $request);
 $action = $r['action']."Action";
@@ -45,6 +46,7 @@ if(file_exists("source/".$r['template'].".php")) {
     include("source/".$r['template'].".php");
     exit;
 } else if(file_exists("vendor/".$r['template'].".php")) {
+
     include("vendor/".$r['template'].".php");
     exit;
 } else {

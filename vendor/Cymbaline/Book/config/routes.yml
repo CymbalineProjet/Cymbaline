@@ -1,0 +1,13 @@
+book:
+    path: /book
+    template: Cymbaline/Book/template/index
+    controller: Cymbaline/Book/Defaut
+    action: index
+    ressources: Cymbaline/Book/ressources
+
+book_controller:
+    path: /book/controller
+    template: Cymbaline/Book/template/controller
+    controller: Cymbaline/Book/Defaut
+    action: controller
+    ressources: Cymbaline/Book/ressources

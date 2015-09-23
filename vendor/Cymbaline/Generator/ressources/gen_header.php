@@ -8,19 +8,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         
-        <link href="<?php $view->front('vendor/prettify/default.css');?>" rel="stylesheet">
-        <link rel="stylesheet" href="<?php $view->front('vendor/dynatable/jquery.dynatable.css');?>">
-        <link rel="stylesheet" type="text/css" media="screen" href="<?php $view->front('vendor/potato/jquery.ui.potato.menu.css');?>" />
+        <link href="<?php $view->front('vendor/prettify/default.css',false);?>" rel="stylesheet">
+        <link rel="stylesheet" href="<?php $view->front('vendor/dynatable/jquery.dynatable.css',false);?>">
+        <link rel="stylesheet" type="text/css" media="screen" href="<?php $view->front('vendor/potato/jquery.ui.potato.menu.css',false);?>" />
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
         
 		<script src="<?php $view->front('js/jquery.js');?>"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-		<script src="<?php $view->front('vendor/prettify/prettify.js');?>"></script>
-		<script src="<?php $view->front('vendor/prettify/lang-css.js');?>"></script>
-		<script src="<?php $view->front('vendor/prettify/lang-yaml.js');?>"></script>
-		<script src="<?php $view->front('vendor/prettify/lang-sql.js');?>"></script>
-        <script src="<?php $view->front('vendor/dynatable/jquery.dynatable.js');?>"></script>
-        <script src="<?php $view->front('vendor/potato/jquery.ui.potato.menu.js');?>"></script>
+		<script src="<?php $view->front('vendor/prettify/prettify.js',false);?>"></script>
+		<script src="<?php $view->front('vendor/prettify/lang-css.js',false);?>"></script>
+		<script src="<?php $view->front('vendor/prettify/lang-yaml.js',false);?>"></script>
+		<script src="<?php $view->front('vendor/prettify/lang-sql.js',false);?>"></script>
+        <script src="<?php $view->front('vendor/dynatable/jquery.dynatable.js',false);?>"></script>
+        <script src="<?php $view->front('vendor/potato/jquery.ui.potato.menu.js',false);?>"></script>
        
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>

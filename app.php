@@ -69,11 +69,14 @@ if($session->_is_register("user")) {
 
 $r = $route->load();
 
+
 $controller = $app->load($r['controller']);
 
 $controller->init($session, $param, $request);
+
 $action = $r['action']."Action";
 $view = new View(null);
+
 if(isset($r['args'])) {
     $view = $controller->$action($r['args']);
 } else {
@@ -85,6 +88,8 @@ if(isset($r['ressources'])) {
 } else {
     $view->ressources = false;
 }
+
+
 
 if(file_exists("source/".$r['template'].".php")) {
     include("source/".$r['template'].".php");
