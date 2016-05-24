@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pronos.2016 - Inscription</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+</head>
+
+<body id="inscription">
+    <img src="css/image/cover_inscription.jpg" id="bg" alt="">
+    <form id="form_inscription">
+        <h1>Inscritpion</h1>
+        <img src="img/boba.gif" alt="Photo de profil" />
+        <label>Ajouter une photo</label>
+        <input type="file" />
+        <input id="firstname" type="text" value="VOTRE PRÉNOM" onblur="if (this.value == '') {this.value = 'VOTRE PRÉNOM';}" onfocus="if (this.value == 'VOTRE PRÉNOM') {this.value = '';}" />
+        <input id="lastname"  type="text" value="VOTRE NOM" onblur="if (this.value == '') {this.value = 'VOTRE NOM';}" onfocus="if (this.value == 'VOTRE NOM') {this.value = '';}" />
+        <input id="email" type="email" value="VOTRE EMAIL" onblur="if (this.value == '') {this.value = 'VOTRE EMAIL';}" onfocus="if (this.value == 'VOTRE EMAIL') {this.value = '';}" />
+        <input id="password" type="text" value="VOTRE MOT DE PASSE" onblur="if (this.value == '') {this.value = 'VOTRE MOT DE PASSE';} if(this.type == 'password') {this.type = 'text'}" onfocus="if (this.value == 'VOTRE MOT DE PASSE') {this.value = '';}if(this.type == 'text') {this.type = 'password'}" />
+        <button>CONNEXION</button>
+    </form>
+</body>
+<script>
+    $(window).load(function() {    
+	var theWindow        = $(window),
+	    $bg              = $("#bg"),
+	    aspectRatio      = $bg.width() / $bg.height();
+	function resizeBg() {
+		if ( (theWindow.width() / theWindow.height()) < aspectRatio ) {
+		    $bg
+		    	.removeClass()
+		    	.addClass('bgheight');
+		} else {
+		    $bg
+		    	.removeClass()
+		    	.addClass('bgwidth');
+		}
+	}
+	theWindow.resize(resizeBg).trigger("resize");
+});
+</script>
+
+</html>

@@ -1,0 +1,7 @@
+faire une sorte de composer pour telecharger une zone 
+#on deplace les vendor dans le dossier /lib 
+
+creer des commandes pour generer des box, des items, des tables en bdd, des données en bdd etc...
+
+creer la Factory
+creer les logs

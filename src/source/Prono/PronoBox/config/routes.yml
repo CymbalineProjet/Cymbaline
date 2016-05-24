@@ -1,0 +1,35 @@
+home:
+    path: /prono/home
+    template: Prono/PronoBox/template/home
+    controller: Prono/PronoBox/Prono
+    action: index
+	
+classement:
+    path: /prono/classement
+    template: Prono/PronoBox/template/classement
+    controller: Prono/PronoBox/Prono
+    action: classement
+	
+equipes:
+    path: /prono/equipes
+    template: Prono/PronoBox/template/equipes
+    controller: Prono/PronoBox/Prono
+    action: equipes
+	
+tchat_new:
+    path: /prono/tchat/new
+    template: Prono/PronoBox/template/home
+    controller: Prono/PronoBox/Tchat
+    action: new
+	
+tchat_load:
+    path: /prono/tchat/load
+    template: Prono/PronoBox/template/home
+    controller: Prono/PronoBox/Tchat
+    action: load
+
+test:
+    path: /pronos/test
+    template: Prono/PronoBox/template/test
+    controller: Prono/PronoBox/Prono
+    action: test

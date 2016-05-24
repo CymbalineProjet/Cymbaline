@@ -1,0 +1,77 @@
+demo_index:
+    path: /demo
+    template: #namespacev#/template/fatal
+    controller: #namespacev#/Demo
+    action: index
+
+
+#maintenance routes
+
+maintenance_index:
+    path: /maintenance
+    template: Demo/DemoBox/template/Maintenance/index
+    controller: Demo/DemoBox/Maintenance
+    action: index
+
+maintenance_new:
+    path: /maintenance/new
+    template: Demo/DemoBox/template/Maintenance/new
+    controller: Demo/DemoBox/Maintenance
+    action: new
+
+maintenance_create:
+    path: /maintenance/create
+    controller: Demo/DemoBox/Maintenance
+    action: create
+
+maintenance_edit:
+    path: /maintenance/edit/int@id
+    template: Demo/DemoBox/template/Maintenance/edit
+    controller: Demo/DemoBox/Maintenance
+    action: edit
+
+maintenance_update:
+    path: /maintenance/update/int@id
+    controller: Demo/DemoBox/Maintenance
+    action: update
+
+maintenance_delete:
+    path: /maintenance/delete/int@id
+    controller: Demo/DemoBox/Maintenance
+    action: delete
+
+#hello routes
+
+hello_index:
+    path: /hello
+    template: Demo/DemoBox/template/Hello/index
+    controller: Demo/DemoBox/Hello
+    action: index
+
+hello_new:
+    path: /hello/new
+    template: Demo/DemoBox/template/Hello/new
+    controller: Demo/DemoBox/Hello
+    action: new
+
+hello_create:
+    path: /hello/create
+    controller: Demo/DemoBox/Hello
+    action: create
+
+hello_edit:
+    path: /hello/edit/int@id
+    template: Demo/DemoBox/template/Hello/edit
+    controller: Demo/DemoBox/Hello
+    action: edit
+
+hello_update:
+    path: /hello/update/int@id
+    controller: Demo/DemoBox/Hello
+    action: update
+
+hello_delete:
+    path: /hello/delete/int@id
+    controller: Demo/DemoBox/Hello
+    action: delete
+

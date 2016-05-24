@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pronos.2016</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,300italic,400,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////  FIRST LINE - HEADER  ////////// -->
+        <img class="logo" src="img/logo.jpg" alt="Pronos.2016" />
+        <h1>PRONOS.2016</h1>
+        <ul id="nav_second">
+            <li class="classement">
+                <a href="#" title="">
+                    <span>Classement</span>
+                </a>
+            </li>
+            <li class="accueil">
+                <a href="#" title="">
+                    <span>Accueil</span>
+                </a>
+            </li>
+            <li class="pronostics">
+                <a href="#" title="">
+                    <span>Pronostics</span>
+                </a>
+            </li>
+            <li class="matchs">
+                <a href="#" title="">
+                    <span>Les matchs</span>
+                </a>
+            </li>
+            <li class="equipes">
+                <a href="#" title="">
+                    <span>Les équipes</span>
+                </a>
+            </li>
+            <li class="calendrier">
+                <a href="#" title="">
+                    <span>Calendrier</span>
+                </a>
+            </li>
+        </ul>
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////  SECOND LINE - HEADER  ////////// -->
+        <div id="title">
+            <h2>COUPE D’EUROPE DE FOOTBALL 2016 - FRANCE</h2>
+            <div id="connexion">
+                <span class="user_name">François.L</span>
+                <img src="img/users/francois_pic.png" />
+                <ul id="connexion_list">
+                    <li id="button_connexion">
+                        <a href="#" title="déconnexion">
+                            <span>Déconnexion</span>
+                        </a>
+                    </li>
+                    <li class="compte">
+                        <a href="#" title="">
+                            <span>mon compte</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////  MAIN MENU - NAVIGATION  //////// -->
+    <nav>
+        <ul id="menuLeft">
+            <li class="accueil">
+                <a href="#" title="">
+                    <span>Accueil</span>
+                </a>
+            </li>
+            <li class="classement">
+                <a href="#" title="">
+                    <span>Classement</span>
+                </a>
+            </li>
+            <li class="pronostics">
+                <a href="#" title="">
+                    <span>Pronostics</span>
+                </a>
+            </li>
+            <li class="matchs">
+                <a href="#" title="">
+                    <span>Les matchs</span>
+                </a>
+            </li>
+            <li class="equipes">
+                <a href="#" title="">
+                    <span>Les équipes</span>
+                </a>
+            </li>
+            <li class="calendrier">
+                <a href="#" title="">
+                    <span>Calendrier</span>
+                </a>
+            </li>
+            <li class="compte">
+                <a href="#" title="">
+                    <span>Mon compte</span>
+                </a>
+            </li>
+        </ul>
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////  ONLINE TCHAT  //////// -->
+        <div id="tchat">
+            <form>
+                <a title="Augmenter le tchat" id="tchat_button">
+                    <img src="img/users/francois_pic.png" />
+                </a>
+                <input id="myMessage" type="text" value="Ecrire un message ..." onblur="if (this.value == '') {this.value = 'Ecrire un message ...';}" onfocus="if (this.value == 'Ecrire un message ...') {this.value = '';}" />
+            </form>
+            <ul id="tchatList">
+                <li>
+                    <label>
+                        <img src="img/users/francois_pic.png" />
+                    </label>
+                    <div>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/raph_pic.png" />
+                    </label>
+                    <div>Duis autem vel eum iriure dolor in hendrerit. Dolore eu feugiat nulla facilisis.</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/francois_pic.png" />
+                    </label>
+                    <div>Feugiat nulla facilisis, raf ! Duis autem ...</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/thibault_pic.png" />
+                    </label>
+                    <div>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/francois_pic.png" />
+                    </label>
+                    <div>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/francois_pic.png" />
+                    </label>
+                    <div>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/raph_pic.png" />
+                    </label>
+                    <div>Duis autem vel eum iriure dolor in hendrerit. Dolore eu feugiat nulla facilisis.</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/francois_pic.png" />
+                    </label>
+                    <div>Feugiat nulla facilisis, raf ! Duis autem ...</div>
+                </li>
+                <li>
+                    <label>
+                        <img src="img/users/thibault_pic.png" />
+                    </label>
+                    <div>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.</div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////////////////  SECTION - WRAPPER CONTENT  //////// -->
+    <section>
+        <div id="cover"></div>
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////  CLASSEMENT  //////// -->
+        <ul id="classement">
+            <h3>Le classement (vous êtes 8ème sur 32)
+            <!-- A AJOUTER -->
+                <a class="bt_classement" href="">Le classement complet</a>
+            <!-- FIN -->
+            </h3>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="bloc user">
+                    <div class="cover">
+                        <img src="img/users/francois.jpg" alt="francois">
+                    </div>
+                    <div class="info_user">
+                        <div class="name">François.L</div>
+                        <div class="points">123 points</div>
+                        <ul class="penalties">
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                            <li>&nbsp;</li>
+                        </ul>
+                        <span class="position">1er</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        
+        <div id="guide_cover">
+            <div id="left_arrow">
+                <a href="" title="Vers la gauche">Vers la gauche</a>
+            </div>
+            <div id="right_arrow">
+                <a href="" title="Vers la droite">Vers la droite</a>
+            </div>
+        </div>
+        <footer>
+            <p>Copyright 2016 - site privé - réalisé par Thibault Jeannet et François Lestoquoy</p>
+        </footer>
+    </section>
+
+</body>
+<script>
+$(document).ready(function() {
+    /* Open-close tchat */
+    var button = document.getElementById( "tchat_button" );
+    var menuClose = false;
+    var menuHeight = document.getElementById( "menuLeft" ).offsetHeight;
+    var menuList = document.getElementById( "menuLeft" ).getElementsByTagName( "li" );
+    $(button).click(function() {
+        if(menuClose == false) {
+            $(menuList[1]).addClass('isHidden');
+            $(menuList[2]).addClass('isHidden');
+            $(menuList[3]).addClass('isHidden');
+            $(menuList[4]).addClass('isHidden');
+            $(menuList[5]).addClass('isHidden');
+            $(menuList[6]).addClass('isHidden');
+            button.title = "Réduire le tchat";
+            menuClose = true;
+        } else if(menuClose == true) {
+            $(menuList[1]).removeClass('isHidden');
+            $(menuList[2]).removeClass('isHidden');
+            $(menuList[3]).removeClass('isHidden');
+            $(menuList[4]).removeClass('isHidden');
+            $(menuList[5]).removeClass('isHidden');
+            $(menuList[6]).removeClass('isHidden');
+            button.title = "Augmenter le tchat";
+            menuClose = false;
+        }
+    });
+    /* Move into Guide Cover */
+    var leftArrow = document.getElementById( "left_arrow" );
+    var rightArrow = document.getElementById( "right_arrow" );
+    var cover = document.getElementById( "guide_cover" );
+    var x = 0;
+    
+    $(rightArrow).hover(function () {
+        moveR = window.setInterval(function(){
+            x-=6;
+            $(cover).css('background-position', x + 'px 0');
+        }, 10);
+    }, function(){
+        window.clearInterval(moveR);
+    });
+    
+    $(leftArrow).hover(function () {
+        moveL = window.setInterval(function(){
+            x+=6;
+            $(cover).css('background-position', x + 'px 0');
+        }, 10);
+    }, function(){
+        window.clearInterval(moveL);
+    });
+    
+});
+</script>
+
+</html>

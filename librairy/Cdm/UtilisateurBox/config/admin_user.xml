@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <route name="admin_user" path="/admin/utilisateur" 
+           template="Cdm/UtilisateurBox/template/admin/index" controller="Cdm/UtilisateurBox/Admin" action="index" />
+    
+    <route name="admin_user_detail" path="/admin/utilisateur/int@id" 
+           template="Cdm/UtilisateurBox/template/admin/affiche" controller="Cdm/UtilisateurBox/Admin" action="affiche" />
+    
+    <route name="admin_user_edit" path="/admin/utilisateur/edit/int@id" 
+           template="Cdm/UtilisateurBox/template/admin/edit" controller="Cdm/UtilisateurBox/Admin" action="edit" />
+    
+    <route name="admin_user_new" path="/admin/utilisateur/new" 
+           template="Cdm/UtilisateurBox/template/admin/new" controller="Cdm/UtilisateurBox/Admin" action="new" />
+    
+</routes>

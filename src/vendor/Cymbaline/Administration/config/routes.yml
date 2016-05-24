@@ -1,0 +1,42 @@
+administration:
+    path: /administration
+    template: Cymbaline/Administration/template/index
+    controller: Cymbaline/Administration/Defaut
+    action: index
+    ressources: Cymbaline/Administration/ressources
+
+administration_class:
+    path: /administration/class
+    template: Cymbaline/Administration/template/class
+    controller: Cymbaline/Administration/Defaut
+    action: class
+    ressources: Cymbaline/Administration/ressources
+	
+# TASKS
+tasks:
+    path: /tasks
+    template: Cymbaline/Administration/template/tasks/index
+    controller: Cymbaline/Administration/Tasks
+    action: index
+    ressources: Cymbaline/Administration/ressources
+    prefix: /administration
+
+tasks_new:
+    path: /tasks/new
+    template: Cymbaline/Administration/template/tasks/new
+    controller: Cymbaline/Administration/Tasks
+    action: new
+    ressources: Cymbaline/Administration/ressources
+    prefix: /administration
+
+tasks_update:
+    path: /tasks/update/int@id
+    controller: Cymbaline/Administration/Tasks
+    action: update
+    prefix: /administration
+
+tasks_delete:
+    path: /tasks/delete/int@id
+    controller: Cymbaline/Administration/Tasks
+    action: delete
+    prefix: /administration

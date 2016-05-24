@@ -1,0 +1,8 @@
+import:
+    - { path: /vendor/Cymbaline/Tools/ToolBar/config/routes.yml }
+    - { path: /source/Prono/PronoBox/config/routes.yml }
+    - { path: /source/Prono/APIBox/config/routes.yml }
+    - { path: /vendor/Cymbaline/Generator/config/routes.yml }
+    - { path: /vendor/Cymbaline/Book/config/routes.yml }
+    - { path: /vendor/Cymbaline/Administration/config/routes.yml, param: tasks }
+	- { path: /vendor/Cymbaline/Community/config/routes.yml}

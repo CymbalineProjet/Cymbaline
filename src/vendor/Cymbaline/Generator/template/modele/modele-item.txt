@@ -1,0 +1,19 @@
+<?php
+
+namespace source\#namespace#\item;
+
+
+/**
+ * Description of #name#
+ * 
+ *
+ * @author #author#
+ */
+class #name# {
+
+    #attribs#
+
+    #getter#
+
+    #setter#
+}

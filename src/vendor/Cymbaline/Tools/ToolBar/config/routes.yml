@@ -1,0 +1,5 @@
+toolbar:
+    path: /toolbar
+    controller: Cymbaline/Tools/ToolBar/ToolBar
+    action: index
+    template: Cymbaline/Tools/ToolBar/template/toolbar

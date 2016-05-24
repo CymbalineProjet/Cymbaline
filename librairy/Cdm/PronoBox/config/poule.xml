@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    
+    <route name="poules" path="/poule" 
+           template="Cdm/PronoBox/template/poule/index" controller="Cdm/PronoBox/Poule" action="index" />
+
+    <route name="poule" path="/poule/int@id" 
+           template="Cdm/PronoBox/template/poule/affiche" controller="Cdm/PronoBox/Poule" action="affiche" />      
+
+</routes>

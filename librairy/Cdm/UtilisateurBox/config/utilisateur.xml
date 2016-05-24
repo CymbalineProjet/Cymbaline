@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    
+    <route name="myutilisateur_edit" path="/edit" 
+           template="Cdm/UtilisateurBox/template/edit" controller="Cdm/UtilisateurBox/Utilisateur" action="edit" />
+
+    <route name="utilisateur" path="/utilisateur/int@id" 
+           template="Cdm/UtilisateurBox/template/utilisateur" controller="Cdm/UtilisateurBox/Utilisateur" action="obtenir" />
+    
+    <route name="classement" path="/classement" 
+           template="Cdm/UtilisateurBox/template/classement" controller="Cdm/UtilisateurBox/Utilisateur" action="classement" />
+    
+    <route name="modifier" path="/modifier" 
+           template="Cdm/UtilisateurBox/template/modifier" controller="Cdm/UtilisateurBox/Utilisateur" action="modifier" />
+    
+    <route name="editer_compte_mail" path="/editer/step1" 
+           template="Cdm/UtilisateurBox/template/modifier" controller="Cdm/UtilisateurBox/Utilisateur" action="editfirst" />
+    
+    <route name="editer_compte_mess" path="/editer/step2" 
+           template="Cdm/UtilisateurBox/template/modifier" controller="Cdm/UtilisateurBox/Utilisateur" action="editsecond" />
+    
+    <route name="editer_compte_identite" path="/editer/step3" 
+           template="Cdm/UtilisateurBox/template/modifier" controller="Cdm/UtilisateurBox/Utilisateur" action="editthird" />
+
+</routes>
+

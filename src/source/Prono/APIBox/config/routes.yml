@@ -1,0 +1,11 @@
+api:
+    path: /api
+    controller: Prono/APIBox/Api
+    action: index
+    template: ~
+
+api_classement:
+    path: /api/classement
+    controller: Prono/APIBox/Api
+    action: classement
+    template: ~

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    
+    <route name="login" path="/login" 
+           template="Cdm/PronoBox/template/login" controller="Cdm/PronoBox/Defaut" action="login" />
+
+    <route name="home" path="/home" 
+           template="Cdm/PronoBox/template/home/index" controller="Cdm/PronoBox/Home" action="index" />
+    
+    <route name="pronos" path="/prono" 
+           template="Cdm/PronoBox/template/prono/index" controller="Cdm/PronoBox/Prono" action="index" />
+
+    <route name="prono" path="/prono/int@id" 
+           template="Cdm/PronoBox/template/prono/affiche" controller="Cdm/PronoBox/Prono" action="affiche" /> 
+
+    <route name="calcul_point" path="/prono/maj/int@id/int@user" 
+           template="Cdm/PronoBox/template/prono/affiche" controller="Cdm/PronoBox/Prono" action="maj" /> 
+    
+    <route name="prono_save_ajax" path="/prono/save" 
+           template="Cdm/PronoBox/template/prono/save" controller="Cdm/PronoBox/Prono" action="ajax" /> 
+    
+</routes>

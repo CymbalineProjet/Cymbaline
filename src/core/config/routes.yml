@@ -1,0 +1,39 @@
+error:
+    path: /error
+    template: Cymbaline/Error/template/fatal
+    controller: Cymbaline/Error/Error
+    action: index
+    
+index:
+    path: /
+    template: Cymbaline/Community/Member/template/log
+    controller: Cymbaline/Community/Member/Member
+    action: log
+    
+documentation:
+    path: /documentation
+    template: Documentation/index
+    controller: Documentation/Defaut
+    action: index
+
+view:
+    path: /view/get/path/string@path
+    controller: Cymbaline/Administration/Defaut
+    action: view
+
+dbmanager:
+    path: /sql/string@datas
+    controller: core/component/dbmanager/DB
+    action: sql
+
+api:
+    path: /api
+    template: Cymbaline/Generator/template/api
+    controller: Cymbaline/Generator/Defaut
+    action: api
+
+cymbaline.upload:
+	path: /upload
+	template:
+	controller: Cymbaline/Tools/Upload/Upload
+	action: index

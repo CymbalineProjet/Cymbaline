@@ -1,0 +1,47 @@
+parameters:
+    env: dev
+    baseurl: 
+    basetitle: 
+    controllerdefault:
+    path:
+        www: /home/thibaulttl/
+    
+    database:
+        dev:
+            host: thibaulttl1988.mysql.db
+            port: 
+            dbname: thibaulttl1988
+            dbuser: thibaulttl1988
+            dbpass: Renaud88
+        prod:
+            host: 
+            port: 
+            dbname: thibaulttl1988
+            dbuser: thibaulttl1988
+            dbpass: Renaud88
+            
+    
+    roles:
+        user: prono/
+        manager: manager/
+	
+    community:	
+	    member:
+            authentification:
+                exclude: [log,login,login_manager]
+		    upload:
+			    dir: public/upload/member/		
+        manager:
+            authentification:
+                exclude: [log,login,login_manager]
+
+    upload:
+        valid:
+            - jpg : image/jpeg
+            - png : image/png
+        size : 1024000
+
+    api:
+        used: true
+        secret: 26a406792d0daa7341b6becc2c3c8b35
+        identity: api_prono16		

@@ -1,0 +1,23 @@
+login_manager:
+    path: /manager/login
+    template: Cymbaline/Community/Manager/template/login
+    controller: Cymbaline/Community/Manager/Manager
+    action: login
+	
+log_manager:
+    path: /manager/log
+    template: Cymbaline/Community/Manager/template/log
+    controller: Cymbaline/Community/Manager/Manager
+    action: log
+	
+login:
+    path: /login
+    template: Cymbaline/Community/Member/template/login
+    controller: Cymbaline/Community/Member/Member
+    action: login
+	
+log:
+    path: /log
+    template: Cymbaline/Community/Member/template/log
+    controller: Cymbaline/Community/Member/Member
+    action: log

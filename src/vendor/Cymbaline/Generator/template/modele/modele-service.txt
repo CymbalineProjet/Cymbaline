@@ -1,0 +1,16 @@
+<?php
+
+namespace source\#namespace#\service;
+
+use core\component\Service;
+
+
+/**
+ * Description of #name#Service
+ *
+ * @author #author#
+ */
+class #name#Service extends Service {
+
+   
+}

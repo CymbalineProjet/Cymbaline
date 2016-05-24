@@ -1,0 +1,91 @@
+generator:
+    path: /generator
+    template: Cymbaline/Generator/template/index
+    controller: Cymbaline/Generator/Defaut
+    action: index
+    ressources: Cymbaline/Generator/ressources
+    
+generator_edit:
+    path: /generator/edit
+    template: Cymbaline/Generator/template/edit-parameters
+    controller: Cymbaline/Generator/Defaut
+    action: edit
+    ressources: Cymbaline/Generator/ressources
+    
+generator_code:
+    path: /generator/component/codex
+    template: Cymbaline/Generator/template/coding
+    controller: Cymbaline/Generator/Defaut
+    action: code
+    ressources: Cymbaline/Generator/ressources
+    
+generator_route:
+    path: /generator/component/route
+    template: Cymbaline/Generator/template/routing
+    controller: Cymbaline/Generator/Defaut
+    action: route
+    ressources: Cymbaline/Generator/ressources
+    
+generator_todo:
+    path: /generator/todo
+    template: Cymbaline/Generator/template/todo/index
+    controller: Cymbaline/Generator/Todo
+    action: todo
+    ressources: Cymbaline/Generator/ressources
+    
+generator_close_todo:
+    path: /generator/todo/close/int@id
+    template: Cymbaline/Generator/template/todo/close
+    controller: Cymbaline/Generator/Todo
+    action: close
+    ressources: Cymbaline/Generator/ressources
+    
+generator_delete_todo:
+    path: /generator/todo/delete/int@id
+    template: Cymbaline/Generator/template/todo/delete
+    controller: Cymbaline/Generator/Todo
+    action: delete
+    ressources: Cymbaline/Generator/ressources
+    
+generator_open_todo:
+    path: /generator/todo/open/int@id
+    template: Cymbaline/Generator/template/todo/open
+    controller: Cymbaline/Generator/Todo
+    action: open
+    ressources: Cymbaline/Generator/ressources
+    
+generator_new_todo:
+    path: /generator/todo/new
+    template: Cymbaline/Generator/template/todo/new
+    controller: Cymbaline/Generator/Todo
+    action: new  
+    ressources: Cymbaline/Generator/ressources
+    
+generator_parameters:
+    path: /generator/parameters
+    template: Cymbaline/Generator/template/parameters
+    controller: Cymbaline/Generator/Defaut
+    action: index
+    ressources: Cymbaline/Administration/ressources
+
+generator_add_item:
+    path: /generator/add/item
+    template: Cymbaline/Generator/template/add-item
+    controller: Cymbaline/Generator/Defaut
+    action: additem
+    ressources: Cymbaline/Generator/ressources
+    
+generator_add_box:
+    path: /generator/add/box
+    template: Cymbaline/Generator/template/add-box
+    controller: Cymbaline/Generator/Defaut
+    action: addbox
+    ressources: Cymbaline/Generator/ressources
+    
+generator_add_zone:
+    path: /generator/add/zone
+    template: Cymbaline/Generator/template/add-zone
+    controller: Cymbaline/Generator/Defaut
+    action: addzone
+    ressources: Cymbaline/Generator/ressources
+

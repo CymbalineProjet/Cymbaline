@@ -1,0 +1,25 @@
+parameters:
+    env: #env
+    baseurl: #baseurl
+    basetitle: #basetitle
+    controllerdefault: #controllerdefault
+    
+    database:
+        dev:
+            host: #host
+            port: #port
+            dbname: #dbname
+            dbuser: #dbuser
+            dbpass: #dbpass
+        prod:
+            host: #phost
+            port: #pport
+            dbname: #pdbname
+            dbuser: #pdbuser
+            dbpass: #pdbpass
+            
+    
+    roles:
+        user: *
+        admin: admin
+    

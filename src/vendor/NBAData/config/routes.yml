@@ -1,0 +1,43 @@
+# NBA API routes
+api_games:
+    path: /api/data/games
+    template: NBAData/template/api
+    controller: NBAData/Nba
+    action: games
+    prefix: /nba
+
+api_games_by_date:
+    path: /api/data/games/int@date
+    template: NBAData/template/api
+    controller: NBAData/Nba
+    action: api
+    prefix: /nba
+
+api_results:
+    path: /api/data/results
+    template: NBAData/template/results
+    controller: NBAData/Nba
+    action: results
+    prefix: /nba
+
+api_results_by_date:
+    path: /api/data/results/int@date
+    template: NBAData/template/results
+    controller: NBAData/Nba
+    action: results
+    prefix: /nba
+
+api_teams:
+    path: /api/data/teams
+    template: NBAData/template/teams
+    controller: NBAData/Nba
+    action: teams
+    prefix: /nba
+
+api_roster:
+    path: /api/data/roster/string@id
+    template: NBAData/template/roster
+    controller: NBAData/Nba
+    action: roster
+    prefix: /nba
+

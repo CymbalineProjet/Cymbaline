@@ -1,0 +1,5 @@
+items:
+    - source\Prono\PronoBox\item\Prono
+    - source\Prono\PronoBox\item\Match
+    - source\Prono\PronoBox\item\Equipe
+    - source\Prono\PronoBox\item\Poule
