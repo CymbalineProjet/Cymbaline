@@ -4,21 +4,21 @@ parameters:
     basetitle: 
     controllerdefault:
     path:
-        www: /home/thibaulttl/
+        www: /home/*****/
     
     database:
         dev:
-            host: thibaulttl1988.mysql.db
+            host: *****
             port: 
-            dbname: thibaulttl1988
-            dbuser: thibaulttl1988
-            dbpass: Renaud88
+            dbname: *****
+            dbuser: *****
+            dbpass: *****
         prod:
-            host: 
+            host: *****
             port: 
-            dbname: thibaulttl1988
-            dbuser: thibaulttl1988
-            dbpass: Renaud88
+            dbname: *****
+            dbuser: *****
+            dbpass: *****
             
     
     roles:
@@ -43,5 +43,5 @@ parameters:
 
     api:
         used: true
-        secret: 26a406792d0daa7341b6becc2c3c8b35
+        secret: *****
         identity: api_prono16		
